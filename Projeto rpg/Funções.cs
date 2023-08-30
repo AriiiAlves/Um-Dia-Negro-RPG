@@ -1,7 +1,6 @@
 ﻿using NAudio.Wave; // API para reproduzir áudio
 using Projeto_RPG; // Acesso a todo o projeto (Para uso das Variáveis Globais)
 using System.Runtime.InteropServices;
-using static Funções.Configurações;
 
 namespace Funções
 {
@@ -60,7 +59,7 @@ namespace Funções
             Effect_Player = new WaveOutEvent();
             Effect_Reader = new AudioFileReader("Colocar som vazio"); // Colocar som vazio aqui
 
-            switch(n)
+            switch (n)
             {
                 case 1:
                     Effect_Reader = new AudioFileReader(" <Colocar efeito sonoro 1 aqui> "); // Colocar ainda
@@ -68,7 +67,7 @@ namespace Funções
                 case 2:
                     Effect_Reader = new AudioFileReader(" <Colocar efeito sonoro 2 aqui> "); // Colocar ainda
                     break;
-        }
+            }
 
             Effect_Player.Init(Effect_Reader);
             Effect_Player.Play();
@@ -77,22 +76,43 @@ namespace Funções
         public static string CaminhoTrilha(int n) // Colocar certinho os caminhos, testar, e colocar mais trilhas
         {
             string temp = Directory.GetCurrentDirectory();
-
             switch (n)
             {
                 case 0:
                     // return ($@"{temp}/Soundtrack/Main Sound.mp3");
-                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3");
+                    return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3");
                 case 1:
                     // return ($@"{temp}/Soundtrack/Calling Sound.mp3");
-                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Calling Sound.mp3");
+                    return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Calling Sound.mp3");
                 case 2:
                     // return ($@"{temp}/Soundtrack/Call1 Sound.mp3");
-                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Call1 Sound.mp3");
+                    return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Call1 Sound.mp3");
                 default:
                     // return ($@"{temp}/Soundtrack/Main Sound.mp3");
-                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3");
+                    return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3");
             }
+        }
+
+        // GUIA DE SOUNDTRACKS
+
+        // 0: SOM DECHUVA
+        // 1: SOM DE LIGAÇÃO (CHAMANDO)
+        // 2: SOM DO CONTATO DESCONHECIDO
+
+        public class Soundtrack0
+        {
+            public static WaveOutEvent Player = new WaveOutEvent();
+            public static AudioFileReader Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
+        }
+        public class Soundtrack1
+        {
+            public static WaveOutEvent Player = new WaveOutEvent();
+            public static AudioFileReader Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(1));
+        }
+        public class Soundtrack2
+        {
+            public static WaveOutEvent Player = new WaveOutEvent();
+            public static AudioFileReader Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(2));
         }
     }
 
@@ -160,7 +180,7 @@ namespace Funções
                                     "\nEstá trancado." +
                                     "\n\nProcurar a chave no quarto?" +
                                     "\n\n[1] Sim" +
-                                    "\n[2] n̰̝̹̳͊͒̂̉̀�̸̣̘̭̻̼̊ͥ͑�͖́͝ͅǒ̷̹̱̳̘̣̦̮̲͂̍ͦ", true);
+                                    "\n[2] n̰̝̹̳͊͒̂̉̀ ̸̣̘̭̻̼̊ͥ͑ ͖́͝ͅǒ̷̹̱̳̘̣̦̮̲͂̍ͦ", true);
                                 Ações.Escolha(2);
                                 goto case 2;
                             case 2:
@@ -211,9 +231,19 @@ namespace Funções
                     {
                         case 1:
                             Ferramentas.LimpaTela();
-                            Soundtrack.Tocar(1);  // Trilha 1: Calling Sound
+
+                            Soundtrack.Player.Stop();
+                            Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(1));
+                            Soundtrack.Player.Init(Soundtrack.Leitor);
+                            Soundtrack.Player.Play();
+
                             História.Ligação1();
-                            Soundtrack.Tocar(0);  // Trilha 0: Main Sound
+
+                            Soundtrack.Player.Stop();
+                            Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
+                            Soundtrack.Player.Init(Soundtrack.Leitor);
+                            Soundtrack.Player.Play();  // Trilha 0: Main Sound
+
                             Ferramentas.LimpaTela();
                             VariáveisGlobais.chamada1_realizada = true;
                             Ferramentas.Escrever("Ninguém atende." +
@@ -224,11 +254,26 @@ namespace Funções
                             {
                                 case 1:
                                     Ferramentas.LimpaTela();
-                                    Soundtrack.Tocar(1); // Trilha 1: Calling Sound
+
+                                    Soundtrack.Player.Stop();
+                                    Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(1));
+                                    Soundtrack.Player.Init(Soundtrack.Leitor);
+                                    Soundtrack.Player.Play();
+
                                     História.Ligação1();
-                                    Soundtrack.Tocar(2); // Trilha 2: Call1 Sound
+
+                                    Soundtrack.Player.Stop();
+                                    Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(2));
+                                    Soundtrack.Player.Init(Soundtrack.Leitor);
+                                    Soundtrack.Player.Play();
+
                                     História.Ligação1_atendida();
-                                    Soundtrack.Tocar(0); // Trilha 0: Main Sound
+
+                                    Soundtrack.Player.Stop();
+                                    Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0)); // 0: Main Soundtrack
+                                    Soundtrack.Player.Init(Soundtrack.Leitor);
+                                    Soundtrack.Player.Play();
+
                                     Ferramentas.LimpaTela();
                                     Ferramentas.Escrever("O histórico de chamadas foi limpo subitamente. O número desconhecido não está mais disponível.");
                                     Ferramentas.LimpaTela();
@@ -448,10 +493,9 @@ namespace Funções
         {
             // Tocando áudio de ligação (chamando)
 
-            Soundtrack.Player.Stop();
-            Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(1)); // 1: Calling Soundtrack
-            Soundtrack.Player.Init(Soundtrack.Leitor);
-            Soundtrack.Player.Play();
+            ControleMúsica.Soundtrack0.Player.Pause();
+            ControleMúsica.Soundtrack1.Player.Init(ControleMúsica.Soundtrack1.Leitor);
+            ControleMúsica.Soundtrack1.Player.Play();
 
             // Desabilitando barra de escrita
 
@@ -547,10 +591,8 @@ namespace Funções
 
             // Encerrando som de ligação (chamando)
 
-            Soundtrack.Player.Stop();
-            Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0)); // 0: Main Soundtrack
-            Soundtrack.Player.Init(Soundtrack.Leitor);
-            Soundtrack.Player.Play();
+            ControleMúsica.Soundtrack1.Player.Stop();
+            ControleMúsica.Soundtrack0.Player.Play();
 
             // Habilitando barra de escrita
 
@@ -560,10 +602,9 @@ namespace Funções
         {
             // Tocando áudio de ligação (chamando)
 
-            Soundtrack.Player.Stop();
-            Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(2)); // 2: Call1 Soundtrack
-            Soundtrack.Player.Init(Soundtrack.Leitor);
-            Soundtrack.Player.Play();
+            ControleMúsica.Soundtrack0.Player.Pause();
+            ControleMúsica.Soundtrack2.Player.Init(ControleMúsica.Soundtrack1.Leitor);
+            ControleMúsica.Soundtrack2.Player.Play();
 
             // Desabilitando barra de escrita
 
@@ -608,12 +649,10 @@ namespace Funções
                 Ferramentas.LimpaTela();
             }
 
-            // Encerrando som de ligação (chamando)
+            // Encerrando som da ligação (Desconhecido)
 
-            Soundtrack.Player.Stop();
-            Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0)); // 0: Main Soundtrack
-            Soundtrack.Player.Init(Soundtrack.Leitor);
-            Soundtrack.Player.Play();
+            ControleMúsica.Soundtrack2.Player.Stop();
+            ControleMúsica.Soundtrack0.Player.Play();
 
             // Voltando as cores ao normal
 
@@ -673,7 +712,6 @@ namespace Funções
             [return: MarshalAs(UnmanagedType.Bool)]
             [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
             internal static extern bool GetCurrentConsoleFontEx(IntPtr hConsoleOutput, bool MaximumWindow, ref FontInfo ConsoleCurrentFontEx);
-
 
             private static readonly IntPtr ConsoleOutputHandle = GetStdHandle(StandardOutputHandle);
 
@@ -738,15 +776,15 @@ namespace Funções
     }
     public class Menus
     {
-        public static void Tela_inicio() // OK
+        public static void Tela_inicio() // NÃO OK
         {
-            // Mudando fonte do console
+            // Mudando fonte do console (para Roboto)
 
-            Fonte.SetCurrentFont("Roboto", 20);
+            //// Configurações.Fonte.SetCurrentFont("Roboto", 20); // Só funciona no computador do Senac !!!!!
 
-            // Configurações de visualização da janela
+            // Configurações de visualização da janela (maximizar + buffer definido)
 
-            Configurações.Tela.Tela_default();
+            //// Configurações.Tela.Tela_default(); // Só funciona no computador do Senac !!!!!
 
             // Obtendo altura e largura do console
 
