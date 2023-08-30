@@ -1,6 +1,7 @@
 ﻿
 using NAudio.Wave; // API para reproduzir áudio
 using Funções; // Classe com Funções do Jogo
+using System.Runtime.InteropServices;
 
 namespace Projeto_RPG
 {
@@ -10,24 +11,38 @@ namespace Projeto_RPG
             cabo_e_chave = false,
             cofre_aberto = false;     
     }
-    public class Soundtrack 
+    public class Soundtrack // CORRIGIR PROBLEMA PRA REINICIALIZAR O ÁUDIO (TOCAR OUTRA FAIXA)
     {
         public static WaveOutEvent Player = new WaveOutEvent();
         public static AudioFileReader Leitor;
+
+        public static void Tocar(int n_trilha)
+        {
+            Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(n_trilha));
+            if (Player.PlaybackState == PlaybackState.Playing)
+            {
+                Player.Pause();
+                Player.Init(Leitor);
+                Player.Play();
+            }
+            else
+            {
+                Player.Init(Leitor);
+                Player.Play();
+            }
+        }
     }
     public class Programa
     {
+        // Configuração para maximizar janela
+
+        
+
         public static void Main()
         {
-            // VARIÁVEL LOCAL MULTIUSO
-
-            object temp;
-
             // Trilha Sonora (TEM QUE ALTERAR OS CAMINHOS DOS ARQUIVOS NA HORA TE COMPILAR, E TESTAR PARA VER SE ESTÁ OK)
 
-            Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0)); // 0: Main Soundtrack
-            Soundtrack.Player.Init(Soundtrack.Leitor);
-            Soundtrack.Player.Play();
+            Soundtrack.Tocar(0); // 0: Main Soundtrack
 
             // Menu Inicial
 

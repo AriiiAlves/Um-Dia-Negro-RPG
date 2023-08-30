@@ -1,0 +1,24 @@
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\Projeto rpg.exe
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\Projeto rpg.deps.json
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\Projeto rpg.runtimeconfig.json
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\Projeto rpg.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\Projeto rpg.pdb
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\NAudio.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\NAudio.Asio.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\NAudio.Core.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\NAudio.Midi.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\NAudio.Wasapi.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\NAudio.WinMM.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\Vlc.DotNet.Core.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\bin\Debug\net6.0\Vlc.DotNet.Core.Interops.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\Projeto rpg.csproj.AssemblyReference.cache
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\Projeto rpg.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\Projeto rpg.AssemblyInfoInputs.cache
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\Projeto rpg.AssemblyInfo.cs
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\Projeto rpg.csproj.CoreCompileInputs.cache
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\Projeto rpg.csproj.CopyComplete
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\Projeto rpg.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\refint\Projeto rpg.dll
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\Projeto rpg.pdb
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\Projeto rpg.genruntimeconfig.cache
+C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\obj\Debug\net6.0\ref\Projeto rpg.dll

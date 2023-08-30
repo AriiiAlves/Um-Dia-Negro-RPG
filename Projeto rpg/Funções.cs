@@ -1,5 +1,7 @@
 ﻿using NAudio.Wave; // API para reproduzir áudio
 using Projeto_RPG; // Acesso a todo o projeto (Para uso das Variáveis Globais)
+using System.Runtime.InteropServices;
+using static Funções.Configurações;
 
 namespace Funções
 {
@@ -52,24 +54,24 @@ namespace Funções
     {
         public void Efeito_Sonoro(int n)
         {
-            WaveOutEvent Player;
-            AudioFileReader Leitor;
+            WaveOutEvent Effect_Player;
+            AudioFileReader Effect_Reader;
 
-            Player = new WaveOutEvent();
-            Leitor = new AudioFileReader("Colocar som vazio"); // Colocar som vazio aqui
+            Effect_Player = new WaveOutEvent();
+            Effect_Reader = new AudioFileReader("Colocar som vazio"); // Colocar som vazio aqui
 
             switch(n)
             {
                 case 1:
-                    Leitor = new AudioFileReader(" <Colocar efeito sonoro 1 aqui> "); // Colocar ainda
+                    Effect_Reader = new AudioFileReader(" <Colocar efeito sonoro 1 aqui> "); // Colocar ainda
                     break;
                 case 2:
-                    Leitor = new AudioFileReader(" <Colocar efeito sonoro 2 aqui> "); // Colocar ainda
+                    Effect_Reader = new AudioFileReader(" <Colocar efeito sonoro 2 aqui> "); // Colocar ainda
                     break;
         }
 
-            Player.Init(Leitor);
-            Player.Play();
+            Effect_Player.Init(Effect_Reader);
+            Effect_Player.Play();
         }
 
         public static string CaminhoTrilha(int n) // Colocar certinho os caminhos, testar, e colocar mais trilhas
@@ -80,23 +82,23 @@ namespace Funções
             {
                 case 0:
                     // return ($@"{temp}/Soundtrack/Main Sound.mp3");
-                    return (@"C:\Users\Ariel\source\repos\Projeto rpg\Projeto rpg\Soundtrack\Main Sound.mp3");
+                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3");
                 case 1:
                     // return ($@"{temp}/Soundtrack/Calling Sound.mp3");
-                    return (@"C:\Users\Ariel\source\repos\Projeto rpg\Projeto rpg\Soundtrack\Calling Sound.mp3");
+                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Calling Sound.mp3");
                 case 2:
                     // return ($@"{temp}/Soundtrack/Call1 Sound.mp3");
-                    return (@"C:\Users\Ariel\source\repos\Projeto rpg\Projeto rpg\Soundtrack\Call1 Sound.mp3");
+                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Call1 Sound.mp3");
                 default:
                     // return ($@"{temp}/Soundtrack/Main Sound.mp3");
-                    return (@"C:\Users\Ariel\source\repos\Projeto rpg\Projeto rpg\Soundtrack\Main Sound.mp3");
+                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3");
             }
         }
     }
 
     public class Ações
     {
-        public static int Escolha(int quant_opcoes) // Função de escolha (Não permite a resposta ser diferente do número de opções) // OK
+        public static int Escolha(int quant_opcoes) // OK
         {
             Console.Write("\n: ");
 
@@ -128,9 +130,10 @@ namespace Funções
     {
         public static void VerTV() // NÃO OK
         {
-            if (VariáveisGlobais.cabo_e_chave)
+            if (VariáveisGlobais.cabo_e_chave) // Continuar
             {
-                // Fazer
+                Ferramentas.LimpaTela();
+                Ferramentas.Escrever("");
             }
             else
             {
@@ -176,52 +179,7 @@ namespace Funções
         public static void Atender_Telefone() // NÃO OK
         {
             Ferramentas.LimpaTela();
-            if (VariáveisGlobais.chamada1_realizada == false) // Tirar esse false depois
-            {
-                Ferramentas.Escrever("Você pega o celular e checa as notificações." +
-                "\n\n1 chamada(s) não atendida(s) - Número desconhecido" +
-                "\n\nLigar de volta?" +
-                "\n\n[1] Sim" +
-                "\n[2] Não", true);
-                switch (Ações.Escolha(2))
-                {
-                    case 1:
-                        Ferramentas.LimpaTela();
-                        // Parar música de fundo
-                        História.Ligação1();
-                        // Voltar música de fundo
-                        Ferramentas.LimpaTela();
-                        VariáveisGlobais.chamada1_realizada = true;
-                        Ferramentas.Escrever("Ninguém atende." +
-                            "\n\nLigar novamente?" +
-                            "\n\n[1] Sim" +
-                            "\n[2] Não", true);
-                        switch (Ações.Escolha(2))
-                        {
-                            case 1:
-                                Ferramentas.LimpaTela();
-                                // Parar música de fundo
-                                História.Ligação1();
-                                História.Ligação1_atendida();
-                                // Voltar música de fundo
-                                Ferramentas.LimpaTela();
-                                Ferramentas.Escrever("O histórico de chamadas foi limpo subitamente. O número desconhecido não está mais disponível.");
-                                Ferramentas.LimpaTela();
-                                Ferramentas.Escrever("O frescor da ventania molhada passa pelo seu corpo em rajadas. Você se sente confortável.");
-                                break;
-                            case 2:
-                                Ferramentas.LimpaTela();
-                                Ferramentas.Escrever("Você pode ouvir a água correndo pelas canaletas de chuva.");
-                                break;
-                        }
-                        break;
-                    case 2:
-                        Ferramentas.LimpaTela();
-                        Ferramentas.Escrever("Os trovões lá fora soam e se esvaem subitamente.");
-                        break;
-                }
-            }
-            else
+            if (VariáveisGlobais.chamada1_realizada)
             {
                 Ferramentas.Escrever("Você pega o celular e checa as notificações." +
                 "\n\nNão há novas notificações." +
@@ -239,6 +197,54 @@ namespace Funções
                         break;
                     case 3:
                         break;
+                }
+            }
+            else
+            {
+                {
+                    Ferramentas.Escrever("Você pega o celular e checa as notificações." +
+                    "\n\n1 chamada(s) não atendida(s) - Número desconhecido" +
+                    "\n\nLigar de volta?" +
+                    "\n\n[1] Sim" +
+                    "\n[2] Não", true);
+                    switch (Ações.Escolha(2))
+                    {
+                        case 1:
+                            Ferramentas.LimpaTela();
+                            Soundtrack.Tocar(1);  // Trilha 1: Calling Sound
+                            História.Ligação1();
+                            Soundtrack.Tocar(0);  // Trilha 0: Main Sound
+                            Ferramentas.LimpaTela();
+                            VariáveisGlobais.chamada1_realizada = true;
+                            Ferramentas.Escrever("Ninguém atende." +
+                                "\n\nLigar novamente?" +
+                                "\n\n[1] Sim" +
+                                "\n[2] Não", true);
+                            switch (Ações.Escolha(2))
+                            {
+                                case 1:
+                                    Ferramentas.LimpaTela();
+                                    Soundtrack.Tocar(1); // Trilha 1: Calling Sound
+                                    História.Ligação1();
+                                    Soundtrack.Tocar(2); // Trilha 2: Call1 Sound
+                                    História.Ligação1_atendida();
+                                    Soundtrack.Tocar(0); // Trilha 0: Main Sound
+                                    Ferramentas.LimpaTela();
+                                    Ferramentas.Escrever("O histórico de chamadas foi limpo subitamente. O número desconhecido não está mais disponível.");
+                                    Ferramentas.LimpaTela();
+                                    Ferramentas.Escrever("O frescor da ventania molhada passa pelo seu corpo em rajadas. Você se sente confortável.");
+                                    break;
+                                case 2:
+                                    Ferramentas.LimpaTela();
+                                    Ferramentas.Escrever("Você pode ouvir a água correndo pelas canaletas de chuva.");
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            Ferramentas.LimpaTela();
+                            Ferramentas.Escrever("Os trovões lá fora soam e se esvaem subitamente.");
+                            break;
+                    }
                 }
             }
         }
@@ -265,7 +271,16 @@ namespace Funções
                         Ferramentas.Escrever("O armário contém roupas masculinas, e uma pequena pilha de roupas infantis.");
                         goto quarto;
                     case 2:
-                        if (VariáveisGlobais.cofre_aberto == false) // Tirar esse false depois
+                        if (VariáveisGlobais.cofre_aberto)
+                        {
+                            Ferramentas.LimpaTela();
+                            Ferramentas.Escrever("O cofre está aberto." +
+                                "\n\nDentro dele há uma anotação:" +
+                                "\n\nAES-128-ECB" +
+                                "\nChave: 7855");
+                            goto quarto;
+                        }
+                        else
                         {
                             Ferramentas.LimpaTela();
                             Ferramentas.Escrever("O criado-mudo possui um cofre embutido, que aceita caracteres alfanuméricos." +
@@ -307,15 +322,6 @@ namespace Funções
                                 case 2:
                                     goto quarto;
                             }
-                        }
-                        else
-                        {
-                            Ferramentas.LimpaTela();
-                            Ferramentas.Escrever("O cofre está aberto." +
-                                "\n\nDentro dele há uma anotação:" +
-                                "\n\nAES-128-ECB" +
-                                "\nChave: 7855");
-                            goto quarto;
                         }
                         break;
                     case 3:
@@ -414,7 +420,11 @@ namespace Funções
                             case 2:
                                 Ferramentas.LimpaTela();
                                 Console.WriteLine("\"Papai," +
-                                    "\n\n   Obrigado"); // Carta de dia dos pais, mostrando que a menina já tem 12 anos
+                                    "\n\n   Queria te agradecer por tudo que fez e que faz por mim. Você sempre cuidou de mim como se eu fosse uma pedrinha precisosa, " +
+                                    "e nunca deixou de se importar comigo... seja qual você a situação, você estava lá... em todas as minhas alegrias, em todas as minhas " +
+                                    "tristezas, em todas as minhas fases de bebê, criança e adolescente... O mínimo que eu posso fazer é agradecer. Te amo muuuuito, e " +
+                                    "feliz dia dos pais!" +
+                                    "\n\n Obs: deixei um presente pra você na mesa");
                                 Console.ReadLine();
                                 goto caixa_de_lembrancas;
                             case 3:
@@ -619,18 +629,125 @@ namespace Funções
 
     public class Configurações
     {
+        public static class Tela
+        {
+            // Configuração para maximizar janela
 
+            [DllImport("kernel32.dll", ExactSpelling = true)]
+            private static extern IntPtr GetConsoleWindow();
+            private static IntPtr ThisCon = GetConsoleWindow();
+
+            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+            private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+            private const int HIDE = 0;
+            private const int MAXIMIZE = 3;
+            private const int MINIMIZE = 6;
+            private const int RESTORE = 9;
+
+            public static void Tela_default()
+            {
+                // Maximizando janela
+
+                ShowWindow(ThisCon, MAXIMIZE);
+
+                System.Console.WindowWidth = Console.LargestWindowWidth;
+                System.Console.WindowHeight = Console.LargestWindowHeight;
+                System.Console.BufferWidth = Console.LargestWindowWidth;
+                System.Console.BufferHeight = Console.LargestWindowHeight;
+            }
+        }
+
+        public static class Fonte
+        {
+            private const int FixedWidthTrueType = 54;
+            private const int StandardOutputHandle = -11;
+
+            [DllImport("kernel32.dll", SetLastError = true)]
+            internal static extern IntPtr GetStdHandle(int nStdHandle);
+
+            [return: MarshalAs(UnmanagedType.Bool)]
+            [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+            internal static extern bool SetCurrentConsoleFontEx(IntPtr hConsoleOutput, bool MaximumWindow, ref FontInfo ConsoleCurrentFontEx);
+
+            [return: MarshalAs(UnmanagedType.Bool)]
+            [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+            internal static extern bool GetCurrentConsoleFontEx(IntPtr hConsoleOutput, bool MaximumWindow, ref FontInfo ConsoleCurrentFontEx);
+
+
+            private static readonly IntPtr ConsoleOutputHandle = GetStdHandle(StandardOutputHandle);
+
+            [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+            public struct FontInfo
+            {
+                internal int cbSize;
+                internal int FontIndex;
+                internal short FontWidth;
+                public short FontSize;
+                public int FontFamily;
+                public int FontWeight;
+                [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+                //[MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.wc, SizeConst = 32)]
+                public string FontName;
+            }
+
+            public static FontInfo[] SetCurrentFont(string font, short fontSize = 0)
+            {
+                FontInfo before = new FontInfo
+                {
+                    cbSize = Marshal.SizeOf<FontInfo>()
+                };
+
+                if (GetCurrentConsoleFontEx(ConsoleOutputHandle, false, ref before))
+                {
+
+                    FontInfo set = new FontInfo
+                    {
+                        cbSize = Marshal.SizeOf<FontInfo>(),
+                        FontIndex = 0,
+                        FontFamily = FixedWidthTrueType,
+                        FontName = font,
+                        FontWeight = 400,
+                        FontSize = fontSize > 0 ? fontSize : before.FontSize
+                    };
+
+                    // Get some settings from current font.
+                    if (!SetCurrentConsoleFontEx(ConsoleOutputHandle, false, ref set))
+                    {
+                        var ex = Marshal.GetLastWin32Error();
+                        Console.WriteLine("Set error " + ex);
+                        throw new System.ComponentModel.Win32Exception(ex);
+                    }
+
+                    FontInfo after = new FontInfo
+                    {
+                        cbSize = Marshal.SizeOf<FontInfo>()
+                    };
+                    GetCurrentConsoleFontEx(ConsoleOutputHandle, false, ref after);
+
+                    return new[] { before, set, after };
+                }
+                else
+                {
+                    var er = Marshal.GetLastWin32Error();
+                    Console.WriteLine("Get error " + er);
+                    throw new System.ComponentModel.Win32Exception(er);
+                }
+            }
+        }
     }
-
     public class Menus
     {
-        static void Tela_default() // REPENSAR
+        public static void Tela_inicio() // OK
         {
-            Console.SetWindowSize(Console.WindowWidth, Console.WindowHeight);
-            Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
-        }
-        public static void Tela_inicio() // REPENSAR
-        {
+            // Mudando fonte do console
+
+            Fonte.SetCurrentFont("Roboto", 20);
+
+            // Configurações de visualização da janela
+
+            Configurações.Tela.Tela_default();
+
             // Obtendo altura e largura do console
 
             int Largura_Janela = Console.WindowWidth;
@@ -638,7 +755,7 @@ namespace Funções
 
             // Definindo strings da tela de início
 
-            string Aviso_Tela_Cheia = "MAXIMIZE ESSA JANELA E PRESSIONE ENTER PARA JOGAR", Título = "UM DIA NEGRO", Aviso1 = "Por favor, não mude o tamanho da janela para uma melhor experiência.", Aviso2 = "Pressione qualquer tecla para jogar.";
+            string Aviso_Tela_Cheia = "Por favor, não mude o tamanho da janela para uma melhor experiência.", Título = "UM DIA NEGRO", Aviso1 = "Um jogo por AlvzDevelopment", Aviso2 = "Pressione qualquer tecla para jogar.";
 
             // Desabilitando barra de escrita
 
@@ -665,30 +782,26 @@ namespace Funções
 
             // Centralizando o texto (Tela de início)
 
-            for (int i = 0; i < Altura_Janela / 2 - 5; i++)
+            for (int i = 0; i < Altura_Janela / 2 - 4; i++)
             {
                 Console.WriteLine(" ");
             }
-            for (int i = 0; i < Largura_Janela / 2 - Título.Length / 2; i++)
+            for (int i = 0; i < Largura_Janela / 2 - Título.Length / 2 + 1; i++)
             {
                 Console.Write(" ");
             }
             Console.Write($"{Título}\n\n");
-            for (int i = 0; i < Largura_Janela / 2 - Aviso1.Length / 2; i++)
+            for (int i = 0; i < Largura_Janela / 2 - Aviso1.Length / 2 + 1; i++)
             {
                 Console.Write(" ");
             }
             Console.Write($"{Aviso1}\n\n");
-            for (int i = 0; i < Largura_Janela / 2 - Aviso2.Length / 2; i++)
+            for (int i = 0; i < Largura_Janela / 2 - Aviso2.Length / 2 + 1; i++)
             {
                 Console.Write(" ");
             }
             Console.Write($"{Aviso2}");
             Console.ReadLine();
-
-            // Definindo o buffer do console (limite de linhas) para não ultrapassar o tamanho atual da janela
-
-            Tela_default();
 
             // Limpando tela
 
