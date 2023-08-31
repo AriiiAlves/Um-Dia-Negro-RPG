@@ -479,7 +479,7 @@ namespace Funções
                     case 5:
                         Ferramentas.LimpaTela();
                         Ferramentas.Escrever("O diário está rasgado, mas uma das folhas restantes possui uma anotação:" +
-                            "\n\nOaP4SNhWFhiFF/IUjdD+NAMpLP19MR82TOV6/HxAUIaFGSaBJ2gPd2Tky9Pn9O5Jo3mPRedrPXkVSt+7LUIRQwb3C+0dPUXFMTpvj9RoE6jz2WIGAqH2cUylL++IWs3n");
+                            "\n\nOaP4SNhWFhiFF/IUjdD+NAMpLP19MR82TOV6/HxAUIakparXa7HCL9ANjPgwoo2xkCLAZMv+b7yZDCGZK0zTimmf1NtW+DUrbtNVIQ0lXbDz2WIGAqH2cUylL++IWs3n");
                         goto quarto;
                     case 6:
                         Ferramentas.LimpaTela();
