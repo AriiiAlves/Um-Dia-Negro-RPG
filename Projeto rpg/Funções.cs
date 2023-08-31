@@ -1,6 +1,7 @@
 ﻿using NAudio.Wave; // API para reproduzir áudio
 using Projeto_RPG; // Acesso a todo o projeto (Para uso das Variáveis Globais)
 using System.Runtime.InteropServices;
+using static Funções.ControleMúsica;
 
 namespace Funções
 {
@@ -79,17 +80,21 @@ namespace Funções
             switch (n)
             {
                 case 0:
-                    // return ($@"{temp}/Soundtrack/Main Sound.mp3");
-                    return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3");
+                    // return ($@"{temp}/Soundtrack/Main Sound.mp3"); // Padrão
+                    // return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3"); // Casa
+                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3"); // Senac
                 case 1:
-                    // return ($@"{temp}/Soundtrack/Calling Sound.mp3");
-                    return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Calling Sound.mp3");
+                    // return ($@"{temp}/Soundtrack/Calling Sound.mp3"); // Padrão
+                    // return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Calling Sound.mp3"); // Casa
+                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Calling Sound.mp3"); // Senac
                 case 2:
-                    // return ($@"{temp}/Soundtrack/Call1 Sound.mp3");
-                    return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Call1 Sound.mp3");
+                    // return ($@"{temp}/Soundtrack/Call1 Sound.mp3"); // Padrão
+                    // return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Call1 Sound.mp3"); // Casa
+                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Call1 Sound.mp3"); // Senac
                 default:
-                    // return ($@"{temp}/Soundtrack/Main Sound.mp3");
-                    return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3");
+                    // return ($@"{temp}/Soundtrack/Main Sound.mp3"); // Padrão
+                    // return (@"C:\Users\Ariel\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3"); // Casa
+                    return (@"C:\Users\ariel.asilva2\Source\Repos\Um-Dia-Negro-RPG\Projeto rpg\Soundtrack\Main Sound.mp3"); // Senac
             }
         }
 
@@ -147,7 +152,7 @@ namespace Funções
     }
 
     public class História
-    {
+    {        
         public static void VerTV() // NÃO OK
         {
             if (VariáveisGlobais.cabo_e_chave) // Continuar
@@ -232,17 +237,7 @@ namespace Funções
                         case 1:
                             Ferramentas.LimpaTela();
 
-                            Soundtrack.Player.Stop();
-                            Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(1));
-                            Soundtrack.Player.Init(Soundtrack.Leitor);
-                            Soundtrack.Player.Play();
-
-                            História.Ligação1();
-
-                            Soundtrack.Player.Stop();
-                            Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
-                            Soundtrack.Player.Init(Soundtrack.Leitor);
-                            Soundtrack.Player.Play();  // Trilha 0: Main Sound
+                            Ligação1();
 
                             Ferramentas.LimpaTela();
                             VariáveisGlobais.chamada1_realizada = true;
@@ -255,24 +250,9 @@ namespace Funções
                                 case 1:
                                     Ferramentas.LimpaTela();
 
-                                    Soundtrack.Player.Stop();
-                                    Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(1));
-                                    Soundtrack.Player.Init(Soundtrack.Leitor);
-                                    Soundtrack.Player.Play();
+                                    Ligação1();
 
-                                    História.Ligação1();
-
-                                    Soundtrack.Player.Stop();
-                                    Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(2));
-                                    Soundtrack.Player.Init(Soundtrack.Leitor);
-                                    Soundtrack.Player.Play();
-
-                                    História.Ligação1_atendida();
-
-                                    Soundtrack.Player.Stop();
-                                    Soundtrack.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0)); // 0: Main Soundtrack
-                                    Soundtrack.Player.Init(Soundtrack.Leitor);
-                                    Soundtrack.Player.Play();
+                                    Ligação1_atendida();
 
                                     Ferramentas.LimpaTela();
                                     Ferramentas.Escrever("O histórico de chamadas foi limpo subitamente. O número desconhecido não está mais disponível.");
@@ -493,9 +473,10 @@ namespace Funções
         {
             // Tocando áudio de ligação (chamando)
 
-            ControleMúsica.Soundtrack0.Player.Pause();
-            ControleMúsica.Soundtrack1.Player.Init(ControleMúsica.Soundtrack1.Leitor);
-            ControleMúsica.Soundtrack1.Player.Play();
+            Soundtrack0.Player.Pause();
+            Soundtrack1.Leitor = new AudioFileReader(CaminhoTrilha(1));
+            Soundtrack1.Player.Init(Soundtrack1.Leitor);
+            Soundtrack1.Player.Play();
 
             // Desabilitando barra de escrita
 
@@ -591,8 +572,8 @@ namespace Funções
 
             // Encerrando som de ligação (chamando)
 
-            ControleMúsica.Soundtrack1.Player.Stop();
-            ControleMúsica.Soundtrack0.Player.Play();
+            Soundtrack1.Player.Stop();
+            Soundtrack0.Player.Play();
 
             // Habilitando barra de escrita
 
@@ -602,9 +583,9 @@ namespace Funções
         {
             // Tocando áudio de ligação (chamando)
 
-            ControleMúsica.Soundtrack0.Player.Pause();
-            ControleMúsica.Soundtrack2.Player.Init(ControleMúsica.Soundtrack1.Leitor);
-            ControleMúsica.Soundtrack2.Player.Play();
+            Soundtrack0.Player.Pause();
+            Soundtrack2.Player.Init(Soundtrack2.Leitor);
+            Soundtrack2.Player.Play();
 
             // Desabilitando barra de escrita
 
@@ -651,8 +632,8 @@ namespace Funções
 
             // Encerrando som da ligação (Desconhecido)
 
-            ControleMúsica.Soundtrack2.Player.Stop();
-            ControleMúsica.Soundtrack0.Player.Play();
+            Soundtrack2.Player.Stop();
+            Soundtrack0.Player.Play();
 
             // Voltando as cores ao normal
 
