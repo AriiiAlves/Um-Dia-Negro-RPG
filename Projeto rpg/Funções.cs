@@ -7,19 +7,114 @@ namespace Funções
 {
     public class Ferramentas
     {
-        public static void Escrever(string texto, bool escolha = false) // Tentar centralizar qualquer escrita no centro da tela depois (copiando o que fiz no Tela_inicio) // NÃO OK
+        public static void Interface()//OK
+        {
+            int Console_Width = Console.WindowWidth;
+            int Console_Height = Console.WindowHeight;
+
+            for (int i = 0; i < Console_Width; i++)
+            {
+                if (i == 0)
+                {
+                    Console.Write("┌");
+                }
+                else if (i == Console_Width - 1)
+                {
+                    Console.Write("┐");
+                }
+                else
+                {
+                    Console.Write("─");
+                }
+            }
+            for (int i = 0; i < Console_Height - 2; i++)
+            {
+                Console.Write("│");
+                for (int j = 0; j < Console_Width - 2; j++)
+                {
+                    Console.Write(" ");
+                }
+                Console.WriteLine("│");
+            }
+            for (int i = 0; i < Console_Width; i++)
+            {
+                if (i == 0)
+                {
+                    Console.Write("└");
+                }
+                else if (i == Console_Width - 1)
+                {
+                    Console.Write("┘");
+                }
+                else
+                {
+                    Console.Write("─");
+                }
+            }
+        }
+
+        public static void Limpa_Interface()
+        {
+            for (int j = 2; j < Console.WindowHeight - 2; j++)
+            {
+                Console.SetCursorPosition(2, j);
+                for (int k = 0; k < Console.WindowWidth - 3; k++)
+                {
+                    Console.Write(" ");
+                }
+            }
+            Console.SetCursorPosition(2, 2);
+        }
+        public static void Escrever(string texto, bool escolha = false) //OK
         {
             char var;
 
-            // Desabilitando barra de escrita
-
-            Console.CursorVisible = false;
-
             // Colocando espaço de tempo entre a escrita de cada letra
+            // Não deixando as margens do console serem editadas
 
+            Console.SetCursorPosition(2, 2);
             for (int i = 0; i < texto.Length; i++)
             {
                 var = texto[i];
+
+                if (Console.CursorLeft == 0 && Console.CursorTop == 0)
+                {
+                    Console.SetCursorPosition(2, 2);
+                }
+                else if (Console.CursorLeft == 0)
+                {
+                    int Linha_atual = Console.CursorTop;
+                    Console.SetCursorPosition(2, Linha_atual);
+                }
+                else if (Console.CursorLeft == Console.WindowWidth - 2)
+                {
+                    int Linha_atual = Console.CursorTop;
+                    Console.SetCursorPosition(2, Linha_atual + 1);
+                }
+                else if (Console.CursorTop == Console.WindowHeight - 3)
+                {
+                    if (Console.CursorLeft == Console.WindowWidth - 4 || var == '\n')
+                    {
+                        Console.Write("...");
+                        Console.ReadLine();
+                        for (int j = 2; j < Console.WindowHeight - 2; j++)
+                        {
+                            Console.SetCursorPosition(2, j);
+                            for (int k = 0; k < Console.WindowWidth - 3; k++)
+                            {
+                                Console.Write(" ");
+                            }
+                        }
+                        if (var == '\n')
+                        {
+                            Console.SetCursorPosition(1, 2);
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(2, 2);
+                        }
+                    }
+                }
                 Console.Write(var);
 
                 // Colocando espaço de tempo maior após pontuação final
@@ -38,12 +133,62 @@ namespace Funções
                 Console.ReadLine();
             }
             Console.WriteLine("");
-
-            // Habilitando barra de escrita
-
-            Console.CursorVisible = true;
         }
+        public static void ImagemASCII(string texto) //OK
+        {
+            char var;
 
+            // Colocando espaço de tempo entre a escrita de cada letra
+            // Não deixando as margens do console serem editadas
+
+            Interface();
+
+            Console.SetCursorPosition(2, 2);
+            for (int i = 0; i < texto.Length; i++)
+            {
+                var = texto[i];
+
+                if (Console.CursorLeft == 0 && Console.CursorTop == 0)
+                {
+                    Console.SetCursorPosition(2, 2);
+                }
+                else if (Console.CursorLeft == 0)
+                {
+                    int Linha_atual = Console.CursorTop;
+                    Console.SetCursorPosition(2, Linha_atual);
+                }
+                else if (Console.CursorLeft == Console.WindowWidth - 2)
+                {
+                    int Linha_atual = Console.CursorTop;
+                    Console.SetCursorPosition(2, Linha_atual + 1);
+                }
+                else if (Console.CursorTop == Console.WindowHeight - 3)
+                {
+                    if (Console.CursorLeft == Console.WindowWidth - 4 || var == '\n')
+                    {
+                        Console.Write("...");
+                        Console.ReadLine();
+                        for (int j = 2; j < Console.WindowHeight - 2; j++)
+                        {
+                            Console.SetCursorPosition(2, j);
+                            for (int k = 0; k < Console.WindowWidth - 3; k++)
+                            {
+                                Console.Write(" ");
+                            }
+                        }
+                        if (var == '\n')
+                        {
+                            Console.SetCursorPosition(1, 2);
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(2, 2);
+                        }
+                    }
+                }
+                Console.Write(var);
+            }
+        }
         public static void LimpaTela() // OK
         {
             Console.Clear();
@@ -107,17 +252,17 @@ namespace Funções
         public class Soundtrack0
         {
             public static WaveOutEvent Player = new WaveOutEvent();
-            public static AudioFileReader Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
+            public static AudioFileReader Leitor = new AudioFileReader(CaminhoTrilha(0));
         }
         public class Soundtrack1
         {
             public static WaveOutEvent Player = new WaveOutEvent();
-            public static AudioFileReader Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(1));
+            public static AudioFileReader Leitor = new AudioFileReader(CaminhoTrilha(1));
         }
         public class Soundtrack2
         {
             public static WaveOutEvent Player = new WaveOutEvent();
-            public static AudioFileReader Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(2));
+            public static AudioFileReader Leitor = new AudioFileReader(CaminhoTrilha(2));
         }
     }
 
@@ -125,27 +270,32 @@ namespace Funções
     {
         public static int Escolha(int quant_opcoes) // OK
         {
-            Console.Write("\n: ");
+            int Linha_atual = Console.CursorTop;
+
+            Console.SetCursorPosition(2, Linha_atual + 1);
+            Console.Write(new string(": "));
 
         responder:
             int resposta;
             try
             {
+                Console.CursorVisible = true;
                 resposta = int.Parse(Console.ReadLine());
+                Console.CursorVisible = false;
                 if (resposta < 1 || resposta > quant_opcoes)
                 {
-                    Console.SetCursorPosition(2, Console.CursorTop - 1);
-                    Console.Write(new string(' ', Console.WindowWidth));
-                    Console.SetCursorPosition(2, Console.CursorTop - 1);
+                    Console.SetCursorPosition(4, Console.CursorTop - 1);
+                    Console.Write(new string(' ', Console.WindowWidth - 6));
+                    Console.SetCursorPosition(4, Console.CursorTop);
                     goto responder;
                 }
                 return resposta;
             }
             catch
             {
-                Console.SetCursorPosition(2, Console.CursorTop - 1);
-                Console.Write(new string(' ', Console.WindowWidth));
-                Console.SetCursorPosition(2, Console.CursorTop - 1);
+                Console.SetCursorPosition(4, Console.CursorTop - 1);
+                Console.Write(new string(' ', Console.WindowWidth - 6));
+                Console.SetCursorPosition(4, Console.CursorTop);
                 goto responder;
             }
         }
@@ -157,12 +307,12 @@ namespace Funções
         {
             if (VariáveisGlobais.cabo_e_chave) // Continuar
             {
-                Ferramentas.LimpaTela();
+                Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("");
             }
             else
             {
-                Ferramentas.LimpaTela();
+                Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("Você senta no sofá, e pega o controle para ligar a TV." +
                     "\nMas ela não está ligando." +
                     "\n\nO que fazer?" +
@@ -171,7 +321,7 @@ namespace Funções
                 switch (Ações.Escolha(2))
                 {
                     case 1:
-                        Ferramentas.LimpaTela();
+                        Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("Você mexe atrás da TV para encontrar o problema, com dificuldade." +
                             "\nParece que ela está sem o cabo de energia." +
                             "\n\nPor onde começar a procurar?" +
@@ -180,7 +330,7 @@ namespace Funções
                         switch (Ações.Escolha(2))
                         {
                             case 1:
-                                Ferramentas.LimpaTela();
+                                Ferramentas.Limpa_Interface();
                                 Ferramentas.Escrever("Você vai até a porta de seu escritório, e gira a maçaneta." +
                                     "\nEstá trancado." +
                                     "\n\nProcurar a chave no quarto?" +
@@ -194,7 +344,7 @@ namespace Funções
                         }
                         break;
                     case 2:
-                        Ferramentas.LimpaTela();
+                        Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("Você pode ouvir o som do vento batendo nas janelas.");
                         break;
                 }
@@ -203,7 +353,7 @@ namespace Funções
 
         public static void Atender_Telefone() // NÃO OK
         {
-            Ferramentas.LimpaTela();
+            Ferramentas.Limpa_Interface();
             if (VariáveisGlobais.chamada1_realizada)
             {
                 Ferramentas.Escrever("Você pega o celular e checa as notificações." +
@@ -215,7 +365,7 @@ namespace Funções
                 switch (Ações.Escolha(3)) // CONTINUAR
                 {
                     case 1:
-                        Ferramentas.LimpaTela();
+                        Ferramentas.Limpa_Interface();
 
                         break;
                     case 2:
@@ -235,11 +385,11 @@ namespace Funções
                     switch (Ações.Escolha(2))
                     {
                         case 1:
-                            Ferramentas.LimpaTela();
+                            Ferramentas.Limpa_Interface();
 
                             Ligação1();
 
-                            Ferramentas.LimpaTela();
+                            Ferramentas.Limpa_Interface();
                             VariáveisGlobais.chamada1_realizada = true;
                             Ferramentas.Escrever("Ninguém atende." +
                                 "\n\nLigar novamente?" +
@@ -248,25 +398,25 @@ namespace Funções
                             switch (Ações.Escolha(2))
                             {
                                 case 1:
-                                    Ferramentas.LimpaTela();
+                                    Ferramentas.Limpa_Interface();
 
                                     Ligação1();
 
                                     Ligação1_atendida();
 
-                                    Ferramentas.LimpaTela();
+                                    Ferramentas.Limpa_Interface();
                                     Ferramentas.Escrever("O histórico de chamadas foi limpo subitamente. O número desconhecido não está mais disponível.");
-                                    Ferramentas.LimpaTela();
+                                    Ferramentas.Limpa_Interface();
                                     Ferramentas.Escrever("O frescor da ventania molhada passa pelo seu corpo em rajadas. Você se sente confortável.");
                                     break;
                                 case 2:
-                                    Ferramentas.LimpaTela();
+                                    Ferramentas.Limpa_Interface();
                                     Ferramentas.Escrever("Você pode ouvir a água correndo pelas canaletas de chuva.");
                                     break;
                             }
                             break;
                         case 2:
-                            Ferramentas.LimpaTela();
+                            Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("Os trovões lá fora soam e se esvaem subitamente.");
                             break;
                     }
@@ -281,7 +431,7 @@ namespace Funções
             while (true)
             {
             quarto:
-                Ferramentas.LimpaTela();
+                Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("Você está no seu quarto, e ele é bem grande. O que você quer explorar?" +
                     "\n\n[1] Armário" +
                     "\n[2] Criado-mudo" +
@@ -292,13 +442,13 @@ namespace Funções
                 switch (Ações.Escolha(6))
                 {
                     case 1:
-                        Ferramentas.LimpaTela();
+                        Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("O armário contém roupas masculinas, e uma pequena pilha de roupas infantis.");
                         goto quarto;
                     case 2:
                         if (VariáveisGlobais.cofre_aberto)
                         {
-                            Ferramentas.LimpaTela();
+                            Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("O cofre está aberto." +
                                 "\n\nDentro dele há uma anotação:" +
                                 "\n\nAES-128-ECB" +
@@ -307,7 +457,7 @@ namespace Funções
                         }
                         else
                         {
-                            Ferramentas.LimpaTela();
+                            Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("O criado-mudo possui um cofre embutido, que aceita caracteres alfanuméricos." +
                                 "\n\nHá uma nota adesiva: \"A senha está no passado.\"" +
                                 "\n\nTentar abrir o cofre?" +
@@ -318,12 +468,12 @@ namespace Funções
                                 case 1:
                                     while (true)
                                     {
-                                        Ferramentas.LimpaTela();
+                                        Ferramentas.Limpa_Interface();
                                         Console.Write("Digite SAIR para sair.\n\nSenha: ");
                                         stemp = Console.ReadLine();
                                         if (stemp == "12112016")
                                         {
-                                            Ferramentas.LimpaTela();
+                                            Ferramentas.Limpa_Interface();
                                             Ferramentas.Escrever("O cofre abriu." +
                                                 "\n\nDentro dele há uma anotação:" +
                                                 "\n\nAES-128-ECB" +
@@ -337,7 +487,7 @@ namespace Funções
                                         }
                                         else
                                         {
-                                            Ferramentas.LimpaTela();
+                                            Ferramentas.Limpa_Interface();
                                             Console.CursorVisible = false;
                                             Console.WriteLine("SENHA INCORRETA");
                                             Console.ReadLine();
@@ -351,7 +501,7 @@ namespace Funções
                         break;
                     case 3:
                     escrivaninha:
-                        Ferramentas.LimpaTela();
+                        Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("Uma escrivaninha de madeira maciça, com um vidro na parte de cima. Possui 2 gavetas, com uma carta comum na superfície." +
                             "\n\n[1] Olhar carta" +
                             "\n[2] Olhar gavetas" +
@@ -359,8 +509,7 @@ namespace Funções
                         switch (Ações.Escolha(3))
                         {
                             case 1:
-                                Ferramentas.LimpaTela();
-                                Console.CursorVisible = false;
+                                Ferramentas.Limpa_Interface();
                                 Console.WriteLine("\"Caro Thiago" +
                                     "\n\n   Escrevo com pesar, e lamento muito o ocorrido. As coisas realmente não eram para terminarem desse jeito." +
                                     "\n   As buscas duraram 19 dias, e mesmo em uma área tão pequena e rasa, não conseguimos encontrar nada. " +
@@ -369,10 +518,9 @@ namespace Funções
                                     "\n   Ainda não desistimos. Enquanto não houver evidências da morte, continuaremos procurando.\"" +
                                     "\n\nAss: Capitão Victor Gabriel Santos");
                                 Console.ReadLine();
-                                Console.CursorVisible = true;
                                 goto escrivaninha;
                             case 2:
-                                Ferramentas.LimpaTela();
+                                Ferramentas.Limpa_Interface();
                                 if (VariáveisGlobais.cabo_e_chave)
                                 {
                                     Ferramentas.Escrever("Não há nada aqui.");
@@ -389,7 +537,7 @@ namespace Funções
                         break;
                     case 4:
                     caixa_de_lembrancas:
-                        Ferramentas.LimpaTela();
+                        Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("A caixa de lembranças contém alguns brinquedos, uma foto e um poema." +
                             "\n\n[1] Ver foto" +
                             "\n[2] Ver poema" +
@@ -397,8 +545,7 @@ namespace Funções
                         switch (Ações.Escolha(3))
                         {
                             case 1:
-                                Ferramentas.LimpaTela();
-                                Console.CursorVisible = false;
+                                Ferramentas.Limpa_Interface();
                                 Console.WriteLine("\n\n\n\n" +
                                     "               ***********************###*********************************************" +
                                     "\n               *******************+#%%%%%%%#******************************************" +
@@ -440,10 +587,9 @@ namespace Funções
                                     "\n               %%%%%%%%%%%%%%%%%%%%%%%##********+++++==+++**+==========%%+#%#-====----" +
                                     "\n\n               \"Data da foto: 12/11/2016\"");
                                 Console.ReadLine();
-                                Console.CursorVisible = true;
                                 goto caixa_de_lembrancas;
                             case 2:
-                                Ferramentas.LimpaTela();
+                                Ferramentas.Limpa_Interface();
                                 Console.WriteLine("\"Papai," +
                                     "\n\n   Queria te agradecer por tudo que fez e que faz por mim. Você sempre cuidou de mim como se eu fosse uma pedrinha precisosa, " +
                                     "e nunca deixou de se importar comigo... seja qual você a situação, você estava lá... em todas as minhas alegrias, em todas as minhas " +
@@ -457,19 +603,19 @@ namespace Funções
                         }
                         break;
                     case 5:
-                        Ferramentas.LimpaTela();
+                        Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("O diário está rasgado, mas uma das folhas restantes possui uma anotação:" +
                             "\n\nOaP4SNhWFhiFF/IUjdD+NAMpLP19MR82TOV6/HxAUIakparXa7HCL9ANjPgwoo2xkCLAZMv+b7yZDCGZK0zTimmf1NtW+DUrbtNVIQ0lXbDz2WIGAqH2cUylL++IWs3n");
                         goto quarto;
                     case 6:
-                        Ferramentas.LimpaTela();
+                        Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("Você percebe que o relógio de parede parou de funcionar. Ele está parado em 20:52 já faz algum tempo.");
                         break;
                 }
                 break;
             }
         }
-        public static void Ligação1() // OK
+        public static void Ligação1() // NÃO OK (DANDO PROBLEMA NA INTERFACE)
         {
             // Tocando áudio de ligação (chamando)
 
@@ -478,108 +624,55 @@ namespace Funções
             Soundtrack1.Player.Init(Soundtrack1.Leitor);
             Soundtrack1.Player.Play();
 
-            // Desabilitando barra de escrita
-
-            Console.CursorVisible = false;
-
             // Desenho do telefone ligando
 
+            Ferramentas.Limpa_Interface();
+
+            Ferramentas.ImagemASCII("\n" +
+                    "           ┌══════════════════════════┐\n" +
+                    "           │           o ═══          │\n" +
+                    "           │ ┌──────────────────────┐ │\n" +
+                    "           │ │                20:52 │ │\n" +
+                    "           │ ├──────────────────────┤ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ │       Chamando.      │ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ │        .'¯¯¯'.       │ │\n" +
+                    "           │ │        |  ?  |       │ │\n" +
+                    "           │ │        '.___.'       │ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ │     Desconhecido     │ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ │                      │ │\n" +
+                    "           │ └──────────────────────┘ │\n" +
+                    "           │             O            │\n" +
+                    "           └══════════════════════════┘");
             for (int i = 0; i < 2; i++)
             {
-                Ferramentas.LimpaTela();
-                Console.WriteLine
-                    ("\n\n\n\n" +
-                    "                  ┌══════════════════════════┐\n" +
-                    "                  │           o ═══          │\n" +
-                    "                  │ ┌──────────────────────┐ │\n" +
-                    "                  │ │                20:52 │ │\n" +
-                    "                  │ ├──────────────────────┤ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │       Chamando.      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │        .'¯¯¯'.       │ │\n" +
-                    "                  │ │        |  ?  |       │ │\n" +
-                    "                  │ │        '.___.'       │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │     Desconhecido     │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ └──────────────────────┘ │\n" +
-                    "                  │             O            │\n" +
-                    "                  └══════════════════════════┘");
+                Console.SetCursorPosition(32, 10);
+                Console.Write(new string("  "));
                 Thread.Sleep(2000);
-                Ferramentas.LimpaTela();
-                Console.WriteLine
-                    ("\n\n\n\n" +
-                    "                  ┌══════════════════════════┐\n" +
-                    "                  │           o ═══          │\n" +
-                    "                  │ ┌──────────────────────┐ │\n" +
-                    "                  │ │                20:52 │ │\n" +
-                    "                  │ ├──────────────────────┤ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │       Chamando..     │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │        .'¯¯¯'.       │ │\n" +
-                    "                  │ │        |  ?  |       │ │\n" +
-                    "                  │ │        '.___.'       │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │     Desconhecido     │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ └──────────────────────┘ │\n" +
-                    "                  │             O            │\n" +
-                    "                  └══════════════════════════┘");
+                Console.SetCursorPosition(32, 10);
+                Console.Write(new string("."));
                 Thread.Sleep(2000);
-                Ferramentas.LimpaTela();
-                Console.WriteLine
-                    ("\n\n\n\n" +
-                    "                  ┌══════════════════════════┐\n" +
-                    "                  │           o ═══          │\n" +
-                    "                  │ ┌──────────────────────┐ │\n" +
-                    "                  │ │                20:52 │ │\n" +
-                    "                  │ ├──────────────────────┤ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │       Chamando...    │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │        .'¯¯¯'.       │ │\n" +
-                    "                  │ │        |  ?  |       │ │\n" +
-                    "                  │ │        '.___.'       │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │     Desconhecido     │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ │                      │ │\n" +
-                    "                  │ └──────────────────────┘ │\n" +
-                    "                  │             O            │\n" +
-                    "                  └══════════════════════════┘");
+                Console.SetCursorPosition(32, 10);
+                Console.Write(new string(".."));
                 Thread.Sleep(2000);
-                Ferramentas.LimpaTela();
             }
+
+            Ferramentas.Limpa_Interface();
 
             // Encerrando som de ligação (chamando)
 
             Soundtrack1.Player.Stop();
             Soundtrack0.Player.Play();
-
-            // Habilitando barra de escrita
-
-            Console.CursorVisible = true;
         }
-        public static void Ligação1_atendida() // OK
+        public static void Ligação1_atendida() // ADAPTAR PARA TER INTERFACE IGUAL LIGAÇÃO 1 !!!!!
         {
             // Tocando áudio de ligação (chamando)
 
@@ -587,22 +680,18 @@ namespace Funções
             Soundtrack2.Player.Init(Soundtrack2.Leitor);
             Soundtrack2.Player.Play();
 
-            // Desabilitando barra de escrita
-
-            Console.CursorVisible = false;
-
             // Mudando as cores do terminal
 
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;
-            Ferramentas.LimpaTela();
+            Ferramentas.Limpa_Interface();
 
             // Desenho do telefone com a chamada online
 
             for (int i = 0; i < 10; i++)
             {
                 Console.WriteLine
-                    ("\n\n\n\n" +
+                    ("\n" +
                     "                  ┌══════════════════════════┐\n" +
                     "                  │           o ═══          │\n" +
                     "                  │ ┌──────────────────────┐ │\n" +
@@ -627,7 +716,8 @@ namespace Funções
                     "                  │             O            │\n" +
                     "                  └══════════════════════════┘");
                 Thread.Sleep(1000);
-                Ferramentas.LimpaTela();
+                Console.SetCursorPosition(55, 9);
+                Console.Write(new string($"00:{i:00}"));
             }
 
             // Encerrando som da ligação (Desconhecido)
@@ -639,11 +729,7 @@ namespace Funções
 
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-            Ferramentas.LimpaTela();
-
-            // Habilitando barra de escrita
-
-            Console.CursorVisible = true;
+            Ferramentas.Limpa_Interface();
         }
     }
 
@@ -761,11 +847,11 @@ namespace Funções
         {
             // Mudando fonte do console (para Roboto)
 
-            //// Configurações.Fonte.SetCurrentFont("Roboto", 20); // Só funciona no computador do Senac !!!!!
+            Configurações.Fonte.SetCurrentFont("Roboto", 20); // Só funciona no computador do Senac !!!!!
 
             // Configurações de visualização da janela (maximizar + buffer definido)
 
-            //// Configurações.Tela.Tela_default(); // Só funciona no computador do Senac !!!!!
+            Configurações.Tela.Tela_default(); // Só funciona no computador do Senac !!!!!
 
             // Obtendo altura e largura do console
 
@@ -774,7 +860,7 @@ namespace Funções
 
             // Definindo strings da tela de início
 
-            string Aviso_Tela_Cheia = "Por favor, não mude o tamanho da janela para uma melhor experiência.", Título = "UM DIA NEGRO", Aviso1 = "Um jogo por AlvzDevelopment", Aviso2 = "Pressione qualquer tecla para jogar.";
+            string Aviso_Tela_Cheia = "Por favor, não mude o tamanho da janela para uma melhor experiência. Resolução mínima para jogar: 1920x1080", Título = "UM DIA NEGRO", Aviso1 = "Um jogo por AlvzDevelopment", Aviso2 = "Pressione qualquer tecla para jogar.";
 
             // Desabilitando barra de escrita
 
@@ -831,13 +917,5 @@ namespace Funções
             Console.CursorVisible = true;
         }
 
-    }
-
-    public class Mapa
-    {
-    }
-
-    public class Luta
-    {
     }
 }

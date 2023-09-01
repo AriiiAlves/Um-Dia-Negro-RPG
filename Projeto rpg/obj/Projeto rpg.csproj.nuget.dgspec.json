@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ariel.asilva2\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj": {}
+    "C:\\Users\\ariel.asilva2\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ariel.asilva2\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj": {
+    "C:\\Users\\ariel.asilva2\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ariel.asilva2\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
+        "projectUniqueName": "C:\\Users\\ariel.asilva2\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
         "projectName": "Projeto rpg",
-        "projectPath": "C:\\Users\\ariel.asilva2\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
+        "projectPath": "C:\\Users\\ariel.asilva2\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
         "packagesPath": "C:\\Users\\ariel.asilva2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ariel.asilva2\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\obj\\",
+        "outputPath": "C:\\Users\\ariel.asilva2\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -16,6 +16,10 @@ namespace Projeto_RPG
     {
         public static void Main()
         {
+            // Desabilitando barra de escrita
+
+            Console.CursorVisible = false;
+
             // Trilha Sonora (TEM QUE ALTERAR OS CAMINHOS DOS ARQUIVOS NA HORA TE COMPILAR, E TESTAR PARA VER SE ESTÁ OK)
 
             Soundtrack0.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0)); // 0: Main Soundtrack
@@ -26,10 +30,15 @@ namespace Projeto_RPG
 
             Menus.Tela_inicio();
 
+            // Interface
+
+            Ferramentas.Interface();
+
             // História
 
             Ferramentas.Escrever("É um dia escuro lá fora." +
                 "\nA chuva cai, incessantemente. Está trovejando.");
+            Ferramentas.Limpa_Interface();
 
         inicio:
             Ferramentas.Escrever("O que você quer fazer?" +

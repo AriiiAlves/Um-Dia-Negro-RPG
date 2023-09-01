@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "L525srF/WRa5qy68lG/jBwfGbvKv5NMoOKui6QeuieRSrj6VB/ZrNmMDqgR1XDEYNJZPtE27lTVYykURnj1dIg==",
+  "dgSpecHash": "6963j01W2RUV+/FWxMya83Rq70kljqTzugJM6fdQLbOikd6jhtK23Kx0IAW7aL4HNe1hzYtIAq7xpd7RB3BvyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ariel.asilva2\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
+  "projectFilePath": "C:\\Users\\ariel.asilva2\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ariel.asilva2\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\ariel.asilva2\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
