@@ -11,18 +11,19 @@ namespace Projeto_RPG
         public static bool chamada1_realizada = false,
             cabo_e_chave = false,
             cofre_aberto = false;
+        public static int mensagens_nao_respondidas = 9;
     }
     public class Programa
     {
         public static void Main()
         {
-            // Desabilitando barra de escrita
+            // CRIANDO BANCO DE DADOS (TESTE: SE RODAR DE NOVO, EXCLUIR PASTA COM .DB)
 
-            Console.CursorVisible = false;
+            Banco_de_Dados.Criar_Novo();
+            
+            // Trilha Sonora
 
-            // Trilha Sonora (TEM QUE ALTERAR OS CAMINHOS DOS ARQUIVOS NA HORA TE COMPILAR, E TESTAR PARA VER SE ESTÁ OK)
-
-            Soundtrack0.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0)); // 0: Main Soundtrack
+            Soundtrack0.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
             Soundtrack0.Player.Init(Soundtrack0.Leitor);
             Soundtrack0.Player.Play();
 
@@ -40,6 +41,19 @@ namespace Projeto_RPG
                 "\nA chuva cai, incessantemente. Está trovejando.");
 
         inicio:
+            // TESTE DB
+
+            Ferramentas.Limpa_Interface();
+            Ferramentas.Escrever($"" +
+                $"\nMensagens não respondidas: {Banco_de_Dados.Ler_Progresso_Da_História.num_Mensagens_Não_Respondidas()}" +
+                $"\nCabo TV: {Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV()}" +
+                $"\nChave Escritório: {Banco_de_Dados.Ler_Progresso_Da_História.Chave_Escritorio()}" +
+                $"\nCofre Aberto: {Banco_de_Dados.Ler_Progresso_Da_História.Cofre_Aberto()}" +
+                $"\nAtender Desconhecido: {Banco_de_Dados.Ler_Progresso_Da_História.Atender_Desconhecido()}");
+            Console.ReadKey();
+
+            //
+
             Ferramentas.Limpa_Interface();
             Ferramentas.Escrever("O que você quer fazer?" +
                 "\n\n[1] Ir ver TV" +
