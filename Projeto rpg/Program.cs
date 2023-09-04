@@ -28,9 +28,6 @@ namespace Projeto_RPG
 
             // Menu Inicial
 
-            História.Contatos(0);
-            História.Contatos(1);
-
             Menus.Tela_inicio();
 
             // Interface
