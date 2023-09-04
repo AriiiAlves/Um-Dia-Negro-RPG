@@ -28,6 +28,9 @@ namespace Projeto_RPG
 
             // Menu Inicial
 
+            História.Contatos(0);
+            História.Contatos(1);
+
             Menus.Tela_inicio();
 
             // Interface
@@ -38,9 +41,9 @@ namespace Projeto_RPG
 
             Ferramentas.Escrever("É um dia escuro lá fora." +
                 "\nA chuva cai, incessantemente. Está trovejando.");
-            Ferramentas.Limpa_Interface();
 
         inicio:
+            Ferramentas.Limpa_Interface();
             Ferramentas.Escrever("O que você quer fazer?" +
                 "\n\n[1] Ir ver TV" +
                 "\n[2] Checar celular" +
@@ -57,6 +60,7 @@ namespace Projeto_RPG
                 case 3: // CONTINUAR
                     goto inicio;
                 case 4:
+                    História.Quarto();
                     goto inicio;
             }
         }
