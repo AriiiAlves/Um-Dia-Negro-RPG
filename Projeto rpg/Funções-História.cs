@@ -3,16 +3,16 @@ using static Projeto_rpg.ControleMúsica;
 
 namespace Projeto_rpg
 {
-    public class História
+    public class História // Continuar
     {
-        public static void VerTV() // NÃO OK
+        public static void VerTV() // NÃO OK (Continuar)
         {
-            if (VariáveisGlobais.cabo_e_chave) // Continuar
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV() && Banco_de_Dados.Ler_Progresso_Da_História.Chave_Escritorio()) // Continuar
             {
                 Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("");
             }
-            else
+            else // OK
             {
                 Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("Você senta no sofá, e pega o controle para ligar a TV." +
@@ -41,7 +41,7 @@ namespace Projeto_rpg
                                 Ações.Escolha(2);
                                 goto case 2;
                             case 2:
-                                História.Quarto();
+                                Quarto();
                                 break;
                         }
                         break;
@@ -52,7 +52,7 @@ namespace Projeto_rpg
                 }
             }
         }
-        public static void Atender_Telefone() // NÃO OK (FALTA BANCO DE DADOS)
+        public static void Atender_Telefone() // OK
         {
             Ferramentas.Limpa_Interface();
             if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Desconhecido())
@@ -60,41 +60,32 @@ namespace Projeto_rpg
             Telefone:
 
                 Ferramentas.Limpa_Interface();
-                if (Banco_de_Dados.Ler_Progresso_Da_História.num_Mensagens_Não_Respondidas() == 0)
+                if (Banco_de_Dados.Ler_num_Mensagens.Todas_Não_Respondidas() == 0)
                 {
                     Ferramentas.Escrever("Você pega o celular e checa as notificações." +
                 "\n\nNão há novas notificações." +
                 "\n\nO que deseja fazer?" +
                 "\n\n[1] Checar mensagens" +
                 "\n[2] Checar contatos" +
-                "\n[3] Checar galeria", true);
+                "\n[3] Checar galeria" +
+                "\n[4] Sair", true);
                 }
                 else
                 {
                     Ferramentas.Escrever("Você pega o celular e checa as notificações." +
-                "\n\nHá mensagens não respondidas." +
+                $"\n\nHá {Banco_de_Dados.Ler_num_Mensagens.Todas_Não_Respondidas()} mensagens não respondidas." +
                 "\n\nO que deseja fazer?" +
                 "\n\n[1] Checar mensagens" +
                 "\n[2] Checar contatos" +
-                "\n[3] Checar galeria", true);
+                "\n[3] Checar galeria" +
+                "\n[4] Sair", true);
                 }
 
-                switch (Ações.Escolha(3)) // CONTINUAR
+                switch (Ações.Escolha(4)) // CONTINUAR
                 {
-                    case 1: // Continuar Mensagens (nota: a cada mensagem respondida o banco subtrai 1 mensagem não respondida)
-                        Ferramentas.Limpa_Interface();
-                        Ferramentas.Escrever($"Há {Banco_de_Dados.Ler_Progresso_Da_História.num_Mensagens_Não_Respondidas() == 0} mensagens não respondidas\n\n" +
-                            "[1] Responder mensagens" +
-                            "[2] Sair");
-                        switch (Ações.Escolha(2))
-                        {
-                            case 1:
-                                Mensagens();
-                                break;
-                            case 2:
-                                goto Telefone;
-                        }
-                        break;
+                    case 1: // OK
+                        Mensagens();
+                        goto Telefone;
                     case 2: // OK
                     contatos:
                         Ferramentas.Limpa_Interface();
@@ -145,11 +136,145 @@ namespace Projeto_rpg
                                 break;
                         }
                         break;
-                    case 3: // FAZER
+                    case 3: // OK
+                        int tempgaleria = 2, tempfoto = 0;
+
+                        Galeria:
+
+                        switch (tempgaleria)
+                        {
+                            case 1:
+                                goto Telefone;
+                            case 2:
+                                if(tempfoto > 0)
+                                {
+                                    tempfoto -= 1;
+                                }
+                                break;
+                            case 3:
+                                if (tempfoto < 3)
+                                {
+                                    tempfoto += 1;
+                                }
+                                break;
+                        }
+
+                        Ferramentas.Limpa_Interface();
+                        switch (tempfoto)
+                        {
+                            case 0:
+                                Ferramentas.ImagemASCII("" +
+                                    "┌───────────────────────────────────────────────────────┐\n" +
+                                    "│///////////////////////////////////////////////////////│\n" +
+                                    "│////////////__..--''``---....___   _..._    __/////////│\n" +
+                                    "│ /// //_.-'    .-/\";  `        ``<._  ``.''_ `. / /////│\n" +
+                                    "│///_.-' _..--.'_    \\                    `( ) ) // ////│\n" +
+                                    "│/ (_..-' // (< _     ;_..__               ; `' / // ///│\n" +
+                                    "│ / // // //  `-._,_)' // / ``--...____..-' /// / //////│\n" +
+                                    "│///////////////////////////////////////////////////////│\n" +
+                                    "└───────────────────────────────────────────────────────┘\n");
+                                Ferramentas.Escrever("\n\n\n\n\n\n\n\n\n\n[1] para SAIR\n" +
+                                    "[2] para ANTERIOR\n" +
+                                    "[3] para PRÓXIMO", escolha: true, instantâneo: true);
+                                tempgaleria = Ações.Escolha(3);
+                                goto Galeria;
+                            case 1:
+                                Ferramentas.ImagemASCII("" +
+                                    "┌──────────────────────────────┐\n" +
+                                    "│          _   ____  _.-\"-._   │\n" +
+                                    "│        .' `;'    ':.      '-.│\n" +
+                                    "│       /  ./     .'`\\`-...-'` │\n" +
+                                    "│      /  /|D_  .O    |        │\n" +
+                                    "│     /  / |=\\/`=     |        │\n" +
+                                    "│    |_.'  |  |       |        │\n" +
+                                    "│           \\  \\   _ /_        │\n" +
+                                    "│           /`---'}_()_{       │\n" +
+                                    "│          /`'---' //\\\\\\       │\n" +
+                                    "│         /;      (/\\ \\)\\      │\n" +
+                                    "│        / |         \\   \\     │\n" +
+                                    "│       /  |         |   |     │\n" +
+                                    "│      /  / .     _ /   /      │\n" +
+                                    "│      \\_|   '. .'  '-'|       │\n" +
+                                    "│        \\    .-|     /        │\n" +
+                                    "│     _.-'   /  |    /         │\n" +
+                                    "│    (      /  / .--;          │\n" +
+                                    "│     '-.__/   |    /          │\n" +
+                                    "│              \\__.            │\n" +
+                                    "└──────────────────────────────┘");
+                                Ferramentas.Escrever("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[1] para SAIR\n" +
+                                    "[2] para ANTERIOR\n" +
+                                    "[3] para PRÓXIMO", escolha: true, instantâneo: true);
+                                tempgaleria = Ações.Escolha(3);
+                                goto Galeria;
+                            case 2:
+                                Ferramentas.ImagemASCII("" +
+                                    "┌─────────────────────────────────────────────────────────────────────┐\n" +
+                                    "│               *    *                                                │\n" +
+                                    "│   *         '       *       .  *   '     .           * *            │\n" +
+                                    "│                                                               '     │\n" +
+                                    "│       *                *'          *          *        '            │\n" +
+                                    "│   .           *               |               /                     │\n" +
+                                    "│               '.         |    |      '       |   '     *            │\n" +
+                                    "│                 \\*        \\   \\             /                       │\n" +
+                                    "│       '          \\     '* |    |  *        |*                *  *   │\n" +
+                                    "│            *      `.       \\   |     *     /    *      '            │\n" +
+                                    "│  .                  \\      |   \\          /               *         │\n" +
+                                    "│     *'  *     '      \\      \\   '.       |                          │\n" +
+                                    "│        -._            `                  /         *                │\n" +
+                                    "│  ' '      ``._   *                           '          .      '    │\n" +
+                                    "│   *           *\\*          * .   .      *                           │\n" +
+                                    "│*  '        *    `-._                       .         _..:='        *│\n" +
+                                    "│             .  '      *       *    *   .       _.:--'               │\n" +
+                                    "│          *           .     .     *         .-'         *            │\n" +
+                                    "│   .               '             . '   *           *         .       │\n" +
+                                    "│  *       ___.-=--..-._     *                '               '       │\n" +
+                                    "│                                  *       *                          │\n" +
+                                    "│                *        _.'  .'       `.        '  *             *  │\n" +
+                                    "│     *              *_.-'   .'            `.               *         │\n" +
+                                    "│                   .'                       `._             *  '     │\n" +
+                                    "│   '       '                        .       .  `.     .              │\n" +
+                                    "│       .                      *                  `                   │\n" +
+                                    "│               *        '             '                          .   │\n" +
+                                    "│     .                          *        .           *  *            │\n" +
+                                    "│             *        .                                    '         │\n" +
+                                    "└─────────────────────────────────────────────────────────────────────┘");
+                                Ferramentas.Escrever("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[1] para SAIR\n" +
+                                    "[2] para ANTERIOR\n" +
+                                    "[3] para PRÓXIMO", escolha: true, instantâneo: true);
+                                tempgaleria = Ações.Escolha(3);
+                                goto Galeria;
+                            case 3:
+                                Ferramentas.ImagemASCII("" +
+                                    "┌───────────────────────────────────────────────────┐\n" +
+                                    "│                       _____                       │\n" +
+                                    "│     ^                |_CSP_|                      │\n" +
+                                    "│   ^     ^  ^        _|__|__|_           ^   ^     │\n" +
+                                    "│     ___________    _|  | |  |_    ___________   ^ │\n" +
+                                    "│    (__IXIXIXIXI___|_|__|_|__|_|___IXIXIXIXI__)    │\n" +
+                                    "│    (__|\"|\"|\"|\"| [=][=] [=] [=][=] |\"|\"|\"|\"|__)    │\n" +
+                                    "│    (__|\"|\"|\"|\"| [=][=] [=] [=][=] |\"|\"|\"|\"|__)    │\n" +
+                                    "│    (__|\"|\"|\"|\"| [=][=] [=] [=][=] |\"|\"|\"|\"|__)    │\n" +
+                                    "│    (__|\"|\"|\"|\"| [=][=] [=] [=][=] |\"|\"|\"|\"|__)    │\n" +
+                                    "│    (__|\"|\"|\"|\"| [=][=] [=] [=][=] |\"|\"|\"|\"|__)    │\n" +
+                                    "│  /)(__|\"|\"|\"|\"| [=][=] [=] [=][=] |\"|\"|\"|\"|__)    │\n" +
+                                    "│_/ )(__|\"|\"|\"|\"| [=][=] [=] [=][=] |\"|\"|\"|\"|__)_/)_│\n" +
+                                    "│ ~^^(__|\"|\"|\"|\"| [=][=] [=] [=][=] |\"|\"|\"|\"|__) ~~^│\n" +
+                                    "│^~~ (__|\"|\"|\"|\"| [=][=] [=] [=][=] |\"|\"|\"|\"|__)~~^ │\n" +
+                                    "│\"\"\"\"\"IXI~IXI~IXI~IXI~=I=I=I=I=~IXI~IXI~IXI~IXI\"\"\"\"\"│\n" +
+                                    "│     \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"|   |\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"      │\n" +
+                                    "└───────────────────────────────────────────────────┘");
+                                Ferramentas.Escrever("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[1] para SAIR\n" +
+                                    "[2] para ANTERIOR\n" +
+                                    "[3] para PRÓXIMO", escolha: true, instantâneo: true);
+                                tempgaleria = Ações.Escolha(3);
+                                goto Galeria;
+                        }
+                        break;
+                    case 4: // OK
                         break;
                 }
             }
-            else
+            else //OK 
             {
                 {
                     Ferramentas.Escrever("Você pega o celular e checa as notificações." +
@@ -197,7 +322,7 @@ namespace Projeto_rpg
                 }
             }
         }
-        public static void Quarto() // OK (SÓ FALTA BANCO DE DADOS)
+        public static void Quarto() // OK
         {
             string stemp;
 
@@ -607,7 +732,7 @@ namespace Projeto_rpg
             Soundtrack1.Player.Stop();
             Soundtrack0.Player.Play();
         }
-        public static void Ligação_atendida(int n_contato) // NÃO OK (FALTA ÁUDIOS DIFERENTES, E CORRIGIR FATO DA TRILHA SÓ PODER SER TOCADA UMA VEZ)
+        public static void Ligação_atendida(int n_contato) // NÃO OK (FALTAM ÁUDIOS DIFERENTES, E CORRIGIR FATO DA TRILHA SÓ PODER SER TOCADA UMA VEZ)
         {
             // Limpando Interface
 
@@ -976,7 +1101,7 @@ namespace Projeto_rpg
                     break;
             }
         }
-        public static void Contatos(int n_contato) // OK
+        public static void Contatos(int n_contato) // OK (COLOCAR VARIÁVEL DE <LIGAÇÃO JÁ FEITA> NO BANCO DE DADOS, E COLOCAR QUE NÃO ATENDE DEPOIS)
         {
             switch (n_contato)
             {
@@ -1010,12 +1135,67 @@ namespace Projeto_rpg
                     break;
             }
         }
-
         public static void Mensagens() // CONTINUAR
         {
             Ferramentas.Limpa_Interface();
 
-            Ferramentas.Escrever("BirdChat ");
+            Ferramentas.ImagemASCII("\n" +
+                        "           ┌════════════════════════════════┐\n" +
+                        "           │               o ═══            │\n" +
+                        "           │ ┌────────────────────────────┐ │\n" +
+                        "           │ │                      20:52 │ │\n" +
+                        "           │ ├────────────────────────────┤ │\n" +
+                        "           │ │                    _       │ │\n" +
+                        "           │ │                 __(.)<     │ │\n" +
+                        "           │ │       BirdChat  \\___)      │ │\n" +
+                        "           │ ├────────────────────────────┤ │\n" +
+                        "           │ │                            │ │\n" +
+                        $"           │ │    • Rafael Brother ({Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother()})     │ │\n" +
+                        "           │ │                            │ │\n" +
+                        "           │ ├────────────────────────────┤ │\n" +
+                        "           │ │                            │ │\n" +
+                        $"           │ │    • CSP ({Banco_de_Dados.Ler_num_Mensagens.CSP()})                │ │\n" +
+                        "           │ │                            │ │\n" +
+                        "           │ ├────────────────────────────┤ │\n" +
+                        "           │ │                            │ │\n" +
+                        $"           │ │    • Sofia Filha ({Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha()})        │ │\n" +
+                        "           │ │                            │ │\n" +
+                        "           │ ├────────────────────────────┤ │\n" +
+                        "           │ │                            │ │\n" +
+                        $"           │ │    • Chefe Bruno ({Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno()})        │ │\n" +
+                        "           │ │                            │ │\n" +
+                        "           │ └────────────────────────────┘ │\n" +
+                        "           │                 O              │\n" +
+                        "           └════════════════════════════════┘\n" +
+                        "\n" +
+                        "Responder quem?\n\n" +
+                        $"[1] Rafael Brother ({Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother()})\n" +
+                        $"[2] CSP ({Banco_de_Dados.Ler_num_Mensagens.CSP()})\n" +
+                        $"[3] Sofia Filha ({Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha()})\n" +
+                        $"[4] Chefe Bruno ({Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno()})\n" +
+                        $"[5] SAIR");
+            switch (Ações.Escolha(5))
+            {
+                case 1:
+                    //Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother());
+                    //Banco_de_Dados.Alterar_num_Mensagens.Rafael_Brother(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother());
+                    break;
+                case 2:
+                    //Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.CSP());
+                    //Banco_de_Dados.Alterar_num_Mensagens.CSP(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.CSP());
+                    break;
+                case 3:
+                    //Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha());
+                    //Banco_de_Dados.Alterar_num_Mensagens.Sofia_Filha(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha());
+                    break;
+                case 4:
+                    //Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno());
+                    //Banco_de_Dados.Alterar_num_Mensagens.Chefe_Bruno(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno());
+                    break;
+                case 5:
+                    break;
+            }
+           
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Projeto_rpg
 {
-    public class Ferramentas
+    public class Ferramentas // TUDO OK
     {
         public static void Interface() //OK
         {

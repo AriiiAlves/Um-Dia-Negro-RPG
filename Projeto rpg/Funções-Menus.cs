@@ -2,7 +2,7 @@
 {
     public class Menus
     {
-        public static void Tela_inicio() // NÃO OK
+        public static void Tela_inicio() // OK, porém rever Configurações.cs
         {
             // Mudando fonte do console (para Roboto)
 

@@ -38,18 +38,6 @@ namespace Projeto_rpg
                 "\nA chuva cai, incessantemente. Está trovejando.");
 
         inicio:
-            // TESTE DB
-
-            Ferramentas.Limpa_Interface();
-            Ferramentas.Escrever($"" +
-                $"\nMensagens não respondidas: {Banco_de_Dados.Ler_Progresso_Da_História.num_Mensagens_Não_Respondidas()}" +
-                $"\nCabo TV: {Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV()}" +
-                $"\nChave Escritório: {Banco_de_Dados.Ler_Progresso_Da_História.Chave_Escritorio()}" +
-                $"\nCofre Aberto: {Banco_de_Dados.Ler_Progresso_Da_História.Cofre_Aberto()}" +
-                $"\nAtender Desconhecido: {Banco_de_Dados.Ler_Progresso_Da_História.Atender_Desconhecido()}");
-            Console.ReadKey();
-
-            //
 
             Ferramentas.Limpa_Interface();
             Ferramentas.Escrever("O que você quer fazer?" +

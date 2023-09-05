@@ -2,7 +2,7 @@
 
 namespace Projeto_rpg
 {
-    public class ControleMúsica
+    public class ControleMúsica // Corrigir fato de só poder tocar trilha uma vez antes do Stop
     {
         public void Efeito_Sonoro(int n)
         {

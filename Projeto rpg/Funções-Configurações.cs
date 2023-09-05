@@ -2,7 +2,7 @@
 
 namespace Projeto_rpg
 {
-    public class Configurações
+    public class Configurações // Verificar porque só funciona no PC do Senac
     {
         public static class Tela
         {

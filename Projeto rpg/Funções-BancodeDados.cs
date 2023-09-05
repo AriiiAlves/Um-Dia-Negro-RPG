@@ -2,7 +2,7 @@
 
 namespace Projeto_rpg
 {
-    public class Banco_de_Dados
+    public class Banco_de_Dados // OK, adicionar mais campos se precisar
     {
         private static void Criar_Banco_de_Dados()
         {
@@ -30,6 +30,12 @@ namespace Projeto_rpg
                 item_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                 item_nome TEXT NOT NULL,
                 item_coletado BOOL NOT NULL
+            );
+
+            CREATE TABLE IF NOT EXISTS mensagem (
+                mensagem_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                mensagem_nome TEXT NOT NULL,
+                mensagem_quantidade INT NOT NULL
             );";
 
                 using (SQLiteCommand command = new SQLiteCommand(createTableQuery, connection))
@@ -55,21 +61,15 @@ namespace Projeto_rpg
 
                 using (SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection))
                 {
-                    insertCommand.Parameters.AddWithValue("@nome", "atender_desconhecido");
+                    insertCommand.Parameters.AddWithValue("@nome", "Atender Desconhecido");
                     insertCommand.Parameters.AddWithValue("@bool", false);
                     insertCommand.Parameters.AddWithValue("@int", 0);
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
 
-                    insertCommand.Parameters.AddWithValue("@nome", "cofre_aberto");
+                    insertCommand.Parameters.AddWithValue("@nome", "Cofre Aberto");
                     insertCommand.Parameters.AddWithValue("@bool", false);
                     insertCommand.Parameters.AddWithValue("@int", 0);
-                    insertCommand.ExecuteNonQuery();
-                    insertCommand.Parameters.Clear();
-
-                    insertCommand.Parameters.AddWithValue("@nome", "mensagens_nao_respondidas");
-                    insertCommand.Parameters.AddWithValue("@bool", false);
-                    insertCommand.Parameters.AddWithValue("@int", 9);
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
                 }
@@ -80,13 +80,45 @@ namespace Projeto_rpg
 
                 using (SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection))
                 {
-                    insertCommand.Parameters.AddWithValue("@nome", "cabo_tv");
+                    insertCommand.Parameters.AddWithValue("@nome", "Cabo TV");
                     insertCommand.Parameters.AddWithValue("@bool", false);
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
 
-                    insertCommand.Parameters.AddWithValue("@nome", "chave_escritorio");
+                    insertCommand.Parameters.AddWithValue("@nome", "Chave Escritorio");
                     insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+                }
+
+                // INSERT mensagens
+
+                insertQuery = "INSERT INTO mensagem (mensagem_nome, mensagem_quantidade) VALUES (@nome, @int);";
+
+                using (SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection))
+                {
+                    insertCommand.Parameters.AddWithValue("@nome", "Todas");
+                    insertCommand.Parameters.AddWithValue("@int", 9);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Rafael Brother");
+                    insertCommand.Parameters.AddWithValue("@int", 3);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "CSP");
+                    insertCommand.Parameters.AddWithValue("@int", 1);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Sofia Filha");
+                    insertCommand.Parameters.AddWithValue("@int", 3);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Chefe Bruno");
+                    insertCommand.Parameters.AddWithValue("@int", 2);
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
                 }
@@ -123,7 +155,7 @@ namespace Projeto_rpg
 
                     using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
                     {
-                        updateCommand.Parameters.AddWithValue("@nome", "cabo_tv");
+                        updateCommand.Parameters.AddWithValue("@nome", "Cabo TV");
                         updateCommand.Parameters.AddWithValue("@bool", valor);
                         updateCommand.ExecuteNonQuery();
                     }
@@ -143,7 +175,7 @@ namespace Projeto_rpg
 
                     using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
                     {
-                        updateCommand.Parameters.AddWithValue("@nome", "chave_escritorio");
+                        updateCommand.Parameters.AddWithValue("@nome", "Chave Escritorio");
                         updateCommand.Parameters.AddWithValue("@bool", valor);
                         updateCommand.ExecuteNonQuery();
                     }
@@ -171,7 +203,7 @@ namespace Projeto_rpg
 
                     using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
                     {
-                        updateCommand.Parameters.AddWithValue("@nome", "atender_desconhecido");
+                        updateCommand.Parameters.AddWithValue("@nome", "Atender Desconhecido");
                         updateCommand.Parameters.AddWithValue("@bool", valor);
                         updateCommand.ExecuteNonQuery();
                     }
@@ -196,51 +228,8 @@ namespace Projeto_rpg
 
                     using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
                     {
-                        updateCommand.Parameters.AddWithValue("@nome", "cofre_aberto");
+                        updateCommand.Parameters.AddWithValue("@nome", "Cofre Aberto");
                         updateCommand.Parameters.AddWithValue("@bool", valor);
-                        updateCommand.ExecuteNonQuery();
-                    }
-
-                    connection.Close();
-                }
-            }
-            /// <summary>
-            /// Altera o número de mensagens não respondidas.
-            /// </summary>
-            /// <param name="n_adicionar">Adiciona n à contagem de mensagens não respondidas</param>
-            /// <param name="n_subtrair">Subtrai n à contagem de mensagens não respondidas</param>
-            public static void num_Mensagens_Não_Respondidas(int n_adicionar = 0, int n_subtrair = 0)
-            {
-                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
-
-                int n_msg = 0;
-
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-                {
-                    connection.Open();
-
-                    string selectQuery = "SELECT elemento_historia_int FROM elemento_historia WHERE elemento_historia_nome = \"mensagens_nao_respondidas\";";
-
-                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
-                    {
-                        using (SQLiteDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                n_msg = reader.GetInt16(3);
-                            }
-                        }
-                    }
-
-                    n_msg += n_adicionar;
-                    n_msg -= n_subtrair;
-
-                    string updateQuery = "UPDATE elemento_historia_int SET elemento_historia_int = @int WHERE elemento_historia_nome = @nome;";
-
-                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
-                    {
-                        updateCommand.Parameters.AddWithValue("@nome", "mensagens_nao_respondidas");
-                        updateCommand.Parameters.AddWithValue("@int", n_msg);
                         updateCommand.ExecuteNonQuery();
                     }
 
@@ -250,36 +239,6 @@ namespace Projeto_rpg
         }
         public static class Ler_Progresso_Da_História
         {
-            /// <summary>
-            /// Verifica a quantidade de mensagens não respondidas 
-            /// </summary>
-            /// <returns>Retorna true ou false.</returns>
-            public static int num_Mensagens_Não_Respondidas()
-            {
-                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
-                int n_msg = 0;
-
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-                {
-                    connection.Open();
-
-                    string selectQuery = "SELECT elemento_historia_int FROM elemento_historia WHERE elemento_historia_nome = \"mensagens_nao_respondidas\";";
-
-                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
-                    {
-                        using (SQLiteDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                n_msg = reader.GetInt32(0);
-                            }
-                        }
-                    }
-
-                    connection.Close();
-                }
-                return n_msg;
-            }
             /// <summary>
             /// Verifica se o item ->Cabo da TV<- já foi coletado 
             /// </summary>
@@ -293,7 +252,7 @@ namespace Projeto_rpg
                 {
                     connection.Open();
 
-                    string selectQuery = "SELECT item_coletado FROM item WHERE item_nome = \"cabo_tv\";";
+                    string selectQuery = "SELECT item_coletado FROM item WHERE item_nome = \"Cabo TV\";";
 
                     using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
                     {
@@ -322,7 +281,7 @@ namespace Projeto_rpg
                 {
                     connection.Open();
 
-                    string selectQuery = "SELECT item_coletado FROM item WHERE item_nome = \"chave_escritorio\";";
+                    string selectQuery = "SELECT item_coletado FROM item WHERE item_nome = \"Chave Escritorio\";";
 
                     using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
                     {
@@ -351,7 +310,7 @@ namespace Projeto_rpg
                 {
                     connection.Open();
 
-                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"cofre_aberto\";";
+                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Cofre Aberto\";";
 
                     using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
                     {
@@ -381,7 +340,7 @@ namespace Projeto_rpg
                 {
                     connection.Open();
 
-                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"atender_desconhecido\";";
+                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Atender Desconhecido\";";
 
                     using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
                     {
@@ -397,6 +356,347 @@ namespace Projeto_rpg
                 }
 
                 return temp;
+            }
+        }
+        public static class Alterar_num_Mensagens
+        {
+            /// <summary>
+            /// Altera o número de mensagens não respondidas.
+            /// </summary>
+            /// <param name="n_adicionar">Adiciona n à contagem de mensagens não respondidas</param>
+            /// <param name="n_subtrair">Subtrai n à contagem de mensagens não respondidas</param>
+            public static void Todas_Não_Respondidas(int n_adicionar = 0, int n_subtrair = 0)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"Todas\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    n_msg += n_adicionar;
+                    n_msg -= n_subtrair;
+
+                    string updateQuery = "UPDATE mensagem SET mensagem_quantidade = @int WHERE mensagem_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Todas");
+                        updateCommand.Parameters.AddWithValue("@int", n_msg);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Rafael_Brother(int n_adicionar = 0, int n_subtrair = 0)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"Rafael Brother\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    n_msg += n_adicionar;
+                    n_msg -= n_subtrair;
+
+                    string updateQuery = "UPDATE mensagem SET mensagem_quantidade = @int WHERE mensagem_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Rafael Brother");
+                        updateCommand.Parameters.AddWithValue("@int", n_msg);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void CSP(int n_adicionar = 0, int n_subtrair = 0)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"CSP\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    n_msg += n_adicionar;
+                    n_msg -= n_subtrair;
+
+                    string updateQuery = "UPDATE mensagem SET mensagem_quantidade = @int WHERE mensagem_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "CSP");
+                        updateCommand.Parameters.AddWithValue("@int", n_msg);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Sofia_Filha(int n_adicionar = 0, int n_subtrair = 0)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"Sofia Filha\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    n_msg += n_adicionar;
+                    n_msg -= n_subtrair;
+
+                    string updateQuery = "UPDATE mensagem SET mensagem_quantidade = @int WHERE mensagem_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Sofia Filha");
+                        updateCommand.Parameters.AddWithValue("@int", n_msg);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Chefe_Bruno(int n_adicionar = 0, int n_subtrair = 0)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"Chefe Bruno\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    n_msg += n_adicionar;
+                    n_msg -= n_subtrair;
+
+                    string updateQuery = "UPDATE mensagem SET mensagem_quantidade = @int WHERE mensagem_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Chefe Bruno");
+                        updateCommand.Parameters.AddWithValue("@int", n_msg);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+        }
+        public static class Ler_num_Mensagens
+        {
+            public static int Todas_Não_Respondidas()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"Todas\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    connection.Close();
+                }
+
+                return n_msg;
+            }
+            public static int Rafael_Brother()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"Rafael Brother\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    connection.Close();
+                }
+
+                return n_msg;
+            }
+            public static int CSP()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"CSP\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    connection.Close();
+                }
+
+                return n_msg;
+            }
+            public static int Sofia_Filha()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"Sofia Filha\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    connection.Close();
+                }
+
+                return n_msg;
+            }
+            public static int Chefe_Bruno()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                int n_msg = 0;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT mensagem_quantidade FROM mensagem WHERE mensagem_nome = \"Chefe Bruno\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                n_msg = reader.GetInt16(0);
+                            }
+                        }
+                    }
+
+                    connection.Close();
+                }
+
+                return n_msg;
             }
         }
     }
