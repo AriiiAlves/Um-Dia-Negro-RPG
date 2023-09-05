@@ -1,10 +1,7 @@
 ﻿
 using NAudio.Wave; // API para reproduzir áudio
-using Funções; // Classe com Funções do Jogo
-using System.Runtime.InteropServices;
-using static Funções.ControleMúsica;
 
-namespace Projeto_RPG
+namespace Projeto_rpg
 {
     public class VariáveisGlobais // VARIÁVEIS GLOBAIS (Podem ser trocadas por uma tabela de banco de dados para armazenar os valores)
     {
@@ -17,15 +14,15 @@ namespace Projeto_RPG
     {
         public static void Main()
         {
-            // CRIANDO BANCO DE DADOS (TESTE: SE RODAR DE NOVO, EXCLUIR PASTA COM .DB)
+            // Cria o Banco de Dados se ele não existe
 
-            Banco_de_Dados.Criar_Novo();
-            
+            Banco_de_Dados.Run();
+
             // Trilha Sonora
 
-            Soundtrack0.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
-            Soundtrack0.Player.Init(Soundtrack0.Leitor);
-            Soundtrack0.Player.Play();
+            ControleMúsica.Soundtrack0.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
+            ControleMúsica.Soundtrack0.Player.Init(ControleMúsica.Soundtrack0.Leitor);
+            ControleMúsica.Soundtrack0.Player.Play();
 
             // Menu Inicial
 
@@ -70,7 +67,7 @@ namespace Projeto_RPG
                     goto inicio;
                 case 3: // CONTINUAR
                     goto inicio;
-                case 4:
+                case 4: // CONTINUAR
                     História.Quarto();
                     goto inicio;
             }
