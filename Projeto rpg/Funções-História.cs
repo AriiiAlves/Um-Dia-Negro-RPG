@@ -5,9 +5,9 @@ namespace Projeto_rpg
 {
     public class História // Continuar
     {
-        public static void VerTV() // NÃO OK (Continuar)
+        public static void VerTV() // OK
         {
-            if (Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV()) // Continuar
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV())
             {
                 Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("A TV agora liga normalmente." +
@@ -18,6 +18,8 @@ namespace Projeto_rpg
                 {
                     case 1:
                         ProgramaTV();
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("A chuva parece nunca acabar.");
                         break;
                     case 2:
                         Ferramentas.Limpa_Interface();
@@ -318,7 +320,7 @@ namespace Projeto_rpg
                 "                                │     │\r\n" +
                 "                          ┌─────┴─────┴─────┐\r\n" +
                 "                          └─────────────────┘");
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             Ferramentas.LimpaTela();
             Console.Write("\n\n" +
                 "   ┌───────────────────────────────────────────────────────────────┐\r\n" +
@@ -678,7 +680,7 @@ namespace Projeto_rpg
         }
         public static void Quarto() // OK
         {
-            string stemp;
+            string stemp = "";
 
             while (true)
             {

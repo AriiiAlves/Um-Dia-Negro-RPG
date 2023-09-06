@@ -3,13 +3,6 @@ using NAudio.Wave; // API para reproduzir áudio
 
 namespace Projeto_rpg
 {
-    public class VariáveisGlobais // VARIÁVEIS GLOBAIS (Podem ser trocadas por uma tabela de banco de dados para armazenar os valores)
-    {
-        public static bool chamada1_realizada = false,
-            cabo_e_chave = false,
-            cofre_aberto = false;
-        public static int mensagens_nao_respondidas = 9;
-    }
     public class Programa
     {
         public static void Main()
@@ -47,7 +40,7 @@ namespace Projeto_rpg
                 "\n[4] Explorar casa", true);
             switch (Ações.Escolha(4))
             {
-                case 1: // CONTINUAR A PARTE EM QUE O JOGADOR TEM O CABO
+                case 1: // COLOCAR SOUNDTRACK PRO PROGRAMA DA TV
                     História.VerTV();
                     goto inicio;
                 case 2: // TELEFONE OK, SÓ FALTAM SOUNDTRACKS DIFERENTES NOS CONTATOS, E CRIAR NOVA TABELA DE LIGAÇÕES JÁ FEITAS, PARA NÃO SEREM ATENDIDAS NOVAMENTE NOS CONTATOS
