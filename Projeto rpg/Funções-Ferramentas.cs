@@ -1,4 +1,6 @@
-﻿namespace Projeto_rpg
+﻿using System.Security.Policy;
+
+namespace Projeto_rpg
 {
     public class Ferramentas // TUDO OK
     {
@@ -67,6 +69,7 @@
             // Não deixando as margens do console serem editadas
 
             Console.SetCursorPosition(2, 2);
+            
             for (int i = 0; i < texto.Length; i++)
             {
                 var = texto[i];
@@ -130,6 +133,55 @@
                 Console.ReadKey();
             }
             Console.WriteLine("");
+        }
+        public static void Escrever_Mensagem(string texto)
+        {
+            char var;
+
+            for (int i = 0; i < texto.Length; i++)
+            {
+                var = texto[i];
+
+                if (Console.CursorLeft == 0 && Console.CursorTop == 0)
+                {
+                    Console.SetCursorPosition(2, 2);
+                }
+                else if (Console.CursorLeft == 0)
+                {
+                    int Linha_atual = Console.CursorTop;
+                    Console.SetCursorPosition(2, Linha_atual);
+                }
+                else if (Console.CursorLeft == Console.WindowWidth - 2)
+                {
+                    int Linha_atual = Console.CursorTop;
+                    Console.SetCursorPosition(2, Linha_atual + 1);
+                }
+                else if (Console.CursorTop == Console.WindowHeight - 3)
+                {
+                    if (Console.CursorLeft == Console.WindowWidth - 4 || var == '\n')
+                    {
+                        Console.Write("...");
+                        Console.ReadLine();
+                        for (int j = 2; j < Console.WindowHeight - 2; j++)
+                        {
+                            Console.SetCursorPosition(2, j);
+                            for (int k = 0; k < Console.WindowWidth - 3; k++)
+                            {
+                                Console.Write(" ");
+                            }
+                        }
+                        if (var == '\n')
+                        {
+                            Console.SetCursorPosition(1, 2);
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(2, 2);
+                        }
+                    }
+                }
+                Console.Write(var);
+            }
         }
         public static void ImagemASCII(string texto) //OK
         {

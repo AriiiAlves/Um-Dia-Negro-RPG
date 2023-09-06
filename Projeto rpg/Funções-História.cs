@@ -52,7 +52,7 @@ namespace Projeto_rpg
                 }
             }
         }
-        public static void Atender_Telefone() // OK
+        public static void Telefone() // OK
         {
             Ferramentas.Limpa_Interface();
             if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Desconhecido())
@@ -1135,10 +1135,11 @@ namespace Projeto_rpg
                     break;
             }
         }
-        public static void Mensagens() // CONTINUAR
+        public static void Mensagens() // OK
         {
-            Ferramentas.Limpa_Interface();
+            Mensagens:
 
+            Ferramentas.Limpa_Interface();
             Ferramentas.ImagemASCII("\n" +
                         "           ┌════════════════════════════════┐\n" +
                         "           │               o ═══            │\n" +
@@ -1173,24 +1174,266 @@ namespace Projeto_rpg
                         $"[2] CSP ({Banco_de_Dados.Ler_num_Mensagens.CSP()})\n" +
                         $"[3] Sofia Filha ({Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha()})\n" +
                         $"[4] Chefe Bruno ({Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno()})\n" +
-                        $"[5] SAIR");
+                        $"[5] SAIR\n");
             switch (Ações.Escolha(5))
             {
                 case 1:
-                    //Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother());
-                    //Banco_de_Dados.Alterar_num_Mensagens.Rafael_Brother(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother());
+
+                    if (Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother() != 0)
+                    {
+                        Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother());
+                        Banco_de_Dados.Alterar_num_Mensagens.Rafael_Brother(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother());
+
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                            "sumida nos últimos dias... Fiquei preocupado.");
+                        Ferramentas.Escrever_Mensagem("" +
+                            "\n\n[1] Tô bem cara, agradeço a preocupação. E tudo bem contigo?" +
+                            "\n[2] Você sabe muito bem como eu estou. Não sabe?\n");
+                        switch (Ações.Escolha(2))
+                        {
+                            case 1:
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                                    "sumida nos últimos dias... Fiquei preocupado.");
+                                Efeitos.Digitando(1);
+                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Tô bem cara, agradeço a preocupação. E tudo bem contigo?");
+                                Efeitos.Digitando(3);
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Que bom, fico feliz por ti." +
+                                    "\n\u001b[34m\u001b[1mRafael Brother\u001b[0m: Qualquer coisa, eu...");
+                                Efeitos.Digitando(4, false);
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Brother, acho que essa pode ser a minha última chance de falar alguma coisa.");
+                                Efeitos.Digitando(4, false);
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Não sei se vou aguentar por muito tempo, mas é o seguinte... Não se deixa enganar. " +
+                                    "Não hesite em matar. Ele vai querer te enganar, assim como fez comigo. E agora estou sofrendo as consequências.");
+                                Efeitos.Digitando(4, false);
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Adeus, amigo.");
+                                Efeitos.Digitando(4, false);
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: REGENERATUS CIBUS");
+                                Efeitos.Digitando(5, false);
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: CONSCIENTIA COMMUNIS");
+                                Efeitos.Digitando(3, false);
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: INTRA CAPUT TUUM");
+                                Efeitos.Digitando(7, false);
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: NON VERUS NON VERUS NON VERUS NON VERUS NON VERUS");
+                                Ferramentas.Escrever_Mensagem("" +
+                                    "\n\n[1] Negar" +
+                                    "\n[2] Negar\n");
+                                Ações.Escolha(2);
+
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever("O aplicativo parou de funcionar. É preciso abrir novamente.");
+                                break;
+                            case 2:
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                                    "sumida nos últimos dias... Fiquei preocupado.");
+                                Efeitos.Digitando(1);
+                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Você sabe muito bem como eu estou. Não sabe?");
+                                Efeitos.Digitando(7);
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: É, eu sei... Eu sinto muito pela sua filha cara, as coisas " +
+                                    "não eram pra terminarem assim. A gente sabia disso. Foi um acidente, ninguém tem culpa. Muito menos você!");
+                                Ferramentas.Escrever_Mensagem("" +
+                                    "\n\n[1] Ela NÃO morreu. Eu sei disso." +
+                                    "\n[2] A culpa é toda minha...\n");
+
+                                switch (Ações.Escolha(2))
+                                {
+                                    case 1:
+                                        Ferramentas.Limpa_Interface();
+                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                                            "sumida nos últimos dias... Fiquei preocupado.");
+                                        Ferramentas.Escrever_Mensagem("\n\n\u001b[1mVocê\u001b[0m: Você sabe muito bem como eu estou. Não sabe?");
+                                        Ferramentas.Escrever_Mensagem("\n\n\u001b[34m\u001b[1mRafael Brother\u001b[0m: É, eu sei... Eu sinto muito pela sua filha cara, as coisas" +
+                                            "não eram pra terminarem assim. A gente sabia disso. Foi um acidente, ninguém tem culpa. Muito menos você!");
+                                        Efeitos.Digitando(3);
+                                        Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Ela NÃO morreu. Eu sei disso.");
+                                        Efeitos.Digitando(5);
+                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Foi mal, mas você sabe que aquela ##### pegou ela. E sabemos muito bem do que aquilo é capaz de fazer... " +
+                                            "Se ela não morreu, então provavelmente não é mais a mesma.");
+                                        Efeitos.Digitando(5);
+                                        Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1m???\u001b[0m: NÃO ME MENCIONE");
+                                        Thread.Sleep(2000);
+                                        Ferramentas.Escrever_Mensagem("\n\u001b[31m\u001b[1m???\u001b[0m: NÃO ME MENCIONE");
+                                        Thread.Sleep(2000);
+                                        Ferramentas.Escrever_Mensagem("\n\u001b[31m\u001b[1m???\u001b[0m: NÃO ME MENCIONE");
+                                        Thread.Sleep(2000);
+
+                                        Ferramentas.Limpa_Interface();
+                                        Ferramentas.Escrever("O aplicativo parou de funcionar. É preciso abrir novamente.");
+                                        break;
+                                    case 2:
+                                        Ferramentas.Limpa_Interface();
+                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                                            "sumida nos últimos dias... Fiquei preocupado.");
+                                        Ferramentas.Escrever_Mensagem("\n\n\u001b[1mVocê\u001b[0m: Você sabe muito bem como eu estou. Não sabe?");
+                                        Ferramentas.Escrever_Mensagem("\n\n\u001b[34m\u001b[1mRafael Brother\u001b[0m: É, eu sei... Eu sinto muito pela sua filha cara, as coisas" +
+                                            "não eram pra terminarem assim. A gente sabia disso. Foi um acidente, ninguém tem culpa. Muito menos você!");
+                                        Efeitos.Digitando(3);
+                                        Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: A culpa é toda minha.");
+                                        Efeitos.Digitando(5);
+                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Não é não, você sabe disso. A CSP tem grande parte nisso. " +
+                                            "Se eles tivessem dado ouvidos à todas as suas suas recomendações de segurança, isso não teria acontecido...");
+                                        Efeitos.Digitando(3, false);
+                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: E agora, quem paga o preço? A gente.");
+                                        Efeitos.Digitando(5, false);
+                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Aí, o celular tá descarregando. Depois eu volto. Mas fica " +
+                                            "melhor, viu? Alguma hora vou aí te visitar.");
+                                        Ferramentas.Escrever_Mensagem("\n\n[1] Okks\n");
+                                        Ações.Escolha(1);
+                                        goto Mensagens;
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("Todas as mensagens de \"Rafael Brother\" já foram lidas.");
+                        goto Mensagens;
+                    }
                     break;
                 case 2:
-                    //Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.CSP());
-                    //Banco_de_Dados.Alterar_num_Mensagens.CSP(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.CSP());
-                    break;
+
+                    Ferramentas.Limpa_Interface();
+
+                    if (Banco_de_Dados.Ler_num_Mensagens.CSP() != 0)
+                    {
+                        Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.CSP());
+                        Banco_de_Dados.Alterar_num_Mensagens.CSP(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.CSP());
+
+                        Ferramentas.Escrever_Mensagem("\u001b[35m\u001b[1mCSP\u001b[0m: Este é um aviso programado da Cientific Solutions for Pandemics.\n" +
+                            "\u001b[35m\u001b[1mCSP\u001b[0m: Pedimos que permaneça em silêncio judicial. Você será justificado por todo o ocorrido, e esperamos " +
+                            "que os assuntos extraoficiais possam ser resolvidos o mais rápido possível para a manifestação da sua indenização.");
+                        Ferramentas.Escrever_Mensagem("\n\n[1] Ok\n");
+                        Ações.Escolha(1);
+                    }
+                    else
+                    {
+                        Ferramentas.Escrever("Todas as mensagens de \"CSP\" já foram lidas.");
+                    }
+                    goto Mensagens;
                 case 3:
-                    //Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha());
-                    //Banco_de_Dados.Alterar_num_Mensagens.Sofia_Filha(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha());
-                    break;
+                    Ferramentas.Limpa_Interface();
+
+                    if (Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha() != 0)
+                    {
+                        Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha());
+                        Banco_de_Dados.Alterar_num_Mensagens.Sofia_Filha(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha());
+
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Pai?");
+                        Ferramentas.Escrever_Mensagem("\n\n[1] FILHA?????? VOCÊ ESTÁ BEM????\n");
+                        Ações.Escolha(1);
+
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Pai?");
+                        Efeitos.Digitando(2);
+                        Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: FILHA?????? VOCÊ ESTÁ BEM????");
+                        Efeitos.Digitando(6);
+                        Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Ele quer resolver as coisas com você pessoalmente. " +
+                            "Venha para o laboratório.");
+                        Ferramentas.Escrever_Mensagem("" +
+                            "\n\n[1] Quem?? O laboratório foi fechado depois do acidente. E por que você está aí?" +
+                            "\n[2] Para de falar besteiras filha! Você sumiu faz 3 dias sem deixar rastros... Por favor volta pra casa!\n");
+                        switch (Ações.Escolha(2))
+                        {
+                            case 1:
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Pai?");
+                                Ferramentas.Escrever_Mensagem("\n\n\u001b[1mVocê\u001b[0m: FILHA?????? VOCÊ ESTÁ BEM????");
+                                Ferramentas.Escrever_Mensagem("\n\n\u001b[31m\u001b[1mSofia Filha\u001b[0m: Ele quer resolver as coisas com você pessoalmente. " +
+                                    "Venha para o laboratório.");
+                                Efeitos.Digitando(4);
+                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Quem?? O laboratório foi fechado depois do acidente. E por que você está aí?");
+                                Efeitos.Digitando(6);
+                                Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: \u001b[31mVocê sabe muito bem quem.\u001b[0m");
+                                Efeitos.Digitando(5);
+
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever("O aplicativo parou de funcionar. É preciso abrir novamente.");
+                                break;
+                            case 2:
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Pai?");
+                                Ferramentas.Escrever_Mensagem("\n\n\u001b[1mVocê\u001b[0m: FILHA?????? VOCÊ ESTÁ BEM????");
+                                Ferramentas.Escrever_Mensagem("\n\n\u001b[31m\u001b[1mSofia Filha\u001b[0m: Ele quer resolver as coisas com você pessoalmente. " +
+                                    "Venha para o laboratório.");
+                                Efeitos.Digitando(4);
+                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Para de falar besteiras filha! Você sumiu faz 3 dias sem deixar rastros... Por favor volta pra casa!");
+                                Efeitos.Digitando(6);
+                                Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: \u001b[31mApenas venha.\u001b[0m");
+                                Efeitos.Digitando(5);
+
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever("O aplicativo parou de funcionar. É preciso abrir novamente.");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("Todas as mensagens de \"Sofia Filha\" já foram lidas.");
+                        goto Mensagens;
+                    }
+                    break;         
                 case 4:
-                    //Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno());
-                    //Banco_de_Dados.Alterar_num_Mensagens.Chefe_Bruno(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno());
+                    if(Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno() != 0)
+                    {
+                        Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno());
+                        Banco_de_Dados.Alterar_num_Mensagens.Chefe_Bruno(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno());                        
+
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
+                            "\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Quero pedir somente que me envie, até a semana que vem, aquele aquele relatório do mês de agosto " +
+                            "de 2022 que entreguei a você, para finalizar uma papelada, se possível.");
+                        Ferramentas.Escrever_Mensagem("" +
+                            "\n\n[1] Ok, chefe." +
+                            "\n[2] Não estou bem pra trabalhar por agora, Bruno... Preciso de um tempo.\n");
+
+                        switch (Ações.Escolha(2))
+                        {
+                            case 1:
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
+                                    "\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Quero pedir somente que me envie, até a semana que vem, aquele relatório do mês de agosto " +
+                                    "de 2022 que entreguei a você, para finalizar uma papelada, se possível.");
+                                Efeitos.Digitando(4);
+                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Ok, chefe.");
+                                Efeitos.Digitando(6);
+                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: E espero que a sua situação se resolva logo. Abraços.");
+                                Ferramentas.Escrever_Mensagem("" +
+                                    "\n\n[1] Obrigado..." +
+                                    "\n[2] Sim...");
+                                Ações.Escolha(2);
+                                goto Mensagens;
+                            case 2:
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
+                                    "\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Quero pedir somente que me envie, até a semana que vem, aquele relatório do mês de agosto" +
+                                    "de 2022 que entreguei a você, para finalizar uma papelada, se possível.");
+                                Efeitos.Digitando(4);
+                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Não estou bem pra trabalhar por agora, Bruno... Preciso de um tempo.");
+                                Efeitos.Digitando(4);
+                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Ah, sim, entendo...");
+                                Efeitos.Digitando(10, false);
+                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Bom, acho que esse relatório pode esperar mais umas 2 semanas.");
+                                Efeitos.Digitando(10, false);
+                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Abraços.");
+                                Ferramentas.Escrever_Mensagem("" +
+                                    "\n\n[1] Obrigado..." +
+                                    "\n[2] Agradeço...");
+                                Ações.Escolha(2);
+                                goto Mensagens;
+                        }
+                    }
+                    else
+                    {
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("Todas as mensagens de \"Chefe Bruno\" já foram lidas.");
+                        goto Mensagens;
+                    }
+
                     break;
                 case 5:
                     break;

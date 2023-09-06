@@ -26,7 +26,7 @@ namespace Projeto_rpg
 
             // Menu Inicial
 
-            Menus.Tela_inicio();
+            Menus.Tela_inicio(); // COLOCAR AVISO DE MAXIMIZAR JANELA, E DAR OK DE CONFIRMAÇÃO
 
             // Interface
 
@@ -47,15 +47,15 @@ namespace Projeto_rpg
                 "\n[4] Explorar casa", true);
             switch (Ações.Escolha(4))
             {
-                case 1:
+                case 1: // CONTINUAR A PARTE EM QUE O JOGADOR TEM O CABO
                     História.VerTV();
                     goto inicio;
-                case 2:
-                    História.Atender_Telefone();
+                case 2: // TELEFONE OK, SÓ FALTAM SOUNDTRACKS DIFERENTES NOS CONTATOS, E CRIAR NOVA TABELA DE LIGAÇÕES JÁ FEITAS, PARA NÃO SEREM ATENDIDAS NOVAMENTE NOS CONTATOS
+                    História.Telefone();
                     goto inicio;
-                case 3: // CONTINUAR
+                case 3: // FAZER AINDA
                     goto inicio;
-                case 4: // CONTINUAR
+                case 4: // FAZER AINDA (COLOCAR COZINHA, ESCRITÓRIO, QUARTO E SAIR DE CASA (O QUE NÃO PERMITE, POIS TEM QUE PEGAR A CHAVE NA COZINHA) // SAIR DE CASA LEVA PRA PARTE 2
                     História.Quarto();
                     goto inicio;
             }

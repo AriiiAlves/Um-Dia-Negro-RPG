@@ -98,22 +98,22 @@ namespace Projeto_rpg
                 using (SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection))
                 {
                     insertCommand.Parameters.AddWithValue("@nome", "Todas");
-                    insertCommand.Parameters.AddWithValue("@int", 9);
+                    insertCommand.Parameters.AddWithValue("@int", 6);
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
 
                     insertCommand.Parameters.AddWithValue("@nome", "Rafael Brother");
-                    insertCommand.Parameters.AddWithValue("@int", 3);
-                    insertCommand.ExecuteNonQuery();
-                    insertCommand.Parameters.Clear();
-
-                    insertCommand.Parameters.AddWithValue("@nome", "CSP");
                     insertCommand.Parameters.AddWithValue("@int", 1);
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
 
+                    insertCommand.Parameters.AddWithValue("@nome", "CSP");
+                    insertCommand.Parameters.AddWithValue("@int", 2);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
                     insertCommand.Parameters.AddWithValue("@nome", "Sofia Filha");
-                    insertCommand.Parameters.AddWithValue("@int", 3);
+                    insertCommand.Parameters.AddWithValue("@int", 1);
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
 
