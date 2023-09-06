@@ -12,8 +12,8 @@ namespace Projeto_rpg
                 Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("A TV agora liga normalmente." +
                     "\n\nHá apenas um programa passando." +
-                    "\n[1] Assistir" +
-                    "\n[2] Sair");
+                    "\n\n[1] Assistir" +
+                    "\n[2] Sair", escolha: true);
                 switch (Ações.Escolha(2))
                 {
                     case 1:
@@ -1558,10 +1558,10 @@ namespace Projeto_rpg
                                 Efeitos.Digitando(4, false);
                                 Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Brother, acho que essa pode ser a minha última chance de falar alguma coisa.");
                                 Efeitos.Digitando(4, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Não sei se vou aguentar por muito tempo, mas é o seguinte... Não se deixa enganar. " +
-                                    "Não hesite em matar. Ele vai querer te enganar, assim como fez comigo. E agora estou sofrendo as consequências.");
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Não sei se vou aguentar por muito tempo, mas é o seguinte... Não se deixe iludir. " +
+                                    "Ele vai querer te enganar, assim como fez comigo. E agora estou sofrendo as consequências...");
                                 Efeitos.Digitando(4, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Adeus, amigo.");
+                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Acho que esses são meus últimos segundos consciente. Adeus, amigo.");
                                 Efeitos.Digitando(4, false);
                                 Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: REGENERATUS CIBUS");
                                 Efeitos.Digitando(5, false);
