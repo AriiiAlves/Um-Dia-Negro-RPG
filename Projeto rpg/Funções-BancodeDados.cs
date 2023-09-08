@@ -73,7 +73,7 @@ namespace Projeto_rpg
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
 
-                    insertCommand.Parameters.AddWithValue("@nome", "Memórias");
+                    insertCommand.Parameters.AddWithValue("@nome", "Memorias");
                     insertCommand.Parameters.AddWithValue("@bool", false);
                     insertCommand.Parameters.AddWithValue("@int", 0);
                     insertCommand.ExecuteNonQuery();
@@ -335,7 +335,7 @@ namespace Projeto_rpg
 
                     using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
                     {
-                        updateCommand.Parameters.AddWithValue("@nome", "Memórias");
+                        updateCommand.Parameters.AddWithValue("@nome", "Memorias");
                         updateCommand.Parameters.AddWithValue("@bool", valor);
                         updateCommand.ExecuteNonQuery();
                     }
@@ -554,7 +554,7 @@ namespace Projeto_rpg
                 {
                     connection.Open();
 
-                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Memórias\";";
+                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Memorias\";";
 
                     using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
                     {

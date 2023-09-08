@@ -46,10 +46,10 @@ namespace Projeto_rpg
                 case 2: // TELEFONE OK, SÓ FALTAM SOUNDTRACKS DIFERENTES NOS CONTATOS, E CRIAR NOVA TABELA DE LIGAÇÕES JÁ FEITAS, PARA NÃO SEREM ATENDIDAS NOVAMENTE NOS CONTATOS
                     História.Telefone();
                     goto inicio;
-                case 3: // FAZER AINDA
+                case 3: // OK
                     História.Ler_Livro();
                     goto inicio;
-                case 4: // FAZER AINDA (COLOCAR COZINHA, ESCRITÓRIO, QUARTO E SAIR DE CASA (O QUE NÃO PERMITE, POIS TEM QUE PEGAR A CHAVE NA COZINHA) // SAIR DE CASA LEVA PRA PARTE 2
+                case 4: // OK
                     História.Explorar_casa();
                     goto inicio;
             }

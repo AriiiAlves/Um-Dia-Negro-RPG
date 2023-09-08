@@ -1,5 +1,4 @@
 ﻿using NAudio.Wave;
-using System.Reflection;
 using static Projeto_rpg.ControleMúsica;
 
 namespace Projeto_rpg
@@ -39,29 +38,25 @@ namespace Projeto_rpg
                 switch (Ações.Escolha(2))
                 {
                     case 1:
-                        encontrar_cabo:
-
                         Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("Você mexe atrás da TV para encontrar o problema, com dificuldade." +
                             "\nParece que ela está sem o cabo de energia." +
-                            "\n\nOnde procurar?" +
+                            "\n\nPor onde começar a procurar?" +
                             "\n\n[1] Escritório" +
-                            "\n[2] Quarto" +
-                            "\n[3] Cozinha", true);
+                            "\n[2] Quarto", true);
                         switch (Ações.Escolha(2))
                         {
                             case 1:
                                 Ferramentas.Limpa_Interface();
                                 Ferramentas.Escrever("Você vai até a porta de seu escritório, e gira a maçaneta." +
                                     "\nEstá trancado." +
-                                    "\n\n[1] Sair", true);
+                                    "\n\nProcurar a chave no quarto?" +
+                                    "\n\n[1] Sim" +
+                                    "\n[2] n̰̝̹̳͊͒̂̉̀ ̸̣̘̭̻̼̊ͥ͑ ͖́͝ͅǒ̷̹̱̳̘̣̦̮̲͂̍ͦ", true);
                                 Ações.Escolha(2);
-                                goto encontrar_cabo;
+                                goto case 2;
                             case 2:
                                 Quarto();
-                                break;
-                            case 3:
-                                Cozinha();
                                 break;
                         }
                         break;
@@ -72,7 +67,7 @@ namespace Projeto_rpg
                 }
             }
         }
-        private static void ProgramaTV()
+        public static void ProgramaTV()
         {
             Ferramentas.LimpaTela();
             Console.Write("\n\n" +
@@ -1093,7 +1088,7 @@ namespace Projeto_rpg
             Soundtrack1.Player.Stop();
             Soundtrack0.Player.Play();
         }
-        private static void Ligação_atendida(int n_contato) // NÃO OK (FALTAM ÁUDIOS DIFERENTES, E CORRIGIR FATO DA TRILHA SÓ PODER SER TOCADA UMA VEZ)
+        public static void Ligação_atendida(int n_contato) // NÃO OK (FALTAM ÁUDIOS DIFERENTES, E CORRIGIR FATO DA TRILHA SÓ PODER SER TOCADA UMA VEZ)
         {
             // Limpando Interface
 
@@ -1462,7 +1457,7 @@ namespace Projeto_rpg
                     break;
             }
         }
-        private static void Contatos(int n_contato) // OK (COLOCAR VARIÁVEL DE <LIGAÇÃO JÁ FEITA> NO BANCO DE DADOS, E COLOCAR QUE NÃO ATENDE DEPOIS)
+        public static void Contatos(int n_contato) // OK (COLOCAR VARIÁVEL DE <LIGAÇÃO JÁ FEITA> NO BANCO DE DADOS, E COLOCAR QUE NÃO ATENDE DEPOIS)
         {
             switch (n_contato)
             {
@@ -1496,7 +1491,7 @@ namespace Projeto_rpg
                     break;
             }
         }
-        private static void Mensagens() // OK
+        public static void Mensagens() // OK
         {
         Mensagens:
 
@@ -1811,7 +1806,7 @@ namespace Projeto_rpg
                 "\n\n[1] Livro de Física" +
                 "\n[2] Livro de Química" +
                 "\n[3] Literatura nacional" +
-                "\n[4] Sair");
+                "\n[4] Sair", escolha: true);
             switch (Ações.Escolha(4))
             {
                 case 1:
@@ -1841,18 +1836,18 @@ namespace Projeto_rpg
                         "\n\nO Número de Avogadro é um número padrão para representar um mol de quaisquer entidades elementares de átomos, moléculas, íons " +
                         "e elétrons. A consequência mais importante da Lei de Avogadro é a constante do gás ideal e tem o mesmo valor para todos os gases." +
                         "\n\nAssim, a Constante de Avogadro é apontada a seguinte maneira: " +
-                        "\n\n(P1 . V1 / t1. n) = (P2 . V2 / t2 . n) = c" +
+                        "\n\n(P1 . V1 / t1. n) = ((P2 . V2) / (t2 . n)) = c" +
                         "\n\nP = Pressão do gás" +
                         "\nt = Temperatura do gás" +
                         "\nc = Constante" +
                         "\n\nO número de Avogadro tem o mesmo valor para todos os gases, independente do tamanho ou massa das moléculas de gás.\"");
                     Ferramentas.Limpa_Interface();
                     Ferramentas.Escrever("No meio do livro, você encontra um panfleto da CSP." +
-                        "\n\n\"CSP: Segurança em momentos de crise");
+                        "\n\n\"CSP: Segurança em momentos de crise\"");
                     goto Ler_Livro;
                 case 3:
                     Ferramentas.Limpa_Interface();
-                    Ferramentas.Escrever("\"    Furtei uma flor daquele jardim. O porteiro do edifício cochilava e eu furtei a flor. Trouxe-a para casa e " +
+                    Ferramentas.Escrever("    \"Furtei uma flor daquele jardim. O porteiro do edifício cochilava e eu furtei a flor. Trouxe-a para casa e " +
                         "coloquei-a no copo com água. Logo senti que ela não estava feliz. O copo destina-se a beber, e flor não é para ser bebida." +
                         "\r\n   Passei-a para o vaso, e notei que ela me agradecia, revelando melhor sua delicada composição. Quantas novidades há numa " +
                         "flor, se a contemplarmos bem. Sendo autor do furto, eu assumira a obrigação de conservá-la. Renovei a água do vaso, mas a " +
@@ -1906,14 +1901,14 @@ namespace Projeto_rpg
                     Ferramentas.Limpa_Interface();
                     Ferramentas.Escrever("Você gira a maçaneta. A porta abre.");
                     Ferramentas.Limpa_Interface();
-                    Ferramentas.Escrever("Porém o lugar que você encontra não é um escritório, muito menos um cômodo normal.");
+                    Ferramentas.Escrever("Mas o lugar que você encontra não é um escritório, muito menos um cômodo normal.");
                     Ferramentas.Limpa_Interface();
                     Ferramentas.Escrever("As paredes são feitas de um material vivo, de cor vermelha.");
                     Ferramentas.Limpa_Interface();
                     Ferramentas.Escrever("Na sua frente há uma passagem escura, para um lugar desconhecido." +
                         "\n\nEntrar?" +
                         "\n\n[1] Sim" +
-                        "\n[2] Não");
+                        "\n[2] Não", escolha: true);
                     switch (Ações.Escolha(2))
                     {
                         case 1:
@@ -1927,7 +1922,7 @@ namespace Projeto_rpg
                             Ferramentas.Interface();
                             Ferramentas.Escrever("À medida que você entra, a passagem escura começa a brilhar. Tudo à sua volta fica branco que nem a neve.");
                             Ferramentas.Limpa_Interface();
-                            Ferramentas.Escrever("Quanto mais você anda, mais brilhante o lugar fica. Porém não há nada ali, apenas um vazio completo, por todas as partes. Você não consegue ver fim nem limites pra essa passagem. Não há lugar para se chegar.");
+                            Ferramentas.Escrever("Quanto mais você anda, mais brilhante o lugar fica. Porém não há nada ali, senão um vazio por completo, em todas as partes. Você não consegue ver fim nem limites pra essa passagem. Não há lugar para se chegar.");
                             Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("De repente, surge uma memória.");
                             Ferramentas.Limpa_Interface();
@@ -1937,7 +1932,7 @@ namespace Projeto_rpg
                             Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("\"Temos que fazer esses testes diariamente agora, você sabe disso. Precisamos garantir que ele não pegou nenhum de nós.\"");
                             Ferramentas.Limpa_Interface();
-                            Ferramentas.Escrever("A CSP e sua idiotice. Podia ter me ouvido. Agora todo mundo corre perigo.");
+                            Ferramentas.Escrever("A CSP e sua idiotice. Podiam ter me ouvido. Agora todo mundo corre perigo.");
                             Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("\"Pois é. Mas fazer o quê, né?? Não adianta chorar pelo leite derramado. Agora é trabalhar duro pra encontrar um jeito de acabar com esse bicho, antes que ele acabe com a gente.\"");
                             Ferramentas.Limpa_Interface();
@@ -1953,7 +1948,7 @@ namespace Projeto_rpg
                             Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("O mais estranho é que ela só voltava ao normal quando colocávamos algum ser vivo dentro da área de contenção em que " +
                                 "ela ficava. Mas eu nunca consegui entender a alimentação dela, porque todo animal colocado ali não sofria um arranhão, mas mesmo " +
-                                "assim ficava paralisado, e morria dias depois, de fome. Percebi que quanto maior a atividade cerebral do animal, mais dias a " +
+                                "assim ficava paralisado e morria dias depois, de fome. Percebi que quanto maior a atividade cerebral do animal, mais dias a " +
                                 "criatura ficava satisfeita. É como se ela se alimentasse da atividade cerebral do indivíduo...");
                             Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("\"Espero que achemos um jeito de encontrar e deter essa coisa. Ela pode causar muito problema por aí.\"", instantâneo: true);
@@ -1962,7 +1957,7 @@ namespace Projeto_rpg
                             Console.BackgroundColor = ConsoleColor.Black;
                             Console.ForegroundColor = ConsoleColor.White;
                             Ferramentas.Interface();
-                            Ferramentas.Escrever("\u001b[41mESQUEÇA ISSO.\u001b[41m", instantâneo: true);
+                            Ferramentas.Escrever("\u001b[31mESQUEÇA ISSO.\u001b[31m", instantâneo: true);
                             Thread.Sleep(5000);
                             Environment.Exit(0);
                             break;
@@ -1978,10 +1973,10 @@ namespace Projeto_rpg
                 {
                     Ferramentas.Limpa_Interface();
                     Ferramentas.Escrever("Era para ser um escritório, mas é apenas um cômodo vazio." +
-                        "\n\n[1] Sair");
+                        "\n\n[1] Sair", escolha: true);
                     Ações.Escolha(1);
                     Ferramentas.Limpa_Interface();
-                    Ferramentas.Escrever("Você tem a sensação de que era pra ter alguma coisa no escritório, mas não se lembra do quê.");
+                    Ferramentas.Escrever("Você tem a sensação de que era pra ter alguma coisa ali, mas não se lembra do quê.");
                 }
             }
             else
@@ -2005,8 +2000,9 @@ namespace Projeto_rpg
                 "\n\nO que fazer?" +
                 "\n\n[1] Olhar geladeira" +
                 "\n[2] Olhar gavetas" +
-                "\n[3] Voltar", escolha: true);
-            switch (Ações.Escolha(2))
+                "\n[3] Olhar despensa" +
+                "\n[4] Voltar", escolha: true);
+            switch (Ações.Escolha(4))
             {
                 case 1:
                     Ferramentas.Limpa_Interface();
@@ -2031,7 +2027,7 @@ namespace Projeto_rpg
                         Ferramentas.Escrever("Há um isqueiro e uma faca. Você só pode pegar um dos dois." +
                         "\n\n[1] Pegar isqueiro" +
                         "\n[2] Pegar faca" +
-                        "\n[3] Não pegar nada");
+                        "\n[3] Não pegar nada", escolha: true);
                         switch (Ações.Escolha(2))
                         {
                             case 1:
@@ -2053,7 +2049,7 @@ namespace Projeto_rpg
                         Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("Há uma faca na gaveta, porém você já tem o isqueiro. Trocar de item?" +
                         "\n\n[1] Sim" +
-                        "\n[2] Não");
+                        "\n[2] Não", escolha: true);
                         switch (Ações.Escolha(2))
                         {
                             case 1:
@@ -2071,7 +2067,7 @@ namespace Projeto_rpg
                         Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("Há um isqueiro na gaveta, porém você já tem a faca. Trocar de item?" +
                         "\n\n[1] Sim" +
-                        "\n[2] Não");
+                        "\n[2] Não", escolha: true);
                         switch (Ações.Escolha(2))
                         {
                             case 1:
@@ -2086,6 +2082,32 @@ namespace Projeto_rpg
                     }
                     break;
                 case 3:
+                    if (Banco_de_Dados.Ler_Progresso_Da_História.Chave_Porta())
+                    {
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("Há bastante alimento seco e em conserva, em diversas prateleiras da despensa. Mas parece não haver mais nada aqui.");
+                        goto Cozinha;
+                    }
+                    else
+                    {
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("Há bastante alimento seco e em conserva, em diversas prateleiras da despensa. Na parede, está pendurado uma chaveiro, " +
+                            "com uma chave. Pegar ela?" +
+                            "\n\n[1] Sim" +
+                            "\n[2] Não", escolha: true);
+                        switch (Ações.Escolha(2))
+                        {
+                            case 1:
+                                Ferramentas.Limpa_Interface();
+                                Ferramentas.Escrever("Você coletou uma chave.");
+                                Banco_de_Dados.Coletar_item.Chave_Porta(true);
+                                goto Cozinha;
+                            case 2:
+                                goto Cozinha;
+                        }
+                    }
+                    break;
+                case 4:
                     Ferramentas.Limpa_Interface();
                     Ferramentas.Escrever("A cozinha, com tons de marrom e uma arte rústica, é um ambiente realmente muito aconchegante.");
                     break;
@@ -2105,7 +2127,7 @@ namespace Projeto_rpg
                 {
                     case 1:
                         Ferramentas.Limpa_Interface();
-                        Ferramentas.Escrever("\u001b[31mFico feliz por você decidir me escutar.\u001b[31m");
+                        Ferramentas.Escrever("\u001b[31mVocê está indo na direção certa.\u001b[31m");
                         Banco_de_Dados.Alterar_Progresso_da_História.Parte1_História(true);
                         while(Banco_de_Dados.Ler_Progresso_Da_História.Parte1_História() == false)
                         {
