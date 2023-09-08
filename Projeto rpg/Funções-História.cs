@@ -404,6 +404,7 @@ namespace Projeto_rpg
                 "                                │     │\r\n" +
                 "                          ┌─────┴─────┴─────┐\r\n" +
                 "                          └─────────────────┘");
+            Thread.Sleep(5000);
             Console.ReadKey();
             Ferramentas.LimpaTela();
             Ferramentas.Interface();
@@ -1801,7 +1802,7 @@ namespace Projeto_rpg
             Ler_Livro:
 
             Ferramentas.Limpa_Interface();
-            Ferramentas.Escrever("Há varios livros de Física, Química, e Literatura nacional." +
+            Ferramentas.Escrever("Há vários livros de Física, Química, e Literatura nacional." +
                 "\n\nO que deseja ler?" +
                 "\n\n[1] Livro de Física" +
                 "\n[2] Livro de Química" +
@@ -1948,7 +1949,7 @@ namespace Projeto_rpg
                             Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("O mais estranho é que ela só voltava ao normal quando colocávamos algum ser vivo dentro da área de contenção em que " +
                                 "ela ficava. Mas eu nunca consegui entender a alimentação dela, porque todo animal colocado ali não sofria um arranhão, mas mesmo " +
-                                "assim ficava paralisado e morria dias depois, de fome. Percebi que quanto maior a atividade cerebral do animal, mais dias a " +
+                                "assim ficava paralisado e morria dias depois, de fome. Percebi que quanto maior a atividade cerebral do animal, maior a quantidade de dias que " +
                                 "criatura ficava satisfeita. É como se ela se alimentasse da atividade cerebral do indivíduo...");
                             Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("\"Espero que achemos um jeito de encontrar e deter essa coisa. Ela pode causar muito problema por aí.\"", instantâneo: true);
@@ -2028,7 +2029,7 @@ namespace Projeto_rpg
                         "\n\n[1] Pegar isqueiro" +
                         "\n[2] Pegar faca" +
                         "\n[3] Não pegar nada", escolha: true);
-                        switch (Ações.Escolha(2))
+                        switch (Ações.Escolha(3))
                         {
                             case 1:
                                 Ferramentas.Limpa_Interface();
