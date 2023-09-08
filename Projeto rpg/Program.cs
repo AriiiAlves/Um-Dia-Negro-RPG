@@ -47,9 +47,10 @@ namespace Projeto_rpg
                     História.Telefone();
                     goto inicio;
                 case 3: // FAZER AINDA
+                    História.Ler_Livro();
                     goto inicio;
                 case 4: // FAZER AINDA (COLOCAR COZINHA, ESCRITÓRIO, QUARTO E SAIR DE CASA (O QUE NÃO PERMITE, POIS TEM QUE PEGAR A CHAVE NA COZINHA) // SAIR DE CASA LEVA PRA PARTE 2
-                    História.Quarto();
+                    História.Explorar_casa();
                     goto inicio;
             }
         }

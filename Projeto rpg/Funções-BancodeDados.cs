@@ -72,6 +72,18 @@ namespace Projeto_rpg
                     insertCommand.Parameters.AddWithValue("@int", 0);
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Memórias");
+                    insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.Parameters.AddWithValue("@int", 0);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Parte 1 História");
+                    insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.Parameters.AddWithValue("@int", 0);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
                 }
 
                 // INSERT  item
@@ -86,6 +98,21 @@ namespace Projeto_rpg
                     insertCommand.Parameters.Clear();
 
                     insertCommand.Parameters.AddWithValue("@nome", "Chave Escritorio");
+                    insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Chave Porta");
+                    insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Isqueiro");
+                    insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Faca");
                     insertCommand.Parameters.AddWithValue("@bool", false);
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
@@ -183,6 +210,66 @@ namespace Projeto_rpg
                     connection.Close();
                 }
             }
+            public static void Chave_Porta(bool valor)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = "UPDATE item SET item_coletado = @bool WHERE item_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Chave Porta");
+                        updateCommand.Parameters.AddWithValue("@bool", valor);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Isqueiro(bool valor)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = "UPDATE item SET item_coletado = @bool WHERE item_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Isqueiro");
+                        updateCommand.Parameters.AddWithValue("@bool", valor);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Faca(bool valor)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = "UPDATE item SET item_coletado = @bool WHERE item_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Faca");
+                        updateCommand.Parameters.AddWithValue("@bool", valor);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
         }
         public static class Alterar_Progresso_da_História
         {
@@ -229,6 +316,46 @@ namespace Projeto_rpg
                     using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
                     {
                         updateCommand.Parameters.AddWithValue("@nome", "Cofre Aberto");
+                        updateCommand.Parameters.AddWithValue("@bool", valor);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Memórias(bool valor)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = "UPDATE elemento_historia SET elemento_historia_ocorreu = @bool WHERE elemento_historia_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Memórias");
+                        updateCommand.Parameters.AddWithValue("@bool", valor);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Parte1_História(bool valor)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = "UPDATE elemento_historia SET elemento_historia_ocorreu = @bool WHERE elemento_historia_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Parte 1 História");
                         updateCommand.Parameters.AddWithValue("@bool", valor);
                         updateCommand.ExecuteNonQuery();
                     }
@@ -298,6 +425,93 @@ namespace Projeto_rpg
                 return temp;
             }
             /// <summary>
+            /// Verifica se o item ->Chave da Porta<- já foi coletado 
+            /// </summary>
+            /// <returns>Retorna true ou false.</returns>
+            public static bool Chave_Porta()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+                bool temp = false;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT item_coletado FROM item WHERE item_nome = \"Chave Porta\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                temp = reader.GetBoolean(0);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+                return temp;
+            }
+            /// <summary>
+            /// Verifica se o item ->Isqueiro<- já foi coletado 
+            /// </summary>
+            /// <returns>Retorna true ou false.</returns>
+            public static bool Isqueiro()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+                bool temp = false;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT item_coletado FROM item WHERE item_nome = \"Isqueiro\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                temp = reader.GetBoolean(0);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+                return temp;
+            }
+            /// <summary>
+            /// Verifica se o item ->Faca<- já foi coletado 
+            /// </summary>
+            /// <returns>Retorna true ou false.</returns>
+            public static bool Faca()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+                bool temp = false;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT item_coletado FROM item WHERE item_nome = \"Faca\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                temp = reader.GetBoolean(0);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+                return temp;
+            }
+            /// <summary>
             /// Verifica se o progresso ->Abrir cofre<- já ocorreu 
             /// </summary>
             /// <returns>Retorna true ou false.</returns>
@@ -328,6 +542,36 @@ namespace Projeto_rpg
                 return temp;
             }
             /// <summary>
+            /// Verifica se o progresso ->Memórias<- já ocorreu 
+            /// </summary>
+            /// <returns>Retorna true ou false.</returns>
+            public static bool Memórias()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+                bool temp = false;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Memórias\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                temp = reader.GetBoolean(0);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+
+                return temp;
+            }
+            /// <summary>
             /// Verifica se o progresso ->Atender um desconhecido<- já ocorreu 
             /// </summary>
             /// <returns>Retorna true ou false.</returns>
@@ -341,6 +585,36 @@ namespace Projeto_rpg
                     connection.Open();
 
                     string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Atender Desconhecido\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                temp = reader.GetBoolean(0);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+
+                return temp;
+            }
+            /// <summary>
+            /// Verifica se o progresso ->Parte 1 da História<- já ocorreu 
+            /// </summary>
+            /// <returns>Retorna true ou false.</returns>
+            public static bool Parte1_História()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+                bool temp = false;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Parte 1 História\";";
 
                     using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
                     {
