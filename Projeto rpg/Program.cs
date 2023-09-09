@@ -1,4 +1,14 @@
 ﻿
+// VISÃO GERAL //
+
+// Parte 1 Completa
+
+// Falta colocar efeitos de áudio (opcional)
+// Falta ajustar o volume das trilhas com Soundtrack.Player.Volume = 0.5f (vai de 0 a 1)
+// Falta colocar menu com o jogador escrevendo ok de confirmação
+// Falta colocar menu para o jogador configurar a velocidade de escrita
+// Falta testar o jogo inteiro para corrigir possíveis bugs
+
 using NAudio.Wave; // API para reproduzir áudio
 
 namespace Projeto_rpg
@@ -7,12 +17,12 @@ namespace Projeto_rpg
     {
         public static void Main()
         {
+            // Cria o Banco de Dados se ele não existe
+
+            Banco_de_Dados.Run();
+
             if (Banco_de_Dados.Ler_Progresso_Da_História.Parte1_História() == false)
             {
-                // Cria o Banco de Dados se ele não existe
-
-                Banco_de_Dados.Run();
-
                 // Trilha Sonora
 
                 ControleMúsica.Soundtrack0.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
@@ -33,6 +43,10 @@ namespace Projeto_rpg
                     "\nA chuva cai, incessantemente. Está trovejando.");
 
             inicio:
+
+                // Conferindo Trilha Sonora
+
+                ControleMúsica.Conferir_Trilha_de_Fundo();
 
                 Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("O que você quer fazer?" +

@@ -7,6 +7,10 @@ namespace Projeto_rpg
     {
         public static void VerTV() // OK
         {
+            // Conferindo Trilha Sonora
+
+            Conferir_Trilha_de_Fundo();
+
             if (Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV())
             {
                 Ferramentas.Limpa_Interface();
@@ -416,6 +420,10 @@ namespace Projeto_rpg
             {
             Telefone:
 
+                // Conferindo Trilha Sonora
+
+                Conferir_Trilha_de_Fundo();
+
                 Ferramentas.Limpa_Interface();
                 if (Banco_de_Dados.Ler_num_Mensagens.Todas_Não_Respondidas() == 0)
                 {
@@ -686,6 +694,9 @@ namespace Projeto_rpg
             while (true)
             {
             quarto:
+
+                Conferir_Trilha_de_Fundo();
+
                 Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("Você está no seu quarto, e ele é bem grande. O que você quer explorar?" +
                     "\n\n[1] Armário" +
@@ -1490,6 +1501,8 @@ namespace Projeto_rpg
         {
         Mensagens:
 
+            Conferir_Trilha_de_Fundo();
+
             Ferramentas.Limpa_Interface();
             Ferramentas.ImagemASCII("\n" +
                         "           ┌════════════════════════════════┐\n" +
@@ -1795,6 +1808,8 @@ namespace Projeto_rpg
         {
             Ler_Livro:
 
+            Conferir_Trilha_de_Fundo();
+
             Ferramentas.Limpa_Interface();
             Ferramentas.Escrever("Há vários livros de Física, Química, e Literatura nacional." +
                 "\n\nO que deseja ler?" +
@@ -1859,6 +1874,8 @@ namespace Projeto_rpg
         }
         public static void Explorar_casa() // OK
         {
+            Conferir_Trilha_de_Fundo();
+
             Ferramentas.Limpa_Interface();
             Ferramentas.Escrever("" +
                 "Onde você deseja ir?" +
@@ -1889,6 +1906,8 @@ namespace Projeto_rpg
         }
         private static void Escritório() // OK
         {
+            Conferir_Trilha_de_Fundo();
+
             if (Banco_de_Dados.Ler_Progresso_Da_História.Chave_Escritorio())
             {
                 if (Banco_de_Dados.Ler_Progresso_Da_História.Memórias() == false)
@@ -1988,6 +2007,8 @@ namespace Projeto_rpg
         private static void Cozinha() // OK
         {
             Cozinha:
+
+            Conferir_Trilha_de_Fundo();
 
             Ferramentas.Limpa_Interface();
             Ferramentas.Escrever("" +
@@ -2110,6 +2131,7 @@ namespace Projeto_rpg
         }
         private static void Porta() // OK
         {
+            Conferir_Trilha_de_Fundo();
 
             if (Banco_de_Dados.Ler_Progresso_Da_História.Chave_Porta())
             {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ariel\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj": {}
+    "C:\\Users\\Ariel\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ariel\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj": {
+    "C:\\Users\\Ariel\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ariel\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
+        "projectUniqueName": "C:\\Users\\Ariel\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
         "projectName": "Projeto rpg",
-        "projectPath": "C:\\Users\\Ariel\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
+        "projectPath": "C:\\Users\\Ariel\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
         "packagesPath": "C:\\Users\\Ariel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ariel\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\obj\\",
+        "outputPath": "C:\\Users\\Ariel\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ariel\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -68,6 +68,17 @@ namespace Projeto_rpg
             public static WaveOutEvent Player = new WaveOutEvent();
             public static AudioFileReader Leitor = new AudioFileReader(CaminhoTrilha(0));
         }
+        public static void Conferir_Trilha_de_Fundo() // Gambiarra: mantém o loop na força bruta
+        {
+            if(Soundtrack0.Player.PlaybackState == PlaybackState.Playing)
+            {
+                Soundtrack0.Player.Dispose();
+                Soundtrack0.Leitor.Dispose();
+                Soundtrack0.Leitor = new AudioFileReader(CaminhoTrilha(0));
+                Soundtrack0.Player.Init(Soundtrack0.Leitor);
+                Soundtrack0.Player.Play();
+            }
+        }
         public class Soundtrack1
         {
             public static WaveOutEvent Player = new WaveOutEvent();
