@@ -4,28 +4,6 @@ namespace Projeto_rpg
 {
     public class ControleMúsica
     {
-        public void Efeito_Sonoro(int n)
-        {
-            WaveOutEvent Effect_Player;
-            AudioFileReader Effect_Reader;
-
-            Effect_Player = new WaveOutEvent();
-            Effect_Reader = new AudioFileReader("Colocar som vazio"); // Colocar som vazio aqui
-
-            switch (n)
-            {
-                case 1:
-                    Effect_Reader = new AudioFileReader(" <Colocar efeito sonoro 1 aqui> "); // Colocar ainda
-                    break;
-                case 2:
-                    Effect_Reader = new AudioFileReader(" <Colocar efeito sonoro 2 aqui> "); // Colocar ainda
-                    break;
-            }
-
-            Effect_Player.Init(Effect_Reader);
-            Effect_Player.Play();
-        }
-
         public static string CaminhoTrilha(int n)
         {
             string temp = Directory.GetCurrentDirectory();
@@ -70,13 +48,14 @@ namespace Projeto_rpg
         }
         public static void Conferir_Trilha_de_Fundo() // Gambiarra: mantém o loop na força bruta
         {
-            if(Soundtrack0.Player.PlaybackState == PlaybackState.Playing)
+            if(Soundtrack0.Player.PlaybackState != PlaybackState.Playing)
             {
                 Soundtrack0.Player.Dispose();
                 Soundtrack0.Leitor.Dispose();
                 Soundtrack0.Leitor = new AudioFileReader(CaminhoTrilha(0));
                 Soundtrack0.Player.Init(Soundtrack0.Leitor);
                 Soundtrack0.Player.Play();
+                Soundtrack0.Player.Volume = 0.5f;
             }
         }
         public class Soundtrack1

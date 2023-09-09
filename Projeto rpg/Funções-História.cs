@@ -891,6 +891,7 @@ namespace Projeto_rpg
             Soundtrack1.Leitor = new AudioFileReader(CaminhoTrilha(1));
             Soundtrack1.Player.Init(Soundtrack1.Leitor);
             Soundtrack1.Player.Play();
+            Soundtrack1.Player.Volume = 0.7f;
 
             // Desenho do telefone ligando
 
@@ -1118,6 +1119,7 @@ namespace Projeto_rpg
                     Soundtrack0.Player.Pause();
                     Soundtrack2.Player.Init(Soundtrack2.Leitor);
                     Soundtrack2.Player.Play();
+                    Soundtrack2.Player.Volume = 0.5f;
 
                     // Mudando as cores do terminal
 
@@ -1169,6 +1171,8 @@ namespace Projeto_rpg
                     // Encerrando som da ligação (Desconhecido)
 
                     Soundtrack2.Player.Stop();
+                    Soundtrack2.Player.Dispose();
+                    Soundtrack2.Leitor.Dispose();
                     Soundtrack0.Player.Play();
                     break; // Desconhecido
                 case 1:
@@ -1177,6 +1181,7 @@ namespace Projeto_rpg
                     Soundtrack0.Player.Pause();
                     Soundtrack3.Player.Init(Soundtrack3.Leitor);
                     Soundtrack3.Player.Play();
+                    Soundtrack3.Player.Volume = 1f;
 
                     // Desenho do telefone com a chamada online
 
@@ -1219,6 +1224,8 @@ namespace Projeto_rpg
                     // Encerrando som da ligação (Desconhecido)
 
                     Soundtrack3.Player.Stop();
+                    Soundtrack3.Player.Dispose();
+                    Soundtrack3.Leitor.Dispose();
                     Soundtrack0.Player.Play();
                     break; // Rafael Brother
                 case 2:
@@ -1227,6 +1234,7 @@ namespace Projeto_rpg
                     Soundtrack0.Player.Pause();
                     Soundtrack4.Player.Init(Soundtrack4.Leitor);
                     Soundtrack4.Player.Play();
+                    Soundtrack4.Player.Volume = 0.7f;
 
                     // Desenho do telefone com a chamada online
 
@@ -1279,6 +1287,7 @@ namespace Projeto_rpg
                     Soundtrack0.Player.Pause();
                     Soundtrack5.Player.Init(Soundtrack5.Leitor);
                     Soundtrack5.Player.Play();
+                    Soundtrack5.Player.Volume = 1f;
 
                     // Desenho do telefone com a chamada online
 
@@ -1321,6 +1330,8 @@ namespace Projeto_rpg
                     // Encerrando som da ligação (Desconhecido)
 
                     Soundtrack5.Player.Stop();
+                    Soundtrack5.Player.Dispose();
+                    Soundtrack5.Leitor.Dispose();
                     Soundtrack0.Player.Play();
                     break; // Thomas
                 case 4:
@@ -1329,6 +1340,7 @@ namespace Projeto_rpg
                     Soundtrack0.Player.Pause();
                     Soundtrack6.Player.Init(Soundtrack6.Leitor);
                     Soundtrack6.Player.Play();
+                    Soundtrack6.Player.Volume = 0.8f;
 
                     // Desenho do telefone com a chamada online
 
@@ -1371,6 +1383,8 @@ namespace Projeto_rpg
                     // Encerrando som da ligação (Desconhecido)
 
                     Soundtrack6.Player.Stop();
+                    Soundtrack6.Player.Dispose();
+                    Soundtrack6.Leitor.Dispose();
                     Soundtrack0.Player.Play();
                     break; // CSP
                 case 5:
@@ -1379,6 +1393,7 @@ namespace Projeto_rpg
                     Soundtrack0.Player.Pause();
                     Soundtrack7.Player.Init(Soundtrack7.Leitor);
                     Soundtrack7.Player.Play();
+                    Soundtrack7.Player.Volume = 1f;
 
                     // Desenho do telefone com a chamada online
 
@@ -1421,6 +1436,8 @@ namespace Projeto_rpg
                     // Encerrando som da ligação (Desconhecido)
 
                     Soundtrack7.Player.Stop();
+                    Soundtrack7.Player.Dispose();
+                    Soundtrack7.Leitor.Dispose();
                     Soundtrack0.Player.Play();
                     break; // Sofia
             }
@@ -1863,7 +1880,7 @@ namespace Projeto_rpg
                         "flor, se a contemplarmos bem. Sendo autor do furto, eu assumira a obrigação de conservá-la. Renovei a água do vaso, mas a " +
                         "flor empalidecia. Temi por sua vida. Não adiantava restituí-la ao jardim. Nem apelar para o médico das flores. Eu a furtara, " +
                         "eu a via morrer.\r\n   Já murcha, e com a cor particular da morte, peguei-a docemente e fui depositá-la no jardim onde desabrochara. " +
-                        "O porteiro estava atento e repreendeu-me:\r\n– Que ideia a sua, vir jogar lixo de sua casa neste jardim!\"" +
+                        "O porteiro estava atento e repreendeu-me:\r\n\n– Que ideia a sua, vir jogar lixo de sua casa neste jardim!\"" +
                         "\n\nCarlos Drummond de Andrade");
                     goto Ler_Livro;
                 case 4:
@@ -1884,7 +1901,7 @@ namespace Projeto_rpg
                 "\n[3] Cozinha" +
                 "\n[4] Sair pela porta da frente" +
                 "\n[5] Voltar", escolha: true);
-            switch (Ações.Escolha(4))
+            switch (Ações.Escolha(5))
             {
                 case 1:
                     Quarto();
@@ -2143,13 +2160,14 @@ namespace Projeto_rpg
                 switch (Ações.Escolha(2))
                 {
                     case 1:
-                        Ferramentas.Limpa_Interface();
-                        Ferramentas.Escrever("???: Você está indo na direção certa.");
                         Banco_de_Dados.Alterar_Progresso_da_História.Parte1_História(true);
-                        while(Banco_de_Dados.Ler_Progresso_Da_História.Parte1_História() == false)
+                        while (Banco_de_Dados.Ler_Progresso_Da_História.Parte1_História() == false)
                         {
                             Thread.Sleep(50);
                         }
+
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("???: VOCÊ ESTÁ INDO NA DIREÇÃO CERTA.", pausa_pontuacao: false);
                         Environment.Exit(0);
                         break;
                     case 2:

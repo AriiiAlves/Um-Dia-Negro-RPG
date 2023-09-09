@@ -51,7 +51,13 @@ namespace Projeto_rpg
         }
         public static void Limpa_Interface() //OK
         {
-            for (int j = 2; j < Console.WindowHeight - 2; j++)
+            // Gambiarra pra conferir se a janela está do mesmo tamanho
+
+            Configurações.Tela.Conferir_Tela();
+
+            // Limpa interface
+
+            for (int j = 1; j < Console.WindowHeight - 1; j++)
             {
                 Console.SetCursorPosition(2, j);
                 for (int k = 0; k < Console.WindowWidth - 3; k++)
@@ -61,7 +67,7 @@ namespace Projeto_rpg
             }
             Console.SetCursorPosition(2, 2);
         }
-        public static void Escrever(string texto, bool escolha = false, bool instantâneo = false) //OK
+        public static void Escrever(string texto, bool escolha = false, bool instantâneo = false, bool pausa_pontuacao = true) //OK
         {
             char var;
 
@@ -83,17 +89,16 @@ namespace Projeto_rpg
                     int Linha_atual = Console.CursorTop;
                     Console.SetCursorPosition(2, Linha_atual);
                 }
-                else if (Console.CursorLeft == Console.WindowWidth - 2)
-                {
-                    int Linha_atual = Console.CursorTop;
-                    Console.SetCursorPosition(2, Linha_atual + 1);
-                }
                 else if (Console.CursorTop == Console.WindowHeight - 3)
                 {
                     if (Console.CursorLeft == Console.WindowWidth - 4 || var == '\n')
                     {
                         Console.Write("...");
-                        Console.ReadLine();
+                        while (Console.KeyAvailable)
+                        {
+                            Console.ReadKey(true);
+                        }
+                        Console.ReadKey();
                         for (int j = 2; j < Console.WindowHeight - 2; j++)
                         {
                             Console.SetCursorPosition(2, j);
@@ -104,7 +109,7 @@ namespace Projeto_rpg
                         }
                         if (var == '\n')
                         {
-                            Console.SetCursorPosition(1, 2);
+                            Console.SetCursorPosition(2, 1);
                         }
                         else
                         {
@@ -112,17 +117,29 @@ namespace Projeto_rpg
                         }
                     }
                 }
+                else if (Console.CursorLeft == Console.WindowWidth - 2)
+                {
+                    int Linha_atual = Console.CursorTop;
+                    Console.SetCursorPosition(2, Linha_atual + 1);
+                }
+                
                 Console.Write(var);
 
-                // Colocando espaço de tempo maior após pontuação final
+                // Colocando espaço de tempo maior após pontuação final, e eliminando tempo caso o usuário pressione alguma tecla
 
                 if (instantâneo == false)
                 {
-                    if (var == '.' || var == '?' || var == '!')
+                    if (Console.KeyAvailable == false)
                     {
-                        Thread.Sleep(250);
+                        if (var == '.' || var == '?' || var == '!')
+                        {
+                            if (pausa_pontuacao == true)
+                            {
+                                Thread.Sleep(250);
+                            }
+                        }
+                        Thread.Sleep(10);
                     }
-                    Thread.Sleep(10);
                 }
             }
 
@@ -130,6 +147,11 @@ namespace Projeto_rpg
 
             if (escolha == false)
             {
+                while (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                }
+                Thread.Sleep(500);
                 Console.ReadKey();
             }
             Console.WriteLine("");

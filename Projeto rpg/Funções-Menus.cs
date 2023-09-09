@@ -2,7 +2,7 @@
 {
     public class Menus
     {
-        public static void Tela_inicio() // OK, porém rever Funções-Configurações.cs
+        public static void Tela_inicio() // OK
         {
             // Mudando fonte do console (para Roboto)
 
@@ -11,8 +11,6 @@
             // Configurações de visualização da janela (maximizar + buffer definido)
 
             // Configurações.Tela.Tela_default(); // Só funciona no computador do Senac !!!!!
-            
-            Configurações.Tela.Limitar_Tela();
 
             // Obtendo altura e largura do console
 
@@ -21,25 +19,53 @@
 
             // Definindo strings da tela de início
 
-            string Aviso_Tela_Cheia = "Por favor, não mude de tamanho ou minimize a janela para uma melhor experiência. Resolução mínima para jogar: 1920x1080", Título = "UM DIA NEGRO", Aviso1 = "Um jogo por AlvzDevelopment", Aviso2 = "Pressione qualquer tecla para jogar.";
+            string Aviso_Tela1 =  "Maximize essa janela para jogar", Aviso_Tela2 = "Por favor, não mude de tamanho nem minimize a janela para uma melhor experiência", Título = "UM DIA NEGRO", Aviso1 = "Um jogo por AlvzDevelopment", Aviso2 = "Pressione qualquer tecla para jogar.";
 
             // Desabilitando barra de escrita
 
             Console.CursorVisible = false;
 
-            // Centralizando o texto (Aviso de tela cheia)
+            // Centralizando o texto (Aviso de Tela 1)
 
             for (int i = 0; i < Altura_Janela / 2 - 1; i++)
             {
                 Console.WriteLine(" ");
             }
-            for (int i = 0; i < Largura_Janela / 2 - Aviso_Tela_Cheia.Length / 2; i++)
+            for (int i = 0; i < Largura_Janela / 2 - Aviso_Tela1.Length / 2; i++)
             {
                 Console.Write(" ");
             }
-            Console.Write($"{Aviso_Tela_Cheia}");
+            Console.Write($"{Aviso_Tela1}");
             Console.ReadLine();
             Ferramentas.LimpaTela();
+
+            // Obtendo novamente a largura e altura do console
+
+            Largura_Janela = Console.WindowWidth;
+            Altura_Janela = Console.WindowHeight;
+
+            // Centralizando o texto (Aviso de Tela 2)
+
+            for (int i = 0; i < Altura_Janela / 2 - 1; i++)
+            {
+                Console.WriteLine(" ");
+            }
+            for (int i = 0; i < Largura_Janela / 2 - Aviso_Tela2.Length / 2; i++)
+            {
+                Console.Write(" ");
+            }
+            Console.Write($"{Aviso_Tela2}");
+            Console.ReadLine();
+            Ferramentas.LimpaTela();
+
+            // Coletando dados da altura e largura do console
+
+            VariávelGlobal.InitialWindowWidth = Console.WindowWidth;
+            VariávelGlobal.InitialWindowHeight = Console.WindowHeight;
+
+            // Delimitando buffer de acordo com o tamanho da tela maximizada
+
+            Configurações.Tela.Limitar_Tela();
 
             // Obtendo novamente a largura e altura do console
 
@@ -73,6 +99,5 @@
 
             Ferramentas.LimpaTela();
         }
-
     }
 }

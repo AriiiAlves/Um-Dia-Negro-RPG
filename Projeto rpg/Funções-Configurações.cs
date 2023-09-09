@@ -2,41 +2,38 @@
 
 namespace Projeto_rpg
 {
+    public class VariávelGlobal
+    {
+        public static int InitialWindowWidth = 0;
+        public static int InitialWindowHeight = 0;
+    }
     public class Configurações // Verificar porque só funciona no PC do Senac
     {
         public static class Tela
         {
-            // Configuração para maximizar janela
-
-            [DllImport("kernel32.dll", ExactSpelling = true)]
-            private static extern IntPtr GetConsoleWindow();
-            private static IntPtr ThisCon = GetConsoleWindow();
-
-            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
-            private const int HIDE = 0;
-            private const int MAXIMIZE = 3;
-            private const int MINIMIZE = 6;
-            private const int RESTORE = 9;
-
-            public static void Tela_default()
-            {
-                // Maximizando janela
-
-                ShowWindow(ThisCon, MAXIMIZE);
-
-                System.Console.WindowWidth = Console.LargestWindowWidth;
-                System.Console.WindowHeight = Console.LargestWindowHeight;
-                System.Console.BufferWidth = Console.LargestWindowWidth;
-                System.Console.BufferHeight = Console.LargestWindowHeight;
-            }
             public static void Limitar_Tela()
             {
-                // Delimitando Buffer
-
-                Console.BufferWidth = Console.WindowWidth;
                 Console.BufferHeight = Console.WindowHeight;
+                Console.BufferWidth = Console.WindowWidth;
+            }
+            public static void Conferir_Tela()
+            {
+                int ActualWindowWidth = Console.WindowWidth;
+                int ActualWindowHeight = Console.WindowHeight;
+
+                if (ActualWindowWidth != VariávelGlobal.InitialWindowWidth || ActualWindowHeight != VariávelGlobal.InitialWindowHeight)
+                {
+                    // Delimitando Buffer
+
+                    Console.BufferHeight = Console.WindowHeight;
+                    Console.BufferWidth = Console.WindowWidth;
+
+                    VariávelGlobal.InitialWindowWidth = ActualWindowWidth;
+                    VariávelGlobal.InitialWindowHeight = ActualWindowHeight;
+
+                    Console.Clear();
+                    Ferramentas.Interface();
+                }
             }
         }
 

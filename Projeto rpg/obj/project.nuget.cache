@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TRPi6gCLjm0r297zQi1m2OOKJgIIPwGJew3qUiVXOrDwFvvC2E6EqWPPyLf1nab5rHBuIuFHHZzBQYzDKzHKzQ==",
+  "dgSpecHash": "98CBNSfkgivaUkb+z/QuAtN5SPIqNeox4GCIFSiGYMfCVns9smY95e215BQrSD7K0PfGyFr1isPazR+cHKUG6g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ariel\\Source\\Repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
+  "projectFilePath": "C:\\Users\\Ariel\\source\\repos\\Um-Dia-Negro-RPG\\Projeto rpg\\Projeto rpg.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ariel\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Ariel\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

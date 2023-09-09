@@ -3,10 +3,6 @@
 
 // Parte 1 Completa
 
-// Falta colocar efeitos de áudio (opcional)
-// Falta ajustar o volume das trilhas com Soundtrack.Player.Volume = 0.5f (vai de 0 a 1)
-// Falta colocar menu com o jogador escrevendo ok de confirmação
-// Falta colocar menu para o jogador configurar a velocidade de escrita
 // Falta testar o jogo inteiro para corrigir possíveis bugs
 
 using NAudio.Wave; // API para reproduzir áudio
@@ -28,6 +24,8 @@ namespace Projeto_rpg
                 ControleMúsica.Soundtrack0.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
                 ControleMúsica.Soundtrack0.Player.Init(ControleMúsica.Soundtrack0.Leitor);
                 ControleMúsica.Soundtrack0.Player.Play();
+                ControleMúsica.Soundtrack0.Player.Volume = 0.5f;
+
 
                 // Menu Inicial
 
@@ -72,6 +70,8 @@ namespace Projeto_rpg
             }
             else // Aqui seria a parte 2
             {
+                creditos:
+
                 double n = 0;
                 
                 if (Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV())
@@ -127,6 +127,8 @@ namespace Projeto_rpg
                     n = 100;
                 }
 
+                Console.CursorVisible = false;
+
                 Ferramentas.LimpaTela();
                 Ferramentas.Interface();
                 Ferramentas.Escrever("" +
@@ -141,31 +143,27 @@ namespace Projeto_rpg
                 switch (Ações.Escolha(2))
                 {
                     case 1:
+                        Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("Tem certeza?" +
                             "\n\n[1] Sim" +
                             "\n[2] Não", escolha: true);
                         switch (Ações.Escolha(2))
                         {
                             case 1:
-                                Banco_de_Dados.Coletar_item.Cabo_TV(false);
-                                Banco_de_Dados.Coletar_item.Chave_Escritório(false);
-                                Banco_de_Dados.Coletar_item.Chave_Porta(false);
-                                Banco_de_Dados.Coletar_item.Faca(false);
-                                Banco_de_Dados.Coletar_item.Isqueiro(false);
-
-                                Banco_de_Dados.Alterar_Progresso_da_História.Abrir_Cofre(false);
-                                Banco_de_Dados.Alterar_Progresso_da_História.Memórias(false);
-                                Banco_de_Dados.Alterar_Progresso_da_História.Atender_Desconhecido(false);
-                                Banco_de_Dados.Alterar_Progresso_da_História.Atender_Rafael_Brother(false);
-                                Banco_de_Dados.Alterar_Progresso_da_História.Atender_Thomas(false);
-                                Banco_de_Dados.Alterar_Progresso_da_História.Atender_CSP(false);
-                                Banco_de_Dados.Alterar_Progresso_da_História.Atender_Sofia(false);
-
-                                Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(6);
-                                Banco_de_Dados.Alterar_num_Mensagens.Rafael_Brother(1);
-                                Banco_de_Dados.Alterar_num_Mensagens.CSP(2);
-                                Banco_de_Dados.Alterar_num_Mensagens.Sofia_Filha(1);
-                                Banco_de_Dados.Alterar_num_Mensagens.Chefe_Bruno(2);
+                                try
+                                {
+                                    string temp = Directory.GetCurrentDirectory();
+                                    Directory.Delete($@"{temp}\Database", true);
+                                    Ferramentas.Limpa_Interface();
+                                    Ferramentas.Escrever("Jogo resetado com sucesso!");
+                                    Environment.Exit(0);
+                                }
+                                catch
+                                {
+                                    Ferramentas.Limpa_Interface();
+                                    Ferramentas.Escrever("Não foi possível resetar o jogo. Se a pasta Database já tiver sido excluída, feche o jogo e abra novamente.");
+                                    goto creditos;
+                                }
                                 break;
                             case 2:
                                 break;
