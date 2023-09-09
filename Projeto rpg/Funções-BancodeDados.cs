@@ -67,6 +67,30 @@ namespace Projeto_rpg
                     insertCommand.ExecuteNonQuery();
                     insertCommand.Parameters.Clear();
 
+                    insertCommand.Parameters.AddWithValue("@nome", "Atender Rafael Brother");
+                    insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.Parameters.AddWithValue("@int", 0);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Atender Thomas");
+                    insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.Parameters.AddWithValue("@int", 0);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Atender CSP");
+                    insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.Parameters.AddWithValue("@int", 0);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
+                    insertCommand.Parameters.AddWithValue("@nome", "Atender Sofia");
+                    insertCommand.Parameters.AddWithValue("@bool", false);
+                    insertCommand.Parameters.AddWithValue("@int", 0);
+                    insertCommand.ExecuteNonQuery();
+                    insertCommand.Parameters.Clear();
+
                     insertCommand.Parameters.AddWithValue("@nome", "Cofre Aberto");
                     insertCommand.Parameters.AddWithValue("@bool", false);
                     insertCommand.Parameters.AddWithValue("@int", 0);
@@ -298,11 +322,86 @@ namespace Projeto_rpg
                     connection.Close();
                 }
             }
-            /// <summary>
-            /// Altera se o progresso ->Abrir cofre<- já ocorreu 
-            /// </summary>
-            /// <param name="valor"> true: já ocorreu / false: não ocorreu</param>
-            /// <returns>Retorna true ou false.</returns>
+            public static void Atender_Rafael_Brother(bool valor)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = "UPDATE elemento_historia SET elemento_historia_ocorreu = @bool WHERE elemento_historia_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Atender Rafael Brother");
+                        updateCommand.Parameters.AddWithValue("@bool", valor);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Atender_Thomas(bool valor)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = "UPDATE elemento_historia SET elemento_historia_ocorreu = @bool WHERE elemento_historia_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Atender Thomas");
+                        updateCommand.Parameters.AddWithValue("@bool", valor);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Atender_CSP(bool valor)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = "UPDATE elemento_historia SET elemento_historia_ocorreu = @bool WHERE elemento_historia_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Atender CSP");
+                        updateCommand.Parameters.AddWithValue("@bool", valor);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
+            public static void Atender_Sofia(bool valor)
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = "UPDATE elemento_historia SET elemento_historia_ocorreu = @bool WHERE elemento_historia_nome = @nome;";
+
+                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@nome", "Atender Sofia");
+                        updateCommand.Parameters.AddWithValue("@bool", valor);
+                        updateCommand.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+            }
             public static void Abrir_Cofre(bool valor)
             {
                 string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
@@ -585,6 +684,110 @@ namespace Projeto_rpg
                     connection.Open();
 
                     string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Atender Desconhecido\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                temp = reader.GetBoolean(0);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+
+                return temp;
+            }
+            public static bool Atender_Rafael_Brother()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+                bool temp = false;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Atender Rafael Brother\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                temp = reader.GetBoolean(0);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+
+                return temp;
+            }
+            public static bool Atender_Thomas()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+                bool temp = false;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Atender Thomas\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                temp = reader.GetBoolean(0);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+
+                return temp;
+            }
+            public static bool Atender_CSP()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+                bool temp = false;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Atender CSP\";";
+
+                    using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                temp = reader.GetBoolean(0);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+
+                return temp;
+            }
+            public static bool Atender_Sofia()
+            {
+                string connectionString = $"Data Source=Database\\umdianegro.db;Version=3;";
+                bool temp = false;
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT elemento_historia_ocorreu FROM elemento_historia WHERE elemento_historia_nome = \"Atender Sofia\";";
 
                     using (SQLiteCommand command = new SQLiteCommand(selectQuery, connection))
                     {

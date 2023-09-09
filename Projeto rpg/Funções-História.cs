@@ -3,7 +3,7 @@ using static Projeto_rpg.ControleMúsica;
 
 namespace Projeto_rpg
 {
-    public class História // Continuar
+    public class História
     {
         public static void VerTV() // OK
         {
@@ -842,6 +842,8 @@ namespace Projeto_rpg
                                     "\n           %%%%%%%%%%%%%%%%%%%%%%%##********+++++==+++**+==========%%+#%#-====----" +
                                     "\n\n           \"Data da foto: 12/11/2016\"");
                                 Console.ReadKey();
+                                Ferramentas.LimpaTela();
+                                Ferramentas.Interface();
                                 goto caixa_de_lembrancas;
                             case 2:
                                 Ferramentas.Limpa_Interface();
@@ -1087,9 +1089,11 @@ namespace Projeto_rpg
             // Encerrando som de ligação (chamando)
 
             Soundtrack1.Player.Stop();
+            Soundtrack1.Player.Dispose();
+            Soundtrack1.Leitor.Dispose();
             Soundtrack0.Player.Play();
         }
-        public static void Ligação_atendida(int n_contato) // NÃO OK (FALTAM ÁUDIOS DIFERENTES, E CORRIGIR FATO DA TRILHA SÓ PODER SER TOCADA UMA VEZ)
+        public static void Ligação_atendida(int n_contato) // OK
         {
             // Limpando Interface
 
@@ -1155,163 +1159,13 @@ namespace Projeto_rpg
 
                     Soundtrack2.Player.Stop();
                     Soundtrack0.Player.Play();
-                    break;
+                    break; // Desconhecido
                 case 1:
                     // Tocando áudio de ligação (Atendida)
 
                     Soundtrack0.Player.Pause();
-                    Soundtrack2.Player.Init(Soundtrack2.Leitor);
-                    Soundtrack2.Player.Play();
-
-                    // Desenho do telefone com a chamada online
-
-                    Ferramentas.ImagemASCII("\n" +
-                        "           ┌══════════════════════════┐\n" +
-                        "           │           o ═══          │\n" +
-                        "           │ ┌──────────────────────┐ │\n" +
-                        "           │ │                20:52 │ │\n" +
-                        "           │ ├──────────────────────┤ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │        .'¯¯¯'.       │ │\n" +
-                        "           │ │        |  ☺  |       │ │\n" +
-                        "           │ │        '.___.'       │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │          Mãe         │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ └──────────────────────┘ │\n" +
-                        "           │             O            │\n" +
-                        "           └══════════════════════════┘");
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Console.SetCursorPosition(25, 10);
-                        Console.Write(new string($"00:{i:00}"));
-                        Thread.Sleep(1000);
-                    }
-
-                    // Limpando Interface
-
-                    Ferramentas.Limpa_Interface();
-
-                    // Encerrando som da ligação (Desconhecido)
-
-                    Soundtrack2.Player.Stop();
-                    Soundtrack0.Player.Play();
-                    break;
-                case 2:
-                    // Tocando áudio de ligação (Atendida)
-
-                    Soundtrack0.Player.Pause();
-                    Soundtrack2.Player.Init(Soundtrack2.Leitor);
-                    Soundtrack2.Player.Play();
-
-                    // Desenho do telefone com a chamada online
-
-                    Ferramentas.ImagemASCII("\n" +
-                        "           ┌══════════════════════════┐\n" +
-                        "           │           o ═══          │\n" +
-                        "           │ ┌──────────────────────┐ │\n" +
-                        "           │ │                20:52 │ │\n" +
-                        "           │ ├──────────────────────┤ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │        .'¯¯¯'.       │ │\n" +
-                        "           │ │        |  ☺  |       │ │\n" +
-                        "           │ │        '.___.'       │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │          Pai         │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ └──────────────────────┘ │\n" +
-                        "           │             O            │\n" +
-                        "           └══════════════════════════┘");
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Console.SetCursorPosition(25, 10);
-                        Console.Write(new string($"00:{i:00}"));
-                        Thread.Sleep(1000);
-                    }
-
-                    // Limpando Interface
-
-                    Ferramentas.Limpa_Interface();
-
-                    // Encerrando som da ligação (Desconhecido)
-
-                    Soundtrack2.Player.Stop();
-                    Soundtrack0.Player.Play();
-                    break;
-                case 3:
-                    // Tocando áudio de ligação (Atendida)
-
-                    Soundtrack0.Player.Pause();
-                    Soundtrack2.Player.Init(Soundtrack2.Leitor);
-                    Soundtrack2.Player.Play();
-
-                    // Desenho do telefone com a chamada online
-
-                    Ferramentas.ImagemASCII("\n" +
-                        "           ┌══════════════════════════┐\n" +
-                        "           │           o ═══          │\n" +
-                        "           │ ┌──────────────────────┐ │\n" +
-                        "           │ │                20:52 │ │\n" +
-                        "           │ ├──────────────────────┤ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │        .'¯¯¯'.       │ │\n" +
-                        "           │ │        |  ☺  |       │ │\n" +
-                        "           │ │        '.___.'       │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │         Thomas       │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ │                      │ │\n" +
-                        "           │ └──────────────────────┘ │\n" +
-                        "           │             O            │\n" +
-                        "           └══════════════════════════┘");
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Console.SetCursorPosition(25, 10);
-                        Console.Write(new string($"00:{i:00}"));
-                        Thread.Sleep(1000);
-                    }
-
-                    // Limpando Interface
-
-                    Ferramentas.Limpa_Interface();
-
-                    // Encerrando som da ligação (Desconhecido)
-
-                    Soundtrack2.Player.Stop();
-                    Soundtrack0.Player.Play();
-                    break;
-                case 4:
-                    // Tocando áudio de ligação (Atendida)
-
-                    Soundtrack0.Player.Pause();
-                    Soundtrack2.Player.Init(Soundtrack2.Leitor);
-                    Soundtrack2.Player.Play();
+                    Soundtrack3.Player.Init(Soundtrack3.Leitor);
+                    Soundtrack3.Player.Play();
 
                     // Desenho do telefone com a chamada online
 
@@ -1340,7 +1194,7 @@ namespace Projeto_rpg
                         "           │             O            │\n" +
                         "           └══════════════════════════┘");
 
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 17; i++)
                     {
                         Console.SetCursorPosition(25, 10);
                         Console.Write(new string($"00:{i:00}"));
@@ -1353,15 +1207,117 @@ namespace Projeto_rpg
 
                     // Encerrando som da ligação (Desconhecido)
 
-                    Soundtrack2.Player.Stop();
+                    Soundtrack3.Player.Stop();
                     Soundtrack0.Player.Play();
-                    break;
-                case 5:
+                    break; // Rafael Brother
+                case 2:
                     // Tocando áudio de ligação (Atendida)
 
                     Soundtrack0.Player.Pause();
-                    Soundtrack2.Player.Init(Soundtrack2.Leitor);
-                    Soundtrack2.Player.Play();
+                    Soundtrack4.Player.Init(Soundtrack4.Leitor);
+                    Soundtrack4.Player.Play();
+
+                    // Desenho do telefone com a chamada online
+
+                    Ferramentas.ImagemASCII("\n" +
+                        "           ┌══════════════════════════┐\n" +
+                        "           │           o ═══          │\n" +
+                        "           │ ┌──────────────────────┐ │\n" +
+                        "           │ │                20:52 │ │\n" +
+                        "           │ ├──────────────────────┤ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │        .'¯¯¯'.       │ │\n" +
+                        "           │ │        |  ☺  |       │ │\n" +
+                        "           │ │        '.___.'       │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │     Rafael Brother   │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ └──────────────────────┘ │\n" +
+                        "           │             O            │\n" +
+                        "           └══════════════════════════┘");
+
+                    for (int i = 0; i < 12; i++)
+                    {
+                        Console.SetCursorPosition(25, 10);
+                        Console.Write(new string($"00:{i:00}"));
+                        Thread.Sleep(1000);
+                    }
+
+                    // Limpando Interface
+
+                    Ferramentas.Limpa_Interface();
+
+                    // Encerrando som da ligação (Desconhecido)
+
+                    Soundtrack4.Player.Stop();
+                    Soundtrack4.Player.Dispose(); // Descartando o Player para ele poder ser inicializado novamente depois
+                    Soundtrack4.Leitor.Dispose(); // Descartando o Leitor para ele poder ser inicializado novamente depois
+                    Soundtrack0.Player.Play();
+                    break; // Rafael Brother Caixa Postal
+                case 3:
+                    // Tocando áudio de ligação (Atendida)
+
+                    Soundtrack0.Player.Pause();
+                    Soundtrack5.Player.Init(Soundtrack5.Leitor);
+                    Soundtrack5.Player.Play();
+
+                    // Desenho do telefone com a chamada online
+
+                    Ferramentas.ImagemASCII("\n" +
+                        "           ┌══════════════════════════┐\n" +
+                        "           │           o ═══          │\n" +
+                        "           │ ┌──────────────────────┐ │\n" +
+                        "           │ │                20:52 │ │\n" +
+                        "           │ ├──────────────────────┤ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │        .'¯¯¯'.       │ │\n" +
+                        "           │ │        |  ☺  |       │ │\n" +
+                        "           │ │        '.___.'       │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │         Thomas       │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ │                      │ │\n" +
+                        "           │ └──────────────────────┘ │\n" +
+                        "           │             O            │\n" +
+                        "           └══════════════════════════┘");
+
+                    for (int i = 0; i < 12; i++)
+                    {
+                        Console.SetCursorPosition(25, 10);
+                        Console.Write(new string($"00:{i:00}"));
+                        Thread.Sleep(1000);
+                    }
+
+                    // Limpando Interface
+
+                    Ferramentas.Limpa_Interface();
+
+                    // Encerrando som da ligação (Desconhecido)
+
+                    Soundtrack5.Player.Stop();
+                    Soundtrack0.Player.Play();
+                    break; // Thomas
+                case 4:
+                    // Tocando áudio de ligação (Atendida)
+
+                    Soundtrack0.Player.Pause();
+                    Soundtrack6.Player.Init(Soundtrack6.Leitor);
+                    Soundtrack6.Player.Play();
 
                     // Desenho do telefone com a chamada online
 
@@ -1390,7 +1346,7 @@ namespace Projeto_rpg
                         "           │             O            │\n" +
                         "           └══════════════════════════┘");
 
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 25; i++)
                     {
                         Console.SetCursorPosition(25, 10);
                         Console.Write(new string($"00:{i:00}"));
@@ -1403,15 +1359,15 @@ namespace Projeto_rpg
 
                     // Encerrando som da ligação (Desconhecido)
 
-                    Soundtrack2.Player.Stop();
+                    Soundtrack6.Player.Stop();
                     Soundtrack0.Player.Play();
-                    break;
-                case 6:
+                    break; // CSP
+                case 5:
                     // Tocando áudio de ligação (Atendida)
 
                     Soundtrack0.Player.Pause();
-                    Soundtrack2.Player.Init(Soundtrack2.Leitor);
-                    Soundtrack2.Player.Play();
+                    Soundtrack7.Player.Init(Soundtrack7.Leitor);
+                    Soundtrack7.Player.Play();
 
                     // Desenho do telefone com a chamada online
 
@@ -1440,7 +1396,7 @@ namespace Projeto_rpg
                         "           │             O            │\n" +
                         "           └══════════════════════════┘");
 
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 16; i++)
                     {
                         Console.SetCursorPosition(25, 10);
                         Console.Write(new string($"00:{i:00}"));
@@ -1453,42 +1409,80 @@ namespace Projeto_rpg
 
                     // Encerrando som da ligação (Desconhecido)
 
-                    Soundtrack2.Player.Stop();
+                    Soundtrack7.Player.Stop();
                     Soundtrack0.Player.Play();
-                    break;
+                    break; // Sofia
             }
         }
-        public static void Contatos(int n_contato) // OK (COLOCAR VARIÁVEL DE <LIGAÇÃO JÁ FEITA> NO BANCO DE DADOS, E COLOCAR QUE NÃO ATENDE DEPOIS)
+        public static void Contatos(int n_contato) // OK
         {
             switch (n_contato)
             {
-                case 0:
+                case 0: // Desconhecido
                     Ligação(0, 2);
                     Ligação_atendida(0);
                     break;
-                case 1:
+                case 1: // Mãe // Não vai ter áudio
                     Ligação(1, 1);
-                    Ligação_atendida(1);
+                    Ferramentas.Limpa_Interface();
+                    Ferramentas.Escrever("Tempo limite de chamada esgotado.");
                     break;
-                case 2:
+                case 2: // Pai // Não vai ter áudio
                     Ligação(2, 1);
-                    Ligação_atendida(2);
+                    Ferramentas.Limpa_Interface();
+                    Ferramentas.Escrever("Tempo limite de chamada esgotado.");
                     break;
-                case 3:
+                case 3: // Thomas
                     Ligação(3, 3);
-                    Ligação_atendida(3);
+                    if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Thomas())
+                    {
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("Tempo limite de chamada esgotado.");
+                    }
+                    else
+                    {
+                        Ligação_atendida(3);
+                        Banco_de_Dados.Alterar_Progresso_da_História.Atender_Thomas(true);
+                    }
                     break;
-                case 4:
+                case 4: // Rafael Brother
                     Ligação(4, 2);
-                    Ligação_atendida(4);
+                    if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Rafael_Brother())
+                    {
+                        Ferramentas.Limpa_Interface();
+                        Ligação_atendida(2);
+                    }
+                    else
+                    {
+                        Ligação_atendida(1);
+                        Banco_de_Dados.Alterar_Progresso_da_História.Atender_Rafael_Brother(true);
+                    }
                     break;
-                case 5:
+                case 5: // CSP
                     Ligação(5, 4);
-                    Ligação_atendida(5);
+                    if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_CSP())
+                    {
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("Tempo limite de chamada esgotado.");
+                    }
+                    else
+                    {
+                        Ligação_atendida(4);
+                        Banco_de_Dados.Alterar_Progresso_da_História.Atender_CSP(true);
+                    }
                     break;
-                case 6:
+                case 6: // Sofia Filha
                     Ligação(6, 1);
-                    Ligação_atendida(6);
+                    if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Sofia())
+                    {
+                        Ferramentas.Limpa_Interface();
+                        Ferramentas.Escrever("Tempo limite de chamada esgotado.");
+                    }
+                    else
+                    {
+                        Ligação_atendida(5);
+                        Banco_de_Dados.Alterar_Progresso_da_História.Atender_Sofia(true);
+                    }
                     break;
             }
         }
@@ -1542,7 +1536,7 @@ namespace Projeto_rpg
                         Banco_de_Dados.Alterar_num_Mensagens.Rafael_Brother(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Rafael_Brother());
 
                         Ferramentas.Limpa_Interface();
-                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                        Ferramentas.Escrever_Mensagem("Rafael Brother: Eae parceiro, como vc tá? Você deu uma " +
                             "sumida nos últimos dias... Fiquei preocupado.");
                         Ferramentas.Escrever_Mensagem("" +
                             "\n\n[1] Tô bem cara, agradeço a preocupação. E tudo bem contigo?" +
@@ -1551,28 +1545,28 @@ namespace Projeto_rpg
                         {
                             case 1:
                                 Ferramentas.Limpa_Interface();
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: Eae parceiro, como vc tá? Você deu uma " +
                                     "sumida nos últimos dias... Fiquei preocupado.");
                                 Efeitos.Digitando(1);
-                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Tô bem cara, agradeço a preocupação. E tudo bem contigo?");
+                                Ferramentas.Escrever_Mensagem("Você: Tô bem cara, agradeço a preocupação. E tudo bem contigo?");
                                 Efeitos.Digitando(3);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Que bom, fico feliz por ti." +
-                                    "\n\u001b[34m\u001b[1mRafael Brother\u001b[0m: Qualquer coisa, eu...");
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: Que bom, fico feliz por ti." +
+                                    "\nRafael Brother: Qualquer coisa, eu...");
                                 Efeitos.Digitando(4, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Brother, acho que essa pode ser a minha última chance de falar alguma coisa.");
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: Brother, acho que essa pode ser a minha última chance de falar alguma coisa.");
                                 Efeitos.Digitando(4, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Não sei se vou aguentar por muito tempo, mas é o seguinte... Não se deixe iludir. " +
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: Não sei se vou aguentar por muito tempo, mas é o seguinte... Não se deixe iludir. " +
                                     "Ele vai querer te enganar, assim como fez comigo. E agora estou sofrendo as consequências...");
                                 Efeitos.Digitando(4, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Acho que esses são meus últimos segundos consciente. Adeus, amigo.");
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: Acho que esses são meus últimos segundos consciente. Adeus, amigo.");
                                 Efeitos.Digitando(4, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: REGENERATUS CIBUS");
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: REGENERATUS CIBUS");
                                 Efeitos.Digitando(5, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: CONSCIENTIA COMMUNIS");
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: CONSCIENTIA COMMUNIS");
                                 Efeitos.Digitando(3, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: INTRA CAPUT TUUM");
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: INTRA CAPUT TUUM");
                                 Efeitos.Digitando(7, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: NON REALIS NON REALIS NON REALIS NON REALIS NON REALIS");
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: NON REALIS NON REALIS NON REALIS NON REALIS NON REALIS");
                                 Ferramentas.Escrever_Mensagem("" +
                                     "\n\n[1] Negar" +
                                     "\n[2] Negar\n");
@@ -1583,12 +1577,12 @@ namespace Projeto_rpg
                                 break;
                             case 2:
                                 Ferramentas.Limpa_Interface();
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: Eae parceiro, como vc tá? Você deu uma " +
                                     "sumida nos últimos dias... Fiquei preocupado.");
                                 Efeitos.Digitando(1);
-                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Você sabe muito bem como eu estou. Não sabe?");
+                                Ferramentas.Escrever_Mensagem("Você: Você sabe muito bem como eu estou. Não sabe?");
                                 Efeitos.Digitando(7);
-                                Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: É, eu sei... Eu sinto muito pela sua filha cara, as coisas " +
+                                Ferramentas.Escrever_Mensagem("Rafael Brother: É, eu sei... Eu sinto muito pela sua filha cara, as coisas " +
                                     "não eram pra terminarem assim. A gente sabia disso. Foi um acidente, ninguém tem culpa. Muito menos você!");
                                 Ferramentas.Escrever_Mensagem("" +
                                     "\n\n[1] Ela NÃO morreu. Eu sei disso." +
@@ -1598,22 +1592,22 @@ namespace Projeto_rpg
                                 {
                                     case 1:
                                         Ferramentas.Limpa_Interface();
-                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                                        Ferramentas.Escrever_Mensagem("Rafael Brother: Eae parceiro, como vc tá? Você deu uma " +
                                             "sumida nos últimos dias... Fiquei preocupado.");
-                                        Ferramentas.Escrever_Mensagem("\n\n\u001b[1mVocê\u001b[0m: Você sabe muito bem como eu estou. Não sabe?");
-                                        Ferramentas.Escrever_Mensagem("\n\n\u001b[34m\u001b[1mRafael Brother\u001b[0m: É, eu sei... Eu sinto muito pela sua filha cara, as coisas" +
+                                        Ferramentas.Escrever_Mensagem("\n\nVocê: Você sabe muito bem como eu estou. Não sabe?");
+                                        Ferramentas.Escrever_Mensagem("\n\nRafael Brother: É, eu sei... Eu sinto muito pela sua filha cara, as coisas" +
                                             "não eram pra terminarem assim. A gente sabia disso. Foi um acidente, ninguém tem culpa. Muito menos você!");
                                         Efeitos.Digitando(3);
-                                        Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Ela NÃO morreu. Eu sei disso.");
+                                        Ferramentas.Escrever_Mensagem("Você: Ela NÃO morreu. Eu sei disso.");
                                         Efeitos.Digitando(5);
-                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Foi mal, mas você sabe que aquela ##### pegou ela. E sabemos muito bem do que aquilo é capaz de fazer... " +
+                                        Ferramentas.Escrever_Mensagem("Rafael Brother: Foi mal, mas você sabe que aquela ##### pegou ela. E sabemos muito bem do que aquilo é capaz de fazer... " +
                                             "Se ela não morreu, então provavelmente não é mais a mesma.");
                                         Efeitos.Digitando(5);
-                                        Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1m???\u001b[0m: NÃO ME MENCIONE");
+                                        Ferramentas.Escrever_Mensagem("???: NÃO ME MENCIONE");
                                         Thread.Sleep(2000);
-                                        Ferramentas.Escrever_Mensagem("\n\u001b[31m\u001b[1m???\u001b[0m: NÃO ME MENCIONE");
+                                        Ferramentas.Escrever_Mensagem("???: NÃO ME MENCIONE");
                                         Thread.Sleep(2000);
-                                        Ferramentas.Escrever_Mensagem("\n\u001b[31m\u001b[1m???\u001b[0m: NÃO ME MENCIONE");
+                                        Ferramentas.Escrever_Mensagem("\n???: NÃO ME MENCIONE");
                                         Thread.Sleep(2000);
 
                                         Ferramentas.Limpa_Interface();
@@ -1621,20 +1615,20 @@ namespace Projeto_rpg
                                         break;
                                     case 2:
                                         Ferramentas.Limpa_Interface();
-                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Eae parceiro, como vc tá? Você deu uma " +
+                                        Ferramentas.Escrever_Mensagem("Rafael Brother: Eae parceiro, como vc tá? Você deu uma " +
                                             "sumida nos últimos dias... Fiquei preocupado.");
-                                        Ferramentas.Escrever_Mensagem("\n\n\u001b[1mVocê\u001b[0m: Você sabe muito bem como eu estou. Não sabe?");
-                                        Ferramentas.Escrever_Mensagem("\n\n\u001b[34m\u001b[1mRafael Brother\u001b[0m: É, eu sei... Eu sinto muito pela sua filha cara, as coisas" +
+                                        Ferramentas.Escrever_Mensagem("\n\nVocê: Você sabe muito bem como eu estou. Não sabe?");
+                                        Ferramentas.Escrever_Mensagem("\n\nRafael Brother: É, eu sei... Eu sinto muito pela sua filha cara, as coisas" +
                                             "não eram pra terminarem assim. A gente sabia disso. Foi um acidente, ninguém tem culpa. Muito menos você!");
                                         Efeitos.Digitando(3);
-                                        Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: A culpa é toda minha.");
+                                        Ferramentas.Escrever_Mensagem("Você: A culpa é toda minha.");
                                         Efeitos.Digitando(5);
-                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Não é não, você sabe disso. A CSP tem grande parte nisso. " +
+                                        Ferramentas.Escrever_Mensagem("Rafael Brother: Não é não, você sabe disso. A CSP tem grande parte nisso. " +
                                             "Se eles tivessem dado ouvidos à todas as suas suas recomendações de segurança, isso não teria acontecido...");
                                         Efeitos.Digitando(3, false);
-                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: E agora, quem paga o preço? A gente.");
+                                        Ferramentas.Escrever_Mensagem("Rafael Brother: E agora, quem paga o preço? A gente.");
                                         Efeitos.Digitando(5, false);
-                                        Ferramentas.Escrever_Mensagem("\u001b[34m\u001b[1mRafael Brother\u001b[0m: Aí, o celular tá descarregando. Depois eu volto. Mas fica " +
+                                        Ferramentas.Escrever_Mensagem("Rafael Brother: Aí, o celular tá descarregando. Depois eu volto. Mas fica " +
                                             "melhor, viu? Alguma hora vou aí te visitar.");
                                         Ferramentas.Escrever_Mensagem("\n\n[1] Okks\n");
                                         Ações.Escolha(1);
@@ -1659,8 +1653,8 @@ namespace Projeto_rpg
                         Banco_de_Dados.Alterar_num_Mensagens.Todas_Não_Respondidas(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.CSP());
                         Banco_de_Dados.Alterar_num_Mensagens.CSP(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.CSP());
 
-                        Ferramentas.Escrever_Mensagem("\u001b[35m\u001b[1mCSP\u001b[0m: Este é um aviso programado da Cientific Solutions for Pandemics.\n" +
-                            "\u001b[35m\u001b[1mCSP\u001b[0m: Pedimos que permaneça em silêncio judicial. Você será justificado por todo o ocorrido, e esperamos " +
+                        Ferramentas.Escrever_Mensagem("CSP: Este é um aviso programado da Cientific Solutions for Pandemics.\n" +
+                            "CSP: Pedimos que permaneça em silêncio judicial. Você será justificado por todo o ocorrido, e esperamos " +
                             "que os assuntos extraoficiais possam ser resolvidos o mais rápido possível para a manifestação da sua indenização.");
                         Ferramentas.Escrever_Mensagem("\n\n[1] Ok\n");
                         Ações.Escolha(1);
@@ -1679,16 +1673,16 @@ namespace Projeto_rpg
                         Banco_de_Dados.Alterar_num_Mensagens.Sofia_Filha(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Sofia_Filha());
 
                         Ferramentas.Limpa_Interface();
-                        Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Pai?");
+                        Ferramentas.Escrever_Mensagem("Sofia Filha: Pai?");
                         Ferramentas.Escrever_Mensagem("\n\n[1] FILHA?????? VOCÊ ESTÁ BEM????\n");
                         Ações.Escolha(1);
 
                         Ferramentas.Limpa_Interface();
-                        Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Pai?");
+                        Ferramentas.Escrever_Mensagem("Sofia Filha: Pai?");
                         Efeitos.Digitando(2);
-                        Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: FILHA?????? VOCÊ ESTÁ BEM????");
+                        Ferramentas.Escrever_Mensagem("Você: FILHA?????? VOCÊ ESTÁ BEM????");
                         Efeitos.Digitando(6);
-                        Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Ele quer resolver as coisas com você pessoalmente. " +
+                        Ferramentas.Escrever_Mensagem("Sofia Filha: Ele quer resolver as coisas com você pessoalmente. " +
                             "Venha para o laboratório.");
                         Ferramentas.Escrever_Mensagem("" +
                             "\n\n[1] Quem?? O laboratório foi fechado depois do acidente. E por que você está aí?" +
@@ -1697,14 +1691,14 @@ namespace Projeto_rpg
                         {
                             case 1:
                                 Ferramentas.Limpa_Interface();
-                                Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Pai?");
-                                Ferramentas.Escrever_Mensagem("\n\n\u001b[1mVocê\u001b[0m: FILHA?????? VOCÊ ESTÁ BEM????");
-                                Ferramentas.Escrever_Mensagem("\n\n\u001b[31m\u001b[1mSofia Filha\u001b[0m: Ele quer resolver as coisas com você pessoalmente. " +
+                                Ferramentas.Escrever_Mensagem("Sofia Filha: Pai?");
+                                Ferramentas.Escrever_Mensagem("\n\nVocê: FILHA?????? VOCÊ ESTÁ BEM????");
+                                Ferramentas.Escrever_Mensagem("\n\nSofia Filha: Ele quer resolver as coisas com você pessoalmente. " +
                                     "Venha para o laboratório.");
                                 Efeitos.Digitando(4);
-                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Quem?? O laboratório foi fechado depois do acidente. E por que você está aí?");
+                                Ferramentas.Escrever_Mensagem("Você: Quem?? O laboratório foi fechado depois do acidente. E por que você está aí?");
                                 Efeitos.Digitando(6);
-                                Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: \u001b[31mVocê sabe muito bem quem.\u001b[0m");
+                                Ferramentas.Escrever_Mensagem("Sofia Filha: Você sabe muito bem quem.");
                                 Efeitos.Digitando(5);
 
                                 Ferramentas.Limpa_Interface();
@@ -1712,14 +1706,14 @@ namespace Projeto_rpg
                                 break;
                             case 2:
                                 Ferramentas.Limpa_Interface();
-                                Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: Pai?");
-                                Ferramentas.Escrever_Mensagem("\n\n\u001b[1mVocê\u001b[0m: FILHA?????? VOCÊ ESTÁ BEM????");
-                                Ferramentas.Escrever_Mensagem("\n\n\u001b[31m\u001b[1mSofia Filha\u001b[0m: Ele quer resolver as coisas com você pessoalmente. " +
+                                Ferramentas.Escrever_Mensagem("Sofia Filha: Pai?");
+                                Ferramentas.Escrever_Mensagem("\n\nVocê: FILHA?????? VOCÊ ESTÁ BEM????");
+                                Ferramentas.Escrever_Mensagem("\n\nSofia Filha: Ele quer resolver as coisas com você pessoalmente. " +
                                     "Venha para o laboratório.");
                                 Efeitos.Digitando(4);
-                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Para de falar besteiras filha! Você sumiu faz 3 dias sem deixar rastros... Por favor volta pra casa!");
+                                Ferramentas.Escrever_Mensagem("Você: Para de falar besteiras filha! Você sumiu faz 3 dias sem deixar rastros... Por favor volta pra casa!");
                                 Efeitos.Digitando(6);
-                                Ferramentas.Escrever_Mensagem("\u001b[31m\u001b[1mSofia Filha\u001b[0m: \u001b[31mApenas venha.\u001b[0m");
+                                Ferramentas.Escrever_Mensagem("Sofia Filha: Apenas venha.");
                                 Efeitos.Digitando(5);
 
                                 Ferramentas.Limpa_Interface();
@@ -1741,8 +1735,8 @@ namespace Projeto_rpg
                         Banco_de_Dados.Alterar_num_Mensagens.Chefe_Bruno(n_subtrair: Banco_de_Dados.Ler_num_Mensagens.Chefe_Bruno());
 
                         Ferramentas.Limpa_Interface();
-                        Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
-                            "\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Quero pedir somente que me envie, até a semana que vem, aquele aquele relatório do mês de agosto " +
+                        Ferramentas.Escrever_Mensagem("Chefe Bruno: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
+                            "Chefe Bruno: Quero pedir somente que me envie, até a semana que vem, aquele aquele relatório do mês de agosto " +
                             "de 2022 que entreguei a você, para finalizar uma papelada, se possível.");
                         Ferramentas.Escrever_Mensagem("" +
                             "\n\n[1] Ok, chefe." +
@@ -1752,13 +1746,13 @@ namespace Projeto_rpg
                         {
                             case 1:
                                 Ferramentas.Limpa_Interface();
-                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
-                                    "\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Quero pedir somente que me envie, até a semana que vem, aquele relatório do mês de agosto " +
+                                Ferramentas.Escrever_Mensagem("Chefe Bruno: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
+                                    "Chefe Bruno: Quero pedir somente que me envie, até a semana que vem, aquele relatório do mês de agosto " +
                                     "de 2022 que entreguei a você, para finalizar uma papelada, se possível.");
                                 Efeitos.Digitando(4);
-                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Ok, chefe.");
+                                Ferramentas.Escrever_Mensagem("Você: Ok, chefe.");
                                 Efeitos.Digitando(6);
-                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: E espero que a sua situação se resolva logo. Abraços.");
+                                Ferramentas.Escrever_Mensagem("Chefe Bruno: E espero que a sua situação se resolva logo. Abraços.");
                                 Ferramentas.Escrever_Mensagem("" +
                                     "\n\n[1] Obrigado..." +
                                     "\n[2] Sim...");
@@ -1766,20 +1760,20 @@ namespace Projeto_rpg
                                 goto Mensagens;
                             case 2:
                                 Ferramentas.Limpa_Interface();
-                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
-                                    "\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Quero pedir somente que me envie, até a semana que vem, aquele relatório do mês de agosto" +
+                                Ferramentas.Escrever_Mensagem("Chefe Bruno: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
+                                    "Chefe Bruno: Quero pedir somente que me envie, até a semana que vem, aquele relatório do mês de agosto" +
                                     "de 2022 que entreguei a você, para finalizar uma papelada, se possível.");
                                 Efeitos.Digitando(4);
-                                Ferramentas.Escrever_Mensagem("\u001b[1mVocê\u001b[0m: Não estou bem pra trabalhar por agora, Bruno... Preciso de um tempo.");
+                                Ferramentas.Escrever_Mensagem("Você: Não estou bem pra trabalhar por agora, Bruno... Preciso de um tempo.");
                                 Efeitos.Digitando(4);
-                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Ah, sim, entendo...");
+                                Ferramentas.Escrever_Mensagem("Chefe Bruno: Ah, sim, entendo...");
                                 Efeitos.Digitando(10, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Bom, acho que esse relatório pode esperar mais umas 2 semanas.");
+                                Ferramentas.Escrever_Mensagem("Chefe Bruno: Bom, acho que esse relatório pode esperar mais umas 2 semanas.");
                                 Efeitos.Digitando(10, false);
-                                Ferramentas.Escrever_Mensagem("\u001b[32m\u001b[1mChefe Bruno\u001b[0m: Abraços.");
+                                Ferramentas.Escrever_Mensagem("Chefe Bruno: Abraços.");
                                 Ferramentas.Escrever_Mensagem("" +
                                     "\n\n[1] Obrigado..." +
-                                    "\n[2] Agradeço...");
+                                    "\n[2] Agradeço...\n");
                                 Ações.Escolha(2);
                                 goto Mensagens;
                         }
@@ -2128,7 +2122,7 @@ namespace Projeto_rpg
                 {
                     case 1:
                         Ferramentas.Limpa_Interface();
-                        Ferramentas.Escrever("\u001b[31mVocê está indo na direção certa.\u001b[31m");
+                        Ferramentas.Escrever("???: Você está indo na direção certa.");
                         Banco_de_Dados.Alterar_Progresso_da_História.Parte1_História(true);
                         while(Banco_de_Dados.Ler_Progresso_Da_História.Parte1_História() == false)
                         {

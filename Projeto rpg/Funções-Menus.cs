@@ -11,6 +11,8 @@
             // Configurações de visualização da janela (maximizar + buffer definido)
 
             // Configurações.Tela.Tela_default(); // Só funciona no computador do Senac !!!!!
+            
+            Configurações.Tela.Limitar_Tela();
 
             // Obtendo altura e largura do console
 

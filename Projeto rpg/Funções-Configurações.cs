@@ -31,6 +31,13 @@ namespace Projeto_rpg
                 System.Console.BufferWidth = Console.LargestWindowWidth;
                 System.Console.BufferHeight = Console.LargestWindowHeight;
             }
+            public static void Limitar_Tela()
+            {
+                // Delimitando Buffer
+
+                Console.BufferWidth = Console.WindowWidth;
+                Console.BufferHeight = Console.WindowHeight;
+            }
         }
 
         public static class Fonte
