@@ -1823,7 +1823,7 @@ namespace Projeto_rpg
         }
         public static void Ler_Livro() // OK
         {
-            Ler_Livro:
+        Ler_Livro:
 
             Conferir_Trilha_de_Fundo();
 
@@ -1958,7 +1958,7 @@ namespace Projeto_rpg
                             Ferramentas.Escrever("De repente, surge uma memória.");
                             Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("\"Atenção! Teste 1 de 3. Está pronto, Tiago?\"");
-                            Ferramentas .Limpa_Interface();
+                            Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("Isso é mesmo necessário?");
                             Ferramentas.Limpa_Interface();
                             Ferramentas.Escrever("\"Temos que fazer esses testes diariamente agora, você sabe disso. Precisamos garantir que ele não pegou nenhum de nós.\"");
@@ -2023,7 +2023,7 @@ namespace Projeto_rpg
         }
         private static void Cozinha() // OK
         {
-            Cozinha:
+        Cozinha:
 
             Conferir_Trilha_de_Fundo();
 
@@ -2054,7 +2054,7 @@ namespace Projeto_rpg
                     }
                     break;
                 case 2:
-                    if(Banco_de_Dados.Ler_Progresso_Da_História.Isqueiro() == false && Banco_de_Dados.Ler_Progresso_Da_História.Faca() == false)
+                    if (Banco_de_Dados.Ler_Progresso_Da_História.Isqueiro() == false && Banco_de_Dados.Ler_Progresso_Da_História.Faca() == false)
                     {
                         Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever("Há um isqueiro e uma faca. Você só pode pegar um dos dois." +

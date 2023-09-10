@@ -1,6 +1,4 @@
-﻿using System.Security.Policy;
-
-namespace Projeto_rpg
+﻿namespace Projeto_rpg
 {
     public class Ferramentas // TUDO OK
     {
@@ -75,7 +73,7 @@ namespace Projeto_rpg
             // Não deixando as margens do console serem editadas
 
             Console.SetCursorPosition(2, 2);
-            
+
             for (int i = 0; i < texto.Length; i++)
             {
                 var = texto[i];
@@ -122,7 +120,7 @@ namespace Projeto_rpg
                     int Linha_atual = Console.CursorTop;
                     Console.SetCursorPosition(2, Linha_atual + 1);
                 }
-                
+
                 Console.Write(var);
 
                 // Colocando espaço de tempo maior após pontuação final, e eliminando tempo caso o usuário pressione alguma tecla

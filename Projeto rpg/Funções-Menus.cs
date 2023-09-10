@@ -19,7 +19,7 @@
 
             // Definindo strings da tela de início
 
-            string Aviso_Tela1 =  "Maximize essa janela para jogar", Aviso_Tela2 = "Por favor, não mude de tamanho nem minimize a janela para uma melhor experiência", Título = "UM DIA NEGRO", Aviso1 = "Um jogo por AlvzDevelopment", Aviso2 = "Pressione qualquer tecla para jogar.";
+            string Aviso_Tela1 = "Maximize essa janela para jogar", Aviso_Tela2 = "Por favor, não mude de tamanho nem minimize a janela para uma melhor experiência", Título = "UM DIA NEGRO", Aviso1 = "Um jogo por AlvzDevelopment", Aviso2 = "Pressione qualquer tecla para jogar.";
 
             // Desabilitando barra de escrita
 

@@ -5,6 +5,8 @@
 
 // Falta testar o jogo inteiro para corrigir possíveis bugs
 
+// Nota: Jogo não abre em outro computadores (prompt de comando só pisca)
+
 using NAudio.Wave; // API para reproduzir áudio
 
 namespace Projeto_rpg
@@ -29,7 +31,7 @@ namespace Projeto_rpg
 
                 // Menu Inicial
 
-                Menus.Tela_inicio(); // COLOCAR AVISO DE MAXIMIZAR JANELA, E DAR OK DE CONFIRMAÇÃO
+                Menus.Tela_inicio();
 
                 // Interface
 
@@ -70,10 +72,10 @@ namespace Projeto_rpg
             }
             else // Aqui seria a parte 2
             {
-                creditos:
+            creditos:
 
                 double n = 0;
-                
+
                 if (Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV())
                 {
                     n += 8.34;
@@ -122,7 +124,7 @@ namespace Projeto_rpg
                 {
                     n += 8.34;
                 }
-                if(n > 100)
+                if (n > 100)
                 {
                     n = 100;
                 }

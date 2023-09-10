@@ -12,9 +12,9 @@ namespace Projeto_rpg
                 case 0:
                     return ($@"{temp}/Soundtrack/Som de chuva.mp3");
                 case 1:
-                     return ($@"{temp}/Soundtrack/Chamando.mp3");
+                    return ($@"{temp}/Soundtrack/Chamando.mp3");
                 case 2:
-                     return ($@"{temp}/Soundtrack/Desconhecido.mp3");
+                    return ($@"{temp}/Soundtrack/Desconhecido.mp3");
                 case 3:
                     return ($@"{temp}/Soundtrack/Rafael Brother.mp3");
                 case 4:
@@ -26,7 +26,7 @@ namespace Projeto_rpg
                 case 7:
                     return ($@"{temp}/Soundtrack/Sofia.mp3");
                 default:
-                     return ($@"{temp}/Soundtrack/Som de chuva.mp3");
+                    return ($@"{temp}/Soundtrack/Som de chuva.mp3");
             }
         }
 
@@ -48,7 +48,7 @@ namespace Projeto_rpg
         }
         public static void Conferir_Trilha_de_Fundo() // Gambiarra: mantém o loop na força bruta
         {
-            if(Soundtrack0.Player.PlaybackState != PlaybackState.Playing)
+            if (Soundtrack0.Player.PlaybackState != PlaybackState.Playing)
             {
                 Soundtrack0.Player.Dispose();
                 Soundtrack0.Leitor.Dispose();
