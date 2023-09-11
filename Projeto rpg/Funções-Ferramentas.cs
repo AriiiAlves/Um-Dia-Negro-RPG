@@ -29,7 +29,7 @@
                 {
                     Console.Write(" ");
                 }
-                Console.WriteLine("│");
+                Console.Write("│");
             }
             for (int i = 0; i < Console_Width; i++)
             {
@@ -39,7 +39,7 @@
                 }
                 else if (i == Console_Width - 1)
                 {
-                    Console.Write("┘");
+                    Console.Write("");
                 }
                 else
                 {

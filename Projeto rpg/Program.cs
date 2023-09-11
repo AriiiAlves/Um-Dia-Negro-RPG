@@ -5,8 +5,12 @@
 
 // Falta testar o jogo inteiro para corrigir possíveis bugs
 
-// Nota: Jogo não abre em outro computadores (prompt de comando só pisca)
+// Nota: Jogo não abre em computadores que não tenham .NET instalado
 
+// Consegui colocar os arquivos "publish" como dlls a mais para rodar em ambientes que não tenham o .NET, mas a interface do game
+// buga e o jogo fica lento...
+
+using System;
 using NAudio.Wave; // API para reproduzir áudio
 
 namespace Projeto_rpg
@@ -28,10 +32,17 @@ namespace Projeto_rpg
                 ControleMúsica.Soundtrack0.Player.Play();
                 ControleMúsica.Soundtrack0.Player.Volume = 0.5f;
 
+                // Desativando cursor visível
+
+                Console.CursorVisible = false;
 
                 // Menu Inicial
 
                 Menus.Tela_inicio();
+
+                // Desativando cursor visível
+
+                Console.CursorVisible = false;
 
                 // Interface
 
