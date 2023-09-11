@@ -39,7 +39,7 @@
                 }
                 else if (i == Console_Width - 1)
                 {
-                    Console.Write("");
+                    Console.Write("┘");
                 }
                 else
                 {
@@ -262,6 +262,65 @@
         {
             Console.Clear();
             Thread.Sleep(15);
+        }
+        public static double VerificarProgresso() 
+        {
+            double n = 0;
+
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Chave_Escritorio())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Chave_Porta())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Faca() || Banco_de_Dados.Ler_Progresso_Da_História.Isqueiro())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Cofre_Aberto())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Memórias())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Desconhecido())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Rafael_Brother())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Thomas())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_CSP())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Sofia())
+            {
+                n += 8.34;
+            }
+            if (Banco_de_Dados.Ler_num_Mensagens.Todas_Não_Respondidas() == 0)
+            {
+                n += 8.34;
+            }
+            if (n > 100)
+            {
+                n = 100;
+            }
+
+            return n;
         }
     }
 }

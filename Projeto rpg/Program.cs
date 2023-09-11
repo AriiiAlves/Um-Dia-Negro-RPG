@@ -10,7 +10,6 @@
 // Consegui colocar os arquivos "publish" como dlls a mais para rodar em ambientes que não tenham o .NET, mas a interface do game
 // buga e o jogo fica lento...
 
-using System;
 using NAudio.Wave; // API para reproduzir áudio
 
 namespace Projeto_rpg
@@ -30,19 +29,15 @@ namespace Projeto_rpg
                 ControleMúsica.Soundtrack0.Leitor = new AudioFileReader(ControleMúsica.CaminhoTrilha(0));
                 ControleMúsica.Soundtrack0.Player.Init(ControleMúsica.Soundtrack0.Leitor);
                 ControleMúsica.Soundtrack0.Player.Play();
-                ControleMúsica.Soundtrack0.Player.Volume = 0.5f;
+                ControleMúsica.Soundtrack0.Player.Volume = 0.3f;
 
-                // Desativando cursor visível
+                // Desabilitando barra de escrita
 
                 Console.CursorVisible = false;
 
                 // Menu Inicial
 
                 Menus.Tela_inicio();
-
-                // Desativando cursor visível
-
-                Console.CursorVisible = false;
 
                 // Interface
 
@@ -85,60 +80,7 @@ namespace Projeto_rpg
             {
             creditos:
 
-                double n = 0;
-
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Cabo_TV())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Chave_Escritorio())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Chave_Porta())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Faca() || Banco_de_Dados.Ler_Progresso_Da_História.Isqueiro())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Cofre_Aberto())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Memórias())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Desconhecido())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Rafael_Brother())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Thomas())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_CSP())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_Progresso_Da_História.Atender_Sofia())
-                {
-                    n += 8.34;
-                }
-                if (Banco_de_Dados.Ler_num_Mensagens.Todas_Não_Respondidas() == 0)
-                {
-                    n += 8.34;
-                }
-                if (n > 100)
-                {
-                    n = 100;
-                }
+                double n = Ferramentas.VerificarProgresso();
 
                 Console.CursorVisible = false;
 

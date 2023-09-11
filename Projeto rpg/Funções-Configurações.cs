@@ -11,6 +11,26 @@ namespace Projeto_rpg
     {
         public static class Tela
         {
+            // Configuração para maximizar janela (só funciona no Windows 10)
+
+            [DllImport("kernel32.dll", ExactSpelling = true)]
+            private static extern IntPtr GetConsoleWindow();
+            private static IntPtr ThisCon = GetConsoleWindow();
+            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+            private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+            private const int HIDE = 0;
+            private const int MAXIMIZE = 3;
+            private const int MINIMIZE = 6;
+            private const int RESTORE = 9;
+            public static void Tela_default()
+            {
+                // Maximizando janela
+                ShowWindow(ThisCon, MAXIMIZE);
+                System.Console.WindowWidth = Console.LargestWindowWidth;
+                System.Console.WindowHeight = Console.LargestWindowHeight;
+                System.Console.BufferWidth = Console.LargestWindowWidth;
+                System.Console.BufferHeight = Console.LargestWindowHeight;
+            }
             public static void Limitar_Tela()
             {
                 Console.BufferHeight = Console.WindowHeight;

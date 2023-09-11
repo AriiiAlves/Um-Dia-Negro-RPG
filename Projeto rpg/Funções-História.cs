@@ -750,7 +750,7 @@ namespace Projeto_rpg
                                             Banco_de_Dados.Alterar_Progresso_da_História.Abrir_Cofre(true);
                                             goto quarto;
                                         }
-                                        else if (stemp == "SAIR")
+                                        else if (stemp.ToUpper() == "SAIR")
                                         {
                                             goto quarto;
                                         }
@@ -793,7 +793,7 @@ namespace Projeto_rpg
                                 }
                                 else
                                 {
-                                    Ferramentas.Escrever("As gavetas guardavam um cabo de energia e uma chave. Você coletou os 2 itens.");
+                                    Ferramentas.Escrever("As gavetas guardavam um cabo de energia e a chave do escritório. Você coletou os 2 itens.");
                                     Banco_de_Dados.Coletar_item.Cabo_TV(true);
                                     Banco_de_Dados.Coletar_item.Chave_Escritório(true);
                                 }
@@ -2132,7 +2132,7 @@ namespace Projeto_rpg
                         {
                             case 1:
                                 Ferramentas.Limpa_Interface();
-                                Ferramentas.Escrever("Você coletou uma chave.");
+                                Ferramentas.Escrever("Você coletou a chave da porta da frente.");
                                 Banco_de_Dados.Coletar_item.Chave_Porta(true);
                                 goto Cozinha;
                             case 2:
@@ -2152,9 +2152,11 @@ namespace Projeto_rpg
 
             if (Banco_de_Dados.Ler_Progresso_Da_História.Chave_Porta())
             {
+                double n = Ferramentas.VerificarProgresso();
+
                 Ferramentas.Limpa_Interface();
                 Ferramentas.Escrever("" +
-                    "Deseja sair de casa?" +
+                    $"Deseja sair de casa? ({n}% da história explorado)" +
                     "\n\n[1] Sair" +
                     "\n[2] Voltar", escolha: true);
                 switch (Ações.Escolha(2))

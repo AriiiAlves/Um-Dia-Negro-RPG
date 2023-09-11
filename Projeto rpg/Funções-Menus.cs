@@ -4,14 +4,18 @@
     {
         public static void Tela_inicio() // OK
         {
-            // Mudando fonte do console (para Roboto)
+            try // Só funciona no Windows 10
+            {
+                // Mudando fonte do console (para Roboto)
 
-            // Configurações.Fonte.SetCurrentFont("Roboto", 20); // Só funciona no computador do Senac !!!!!
+                Configurações.Fonte.SetCurrentFont("Roboto", 20);
 
-            // Configurações de visualização da janela (maximizar + buffer definido)
+                // Configurações de visualização da janela (maximizar + buffer definido)
 
-            // Configurações.Tela.Tela_default(); // Só funciona no computador do Senac !!!!!
-
+                Configurações.Tela.Tela_default();
+            }
+            catch { }
+            
             // Obtendo altura e largura do console
 
             int Largura_Janela = Console.WindowWidth;

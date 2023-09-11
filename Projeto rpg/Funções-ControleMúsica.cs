@@ -32,7 +32,7 @@ namespace Projeto_rpg
 
         // GUIA DE SOUNDTRACKS
 
-        // 0: SOM DECHUVA
+        // 0: SOM DE CHUVA
         // 1: SOM DE LIGAÇÃO (CHAMANDO)
         // 2: SOM DO CONTATO DESCONHECIDO
         // 3: SOM DO RAFAEL BROTHER
