@@ -15,33 +15,58 @@
                 Configurações.Tela.Tela_default();
             }
             catch { }
-            
-            // Obtendo altura e largura do console
-
-            int Largura_Janela = Console.WindowWidth;
-            int Altura_Janela = Console.WindowHeight;
 
             // Definindo strings da tela de início
 
             string Aviso_Tela1 = "Maximize essa janela para jogar", Aviso_Tela2 = "Por favor, não mude de tamanho nem minimize a janela para uma melhor experiência", Título = "UM DIA NEGRO", Aviso1 = "Um jogo por AlvzDevelopment", Aviso2 = "Pressione qualquer tecla para jogar.";
 
-            // Desabilitando barra de escrita
+            // Declarando variáveis de altura e largura do console
+
+            int Largura_Janela = 0;
+            int Altura_Janela = 0;
+
+            // Mensagem para maximizar janela
+
+            while (true)
+            {
+                if ((Altura_Janela <= Console.LargestWindowHeight - 3) || (Largura_Janela <= Console.LargestWindowWidth - 3))
+                {
+                    if (Altura_Janela != Console.WindowHeight || Largura_Janela != Console.WindowWidth)
+                    {
+                        Ferramentas.LimpaTela();
+
+                        // Desabilitando barra de escrita
+
+                        Console.CursorVisible = false;
+
+                        // Obtendo a largura e altura do console
+
+                        Largura_Janela = Console.WindowWidth;
+                        Altura_Janela = Console.WindowHeight;
+
+                        // Centralizando o texto (Aviso de Tela 1)
+
+                        for (int i = 0; i < Altura_Janela / 2 - 1; i++)
+                        {
+                            Console.WriteLine(" ");
+                        }
+                        for (int i = 0; i < Largura_Janela / 2 - Aviso_Tela1.Length / 2; i++)
+                        {
+                            Console.Write(" ");
+                        }
+                        Console.Write($"{Aviso_Tela1}");
+                    }
+                }
+                else
+                {
+                    Ferramentas.LimpaTela();
+                    break;
+                }
+            }
+
+            // Desabilitando novamente a barra de escrita
 
             Console.CursorVisible = false;
-
-            // Centralizando o texto (Aviso de Tela 1)
-
-            for (int i = 0; i < Altura_Janela / 2 - 1; i++)
-            {
-                Console.WriteLine(" ");
-            }
-            for (int i = 0; i < Largura_Janela / 2 - Aviso_Tela1.Length / 2; i++)
-            {
-                Console.Write(" ");
-            }
-            Console.Write($"{Aviso_Tela1}");
-            Console.ReadLine();
-            Ferramentas.LimpaTela();
 
             // Obtendo novamente a largura e altura do console
 

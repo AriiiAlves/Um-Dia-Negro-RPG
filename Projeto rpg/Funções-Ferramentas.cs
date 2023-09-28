@@ -39,7 +39,7 @@
                 }
                 else if (i == Console_Width - 1)
                 {
-                    Console.Write("┘");
+                    Console.Write("");
                 }
                 else
                 {

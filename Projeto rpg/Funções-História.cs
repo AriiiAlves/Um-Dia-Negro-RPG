@@ -1633,11 +1633,13 @@ namespace Projeto_rpg
                                         Ferramentas.Escrever_Mensagem("Rafael Brother: Foi mal, mas você sabe que aquela ##### pegou ela. E sabemos muito bem do que aquilo é capaz de fazer... " +
                                             "Se ela não morreu, então provavelmente não é mais a mesma.");
                                         Efeitos.Digitando(5);
+                                        Console.ForegroundColor = ConsoleColor.Red;
                                         Ferramentas.Escrever_Mensagem("???: NÃO ME MENCIONE");
                                         Thread.Sleep(2000);
                                         Ferramentas.Escrever_Mensagem("???: NÃO ME MENCIONE");
                                         Thread.Sleep(2000);
                                         Ferramentas.Escrever_Mensagem("\n???: NÃO ME MENCIONE");
+                                        Console.ForegroundColor = ConsoleColor.White;
                                         Thread.Sleep(2000);
 
                                         Ferramentas.Limpa_Interface();
@@ -1743,7 +1745,9 @@ namespace Projeto_rpg
                                 Efeitos.Digitando(4);
                                 Ferramentas.Escrever_Mensagem("Você: Para de falar besteiras filha! Você sumiu faz 3 dias sem deixar rastros... Por favor volta pra casa!");
                                 Efeitos.Digitando(6);
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Ferramentas.Escrever_Mensagem("Sofia Filha: Apenas venha.");
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Efeitos.Digitando(5);
 
                                 Ferramentas.Limpa_Interface();
@@ -2169,7 +2173,9 @@ namespace Projeto_rpg
                         }
 
                         Ferramentas.Limpa_Interface();
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Ferramentas.Escrever("???: VOCÊ ESTÁ INDO NA DIREÇÃO CERTA.", pausa_pontuacao: false);
+                        Console.ForegroundColor = ConsoleColor.White;
                         Environment.Exit(0);
                         break;
                     case 2:
