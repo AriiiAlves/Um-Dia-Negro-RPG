@@ -1770,7 +1770,7 @@ namespace Projeto_rpg
 
                         Ferramentas.Limpa_Interface();
                         Ferramentas.Escrever_Mensagem("Chefe Bruno: Olá, bom dia. Lamento o ocorrido dos últimos dias...\n" +
-                            "Chefe Bruno: Quero pedir somente que me envie, até a semana que vem, aquele aquele relatório do mês de agosto " +
+                            "Chefe Bruno: Quero pedir somente que me envie, até a semana que vem, aquele relatório do mês de agosto " +
                             "de 2022 que entreguei a você, para finalizar uma papelada, se possível.");
                         Ferramentas.Escrever_Mensagem("" +
                             "\n\n[1] Ok, chefe." +
@@ -1990,9 +1990,10 @@ namespace Projeto_rpg
                             Thread.Sleep(7000);
                             Ferramentas.LimpaTela();
                             Console.BackgroundColor = ConsoleColor.Black;
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Ferramentas.Interface();
-                            Ferramentas.Escrever("\u001b[31mESQUEÇA ISSO.\u001b[31m", instantâneo: true);
+                            Ferramentas.Escrever("ESQUEÇA ISSO.", instantâneo: true);
+                            Console.ForegroundColor = ConsoleColor.Black;
                             Thread.Sleep(5000);
                             Environment.Exit(0);
                             break;
