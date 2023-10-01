@@ -12,6 +12,7 @@ Requisitos do projeto:
 - Desenvolver o jogo no console com C# e banco de dados
 
 Necessário para rodar: .NET 6.0
+Nota: Para rodar o jogo compilado, é necessária a pasta [Soundtracks](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg/Soundtrack) estar presente no mesmo local do executável (.EXE), pois é uma dependência para a execução do código.
 
 # A-Dark-Day-RPG (en)
 
@@ -27,3 +28,4 @@ Project Requisites:
 - Develop a game in the console with C# and Database
 
 Needs to run: .Net 6.0
+Note: To run the compilled game, it's nedeed the directory [Soundtracks](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg/Soundtrack) be in the same local that the .EXE archive, because it's a dependency to run the code.
