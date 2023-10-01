@@ -7,7 +7,7 @@ Links do projeto:
 - [Site Um Dia Negro RPG](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Site%20Um%20Dia%20Negro%20RPG)
 - [Jogo em C#](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg)
 
-Requisitos do projeto:
+Objetivos do projeto:
 - Desenvolver um site com HTML e CSS para o "anúncio" do jogo
 - Desenvolver o jogo no console com C# e banco de dados
 
@@ -23,7 +23,7 @@ Project links:
 - [A Dark Day RPG site](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Site%20Um%20Dia%20Negro%20RPG)
 - [Game in C#](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg)
 
-Project Requisites:
+Project objectives:
 - Develop a site with HTML and CSS for the "announcement" of the game
 - Develop a game in the console with C# and Database
 
