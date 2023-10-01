@@ -1,4 +1,4 @@
-# Um-Dia-Negro-RPG
+# Um-Dia-Negro-RPG (pt-br)
 
 Um jogo básico no estilo RPG, executado em console, com elementos de suspense e terror.
 Elaborado como projeto para o módulo de Desenvolvimento do Senac.
@@ -13,7 +13,7 @@ Requisitos do projeto:
 
 Necessário para rodar: .NET 6.0
 
-# A-Dark-Day-RPG
+# A-Dark-Day-RPG (en)
 
 A basic game in the RPG style, that runs in console, with terror and suspense elements.
 Made as a project for the Senac's Development module.
