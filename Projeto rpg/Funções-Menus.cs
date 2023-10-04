@@ -4,17 +4,19 @@
     {
         public static void Tela_inicio() // OK
         {
-            try // Só funciona no Windows 10
-            {
-                // Mudando fonte do console (para Roboto)
+            // Essa parte do código só funciona no Windows 10 e apresenta bugs no Windows 11
 
-                Configurações.Fonte.SetCurrentFont("Roboto", 20);
+            //try 
+            //{
+            //    // Mudando fonte do console (para Roboto)
 
-                // Configurações de visualização da janela (maximizar + buffer definido)
+            //    Configurações.Fonte.SetCurrentFont("Roboto", 20);
 
-                Configurações.Tela.Tela_default();
-            }
-            catch { }
+            //    // Configurações de visualização da janela (maximizar + buffer definido)
+
+            //    Configurações.Tela.Tela_default();
+            //}
+            //catch { }
 
             // Definindo strings da tela de início
 
@@ -29,7 +31,7 @@
 
             while (true)
             {
-                if ((Altura_Janela <= Console.LargestWindowHeight - 3) || (Largura_Janela <= Console.LargestWindowWidth - 3))
+                if ((Altura_Janela <= Console.LargestWindowHeight - 12))
                 {
                     if (Altura_Janela != Console.WindowHeight || Largura_Janela != Console.WindowWidth)
                     {
