@@ -5,7 +5,7 @@ Um jogo básico no estilo RPG, executado em console, com elementos de suspense e
 Elaborado como projeto para o módulo de Desenvolvimento do Senac.
 
 Links do projeto:
-- [Site Um Dia Negro RPG](https://github.com/AriiiAlves/Um-Dia-Negro-RPG-Site)
+- [Site Um Dia Negro RPG (repositório)](https://github.com/AriiiAlves/Um-Dia-Negro-RPG-Site)
 - [Jogo em C#](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg)
 
 Objetivos do projeto:
@@ -25,7 +25,7 @@ A basic game in the RPG style, that runs in console, with terror and suspense el
 Made as a project for the Senac's Development module.
 
 Project links:
-- [A Dark Day RPG site](https://github.com/AriiiAlves/Um-Dia-Negro-RPG-Site)
+- [A Dark Day RPG site (repository)](https://github.com/AriiiAlves/Um-Dia-Negro-RPG-Site)
 - [Game in C#](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg)
 
 Project objectives:
