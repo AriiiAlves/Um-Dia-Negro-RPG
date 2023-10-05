@@ -6,7 +6,7 @@ Elaborado como projeto para o módulo de Desenvolvimento do Senac.
 
 Links do projeto:
 - [Site Um Dia Negro RPG (repositório)](https://github.com/AriiiAlves/Um-Dia-Negro-RPG-Site)
-- [Jogo em C#](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg)
+- [Jogo em C# (atalho)](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg)
 
 Objetivos do projeto:
 - Desenvolver um site com HTML e CSS para o "anúncio" do jogo
@@ -26,7 +26,7 @@ Made as a project for the Senac's Development module.
 
 Project links:
 - [A Dark Day RPG site (repository)](https://github.com/AriiiAlves/Um-Dia-Negro-RPG-Site)
-- [Game in C#](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg)
+- [Game in C# (shortcut)](https://github.com/AriiiAlves/Um-Dia-Negro-RPG/tree/master/Projeto%20rpg)
 
 Project objectives:
 - Develop a site with HTML and CSS for the "announcement" of the game
